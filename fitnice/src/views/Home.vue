@@ -1,5 +1,6 @@
 <template>
-  <v-app>
+  <v-app style="background: #192633">
+    <c-header></c-header>
     <h1>Home</h1>
   </v-app>
 </template>
@@ -11,12 +12,13 @@ h1 {
 </style>
 
 <script>
+import Header from "../components/Header";
 
 export default {
   name: "Home",
 
   components: {
-
+    CHeader: Header
   }
 }
 </script>
