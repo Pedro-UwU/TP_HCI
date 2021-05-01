@@ -43,7 +43,8 @@ export default {
 
 }
 .image {
-  border-radius: 20px;
+  border-radius: 20px !important;
   width: 250px;
+  height: 250px;
 }
 </style>

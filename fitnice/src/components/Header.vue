@@ -23,18 +23,18 @@
     <template id="nav">
     <v-tabs
         fixed-tabs
-        color="#5885B3"
+        color="#5885B3" !important
         background-color="#141D26"
         dark
     >
       <v-tab>
-        Inicio
+        <router-link class="nolink" to="/">Inicio</router-link>
       </v-tab>
       <v-tab>
-        Rutinas
+          <router-link class="nolink" to="/rutinas">Rutinas</router-link>
       </v-tab>
       <v-tab>
-        Favoritos
+        <router-link class="nolink" to="/favoritos">Favoritos</router-link>
       </v-tab>
     </v-tabs>
 </template>
@@ -43,6 +43,10 @@
 
 <style scoped>
 span a {
+  text-decoration: none;
+}
+.nolink{
+  color: white;
   text-decoration: none;
 }
 </style>
