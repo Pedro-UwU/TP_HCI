@@ -23,7 +23,7 @@
     <template id="nav">
     <v-tabs
         fixed-tabs
-        color="#5885B3" !important
+        color="#5885B3"
         background-color="#141D26"
         dark
     >
