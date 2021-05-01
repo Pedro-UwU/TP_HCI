@@ -15,9 +15,12 @@
       <v-btn icon color="white">
         <img src="../assets/lupa.svg" alt="lupa icon"/>
       </v-btn>
-      <v-btn icon color="white" style="margin: 10px">
-        <img src="../assets/person.svg" alt="person icon"/>
-      </v-btn>
+
+      <router-link to="/profile" tag="button">
+        <v-btn icon color="white" style="margin: 10px">
+          <img src="../assets/person.svg" alt="person icon"/>
+        </v-btn>
+      </router-link>
 
     </v-app-bar>
     <template id="nav">
