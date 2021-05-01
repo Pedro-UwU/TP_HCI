@@ -7,7 +7,7 @@
         height="70px"
     >
       <v-toolbar-title style="margin-left: 30px; margin-top:20px">
-        <img src="../assets/Fitnice.svg" height="50px" width="auto" alt="logo">
+        <img src="../assets/fitnice-removebg-preview.png" height="60px" width="auto" alt="logo">
       </v-toolbar-title>
 
       <v-spacer></v-spacer>

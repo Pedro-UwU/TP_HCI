@@ -2,15 +2,6 @@
   <v-app>
     <c-login-form/>
   </v-app>
-
-<!--  <v-content>-->
-<!--    <v-tabs v-model="tab" centered>-->
-<!--      <v-tab>Login</v-tab>-->
-<!--    </v-tabs>-->
-<!--    <v-tabs-item v-model="tab">-->
-<!--      <c-login-form></c-login-form>-->
-<!--    </v-tabs-item>-->
-<!--  </v-content>-->
 </template>
 
 <script>
