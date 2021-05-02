@@ -15,12 +15,36 @@
       <v-btn icon color="white">
         <img src="../assets/lupa.svg" alt="lupa icon"/>
       </v-btn>
-
-      <router-link to="/profile" tag="button">
-        <v-btn icon color="white" style="margin: 10px">
-          <img src="../assets/person.svg" alt="person icon"/>
-        </v-btn>
-      </router-link>
+  
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+              depressed
+              class="transparent"
+              v-bind="attrs"
+              v-on="on"
+          >
+            <v-icon>mdi-dots-horizontal</v-icon>
+          </v-btn>
+        </template>
+        <v-list dark>
+          <v-list-item>
+            <v-list-item-content>
+              <router-link to="/profile" tag="button">
+                <v-container>
+                  <v-icon left class="white--text">mdi-account</v-icon>
+                  Perfil
+                </v-container>
+              </router-link>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>
+              Otro item xD
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
 
     </v-app-bar>
     <template id="nav">
