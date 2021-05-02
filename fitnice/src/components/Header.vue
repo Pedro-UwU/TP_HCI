@@ -55,14 +55,14 @@
         background-color="#141D26"
         dark
     >
-      <v-tab>
-        <router-link class="nolink" to="/">Inicio</router-link>
+      <v-tab to="/" v-model="activeTab" class="white--text">
+        Inicio
       </v-tab>
-      <v-tab>
-          <router-link class="nolink" to="/rutinas">Rutinas</router-link>
+      <v-tab to="/routines" v-model="activeTab" class="white--text">
+        Rutinas
       </v-tab>
-      <v-tab>
-        <router-link class="nolink" to="/favoritos">Favoritos</router-link>
+      <v-tab to="/favorites" v-model="activeTab" class="white--text">
+        Favoritos
       </v-tab>
     </v-tabs>
 </template>
