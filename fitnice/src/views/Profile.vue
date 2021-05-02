@@ -2,14 +2,16 @@
   <v-app style="background: #192633">
     <c-header></c-header>
     <div>
-      <div class="text-decoration-underline white--text text-h3 mx-16 mt-10">
-        Perfil
-      </div>
       <v-container class="my-10">
         <v-row>
-          <v-col cols="4">
-            <v-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" max-height="200" max-width="200" contain></v-img>
-            <v-btn depressed width="200" class="transparent white--text my-5 ">
+          <div class=" white--text text-h3 mx-16 my-15">
+            Perfil
+          </div>
+        </v-row>
+        <v-row align="center">
+          <v-col cols="4" justify="center">
+            <v-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" max-width="80%" contain></v-img>
+            <v-btn depressed align="center" width="80%" class="transparent white--text my-5 ">
               <v-icon left class="white--text">mdi-pencil-outline</v-icon>
               Editar Foto
             </v-btn>
@@ -26,6 +28,20 @@
                   </v-list-item-content>
                 </v-list-item>
             </v-list>
+          </v-col>
+        </v-row>
+        <v-row class="mt-5">
+          <v-col class="d-flex justify-center ">
+            <v-btn class="white--text" style="border-width: 5px" outlined width="90%" rounded>
+              <v-icon left>mdi-account-edit-outline</v-icon>
+              Editar Perfil
+            </v-btn>
+          </v-col>
+          <v-col class="d-flex justify-center ">
+            <v-btn color="blue" style="border-width: 5px" class="white--text" outlined width="90%" rounded>
+              <v-icon left>mdi-lock</v-icon>
+              Cambiar contraseña
+            </v-btn>
           </v-col>
         </v-row>
       </v-container>
