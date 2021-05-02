@@ -22,10 +22,11 @@
                   <v-list-item-content>
                     <v-list-item-group>
                       <v-list-item-title class="transparent white--text font-weight-bold my-1 text-h6">{{ element.title }}</v-list-item-title>
-                      <v-list-item-title right class="transparent white--text">{{ element.content }}</v-list-item-title>
-                      <v-divider class="white"></v-divider>
                     </v-list-item-group>
                   </v-list-item-content>
+                  <v-list-item-action>
+                    <v-list-item-subtitle right class="transparent white--text">{{ element.content }}</v-list-item-subtitle>
+                  </v-list-item-action>
                 </v-list-item>
             </v-list>
           </v-col>
