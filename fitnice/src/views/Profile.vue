@@ -18,7 +18,8 @@
           </v-col>
           <v-col>
             <v-list class="transparent">
-                <v-list-item v-for="element in profileElements" :key="element.title">
+              <v-container v-for="element in profileElements" :key="element.title">
+                <v-list-item>
                   <v-list-item-content>
                     <v-list-item-group>
                       <v-list-item-title class="transparent white--text font-weight-bold my-1 text-h6">{{ element.title }}</v-list-item-title>
@@ -28,6 +29,8 @@
                     <v-list-item-subtitle right class="transparent white--text">{{ element.content }}</v-list-item-subtitle>
                   </v-list-item-action>
                 </v-list-item>
+                <v-divider class="white"></v-divider>
+              </v-container>
             </v-list>
           </v-col>
         </v-row>
