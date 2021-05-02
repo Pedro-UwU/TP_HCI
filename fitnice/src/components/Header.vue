@@ -6,8 +6,10 @@
         dark
         height="70px"
     >
-      <v-toolbar-title style="margin-left: 30px; margin-top:20px">
-        <img src="../assets/fitnice-removebg-preview.png" height="60px" width="auto" alt="logo">
+      <v-toolbar-title class="mt-2">
+        <router-link to="/">
+          <img src="../assets/fitnice-removebg-preview.png" height="60px" width="auto" alt="logo"/>
+        </router-link>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -55,13 +57,13 @@
         background-color="#141D26"
         dark
     >
-      <v-tab to="/" v-model="activeTab" class="white--text">
+      <v-tab to="/" class="white--text">
         Inicio
       </v-tab>
-      <v-tab to="/routines" v-model="activeTab" class="white--text">
+      <v-tab to="/routines" class="white--text">
         Rutinas
       </v-tab>
-      <v-tab to="/favorites" v-model="activeTab" class="white--text">
+      <v-tab to="/favorites" class="white--text">
         Favoritos
       </v-tab>
     </v-tabs>
