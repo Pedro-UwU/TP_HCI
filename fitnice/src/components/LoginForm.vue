@@ -15,6 +15,7 @@
             placeholder="e-mail"
             background-color="white"
             height="2.5em"
+            my-20
         ></v-text-field>
         <v-text-field
             label="contraseña"
@@ -48,7 +49,6 @@
 
 export default {
   name: "LoginForm",
-
   data: () => ({
     email: null,
     password: null
@@ -59,13 +59,13 @@ export default {
 <style scoped>
 .login {
   width: 400px ;
-  height: 600px;
+  height: 450px;
   background: #192633;
   opacity: 80%;
   border-radius: 30px;
   border: solid #BDC3c7 1px;
   align-self: center;
-  margin-top: 10%;
+  margin-top: 7%;
 }
 .no_tienes {
   text-decoration: underline;

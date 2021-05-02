@@ -8,6 +8,7 @@ import Login from "./views/Login";
 import Routines from "./views/Routines";
 import Favorites from "./views/Favorites";
 import Profile from "./views/Profile";
+import Register from "./views/Register";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -19,6 +20,7 @@ const router = new VueRouter({
     { path:'/routines',component: Routines},
     { path:'/favorites', component: Favorites},
     { path:'/profile', component: Profile},
+    { path: '/register', component: Register},
     { path: '*', component: NotFound }
   ]
 });
