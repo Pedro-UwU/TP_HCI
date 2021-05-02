@@ -20,6 +20,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
               depressed
+              icon
               class="transparent"
               v-bind="attrs"
               v-on="on"
