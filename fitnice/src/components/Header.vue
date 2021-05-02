@@ -55,13 +55,13 @@
         background-color="#141D26"
         dark
     >
-      <v-tab to="/" v-model="activeTab" class="white--text">
+      <v-tab to="/" v-model="activeTab">
         Inicio
       </v-tab>
-      <v-tab to="/routines" v-model="activeTab" class="white--text">
+      <v-tab to="/routines" v-model="activeTab">
         Rutinas
       </v-tab>
-      <v-tab to="/favorites" v-model="activeTab" class="white--text">
+      <v-tab to="/favorites" v-model="activeTab">
         Favoritos
       </v-tab>
     </v-tabs>
@@ -71,10 +71,6 @@
 
 <style scoped>
 span a {
-  text-decoration: none;
-}
-.nolink{
-  color: white;
   text-decoration: none;
 }
 </style>
