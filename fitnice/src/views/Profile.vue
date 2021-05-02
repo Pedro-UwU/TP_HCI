@@ -4,7 +4,7 @@
     <div>
       <v-container class="my-10">
         <v-row>
-          <div class=" white--text text-h3 mx-16 my-15">
+          <div class=" white--text text-h3 mx-16">
             Perfil
           </div>
         </v-row>
@@ -22,7 +22,7 @@
                 <v-list-item>
                   <v-list-item-content>
                     <v-list-item-group>
-                      <v-list-item-title class="transparent white--text font-weight-bold my-1 text-h6">{{ element.title }}</v-list-item-title>
+                      <v-list-item-title class="transparent white--text font-weight-bold text-h6">{{ element.title }}</v-list-item-title>
                     </v-list-item-group>
                   </v-list-item-content>
                   <v-list-item-action>
