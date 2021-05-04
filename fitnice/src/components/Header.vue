@@ -57,13 +57,13 @@
         background-color="#141D26"
         dark
     >
-      <v-tab to="/" class="white--text">
+      <v-tab to="/">
         Inicio
       </v-tab>
-      <v-tab to="/routines" class="white--text">
+      <v-tab to="/routines">
         Rutinas
       </v-tab>
-      <v-tab to="/favorites" class="white--text">
+      <v-tab to="/favorites">
         Favoritos
       </v-tab>
     </v-tabs>

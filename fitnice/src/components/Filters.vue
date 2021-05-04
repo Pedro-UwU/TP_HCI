@@ -1,12 +1,11 @@
 <template>
-  <div class="text-center">
     <v-menu offset-y transition="slide-y-transition" :close-on-content-click="closeOnContentClick">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            icon
+            class="white--text"
+            :plain="true"
             color="white"
             :ripple="false"
-            id="no-background-hover"
             v-bind="attrs"
             v-on="on"
         >
@@ -47,20 +46,12 @@
         </v-list-group>
       </v-list>
     </v-menu>
-<!--    </v-list-group>-->
-  </div>
 </template>
 
 <script>
 export default {
   name: "Filters",
   data: () => ({
-    // items: [
-    //   { title: 'Click Me' },
-    //   { title: 'Click Me' },
-    //   { title: 'Click Me' },
-    //   { title: 'Click Me 2' },
-    // ],
     categories: [
         ["Bíceps"],
         ["Tríceps"],
@@ -81,7 +72,5 @@ export default {
 </script>
 
 <style scoped>
-#no-background-hover::before {
-  background-color: transparent !important;
-}
+
 </style>
