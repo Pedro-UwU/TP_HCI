@@ -3,7 +3,7 @@
     <c-header></c-header>
     <v-container>
       <v-row align="center">
-        <h2 class="subtitles">Favoritos</h2>
+        <h2 class="subtitles">Rutinas</h2>
         <v-spacer></v-spacer>
         <c-create-routine-btn></c-create-routine-btn>
         <c-filters></c-filters>
@@ -24,30 +24,46 @@
   </v-app>
 </template>
 
-<script>
-import Header from "../components/Header";
-import Filters from "../components/Filters";
-import Order from "../components/Order";
-import RoutineCard from "../components/RoutineCard";
-
-
-export default {
-name: "Favorites",
-  components :{
-    CHeader: Header,
-    CFilters: Filters,
-    COrder: Order,
-    CRoutineCard: RoutineCard
-  }
-}
-</script>
-
 <style scoped>
 .subtitles {
   margin-top: 20px;
   color: white;
   margin-bottom: 20px;
   margin-left: 30px;
-  display: inline;
+}
+.routine {
+  margin-bottom: 20px;
 }
 </style>
+
+<script>
+import Header from "../components/Header";
+import RoutineCard from "../components/RoutineCard";
+import Filters from "../components/Filters";
+import CreateRoutineBtn from "../components/CreateRoutineBtn";
+import Order from "../components/Order";
+
+export default {
+  name: "Explore",
+  components: {
+    CHeader: Header,
+    CRoutineCard: RoutineCard,
+    CFilters: Filters,
+    COrder: Order,
+    CCreateRoutineBtn: CreateRoutineBtn
+  },
+  methods: {
+    AmountRoutine(){
+      if (window.screen.availWidth < 600) {
+        return 2;
+      }else if (window.screen.availWidth < 960) {
+        return 4;
+      }
+      else if (window.screen.availWidth < 1264)
+        return 3;
+      else
+        return 4;
+    }
+  },
+}
+</script>

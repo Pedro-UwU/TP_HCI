@@ -66,7 +66,6 @@
                     height="150px"
                     label="descripcion"
                     solo
-                    v-model="description"
                     name="descripcion"
                     background-color="#BDC3c7"
                 ></v-textarea>

@@ -64,13 +64,13 @@
         dark
     >
       <v-tab to="/">
-        Inicio
-      </v-tab>
-      <v-tab to="/routines">
-        Rutinas
+        Explorar
       </v-tab>
       <v-tab to="/favorites">
         Favoritos
+      </v-tab>
+      <v-tab to="/my-creations">
+        Mis creaciones
       </v-tab>
     </v-tabs>
 </template>

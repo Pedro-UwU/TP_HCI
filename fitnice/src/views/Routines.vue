@@ -1,17 +1,18 @@
 <template>
   <v-app style="background: #192633">
     <c-header></c-header>
-    <div class="pa-6">
-      <h2 class="text-left subtitles">Rutinas</h2>
-      <div class="text-right my-n7">
+    <v-container>
+      <h2 class="subtitles">Rutinas</h2>
+      <v-container>
         <c-create-routine-btn></c-create-routine-btn>
         <c-filters></c-filters>
         <c-order></c-order>
-      </div>
-    </div>
+      </v-container>
+    </v-container>
     <v-container>
       <v-container>
-        <v-row no-gutters style="background: none" align-content="center">
+        <v-row no-gutters style="background: none"
+        >
           <v-col
               v-for="n in 4"
               :key="n"
@@ -21,7 +22,8 @@
               md="4"
               lg="3"
               xl="2"
-              align-self="center"
+              align="center"
+              class="mb-5"
           >
             <c-routine-card
                 class="routine"
