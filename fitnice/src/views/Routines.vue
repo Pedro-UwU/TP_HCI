@@ -1,8 +1,15 @@
 <template>
   <v-app style="background: #192633">
     <c-header></c-header>
-    <v-container mx-10>
-      <c-filters></c-filters>
+    <div class="pa-6">
+      <h2 class="text-left subtitles">Rutinas</h2>
+      <div class="text-right my-n7">
+        <c-create-routine-btn></c-create-routine-btn>
+        <c-filters></c-filters>
+        <c-order></c-order>
+      </div>
+    </div>
+    <v-container>
       <v-container>
         <v-row no-gutters style="background: none" align-content="center">
           <v-col
@@ -32,13 +39,17 @@
 import Header from "../components/Header";
 import Filters from "../components/Filters";
 import RoutineCard from "../components/RoutineCard";
+import CreateRoutineBtn from "../components/CreateRoutineBtn";
+import Order from "../components/Order";
 
 export default {
   name: "Routines",
   components: {
     CHeader: Header,
-    CFilters: Filters,
     CRoutineCard: RoutineCard,
+    CFilters: Filters,
+    COrder: Order,
+    CCreateRoutineBtn: CreateRoutineBtn
   }
 }
 </script>
