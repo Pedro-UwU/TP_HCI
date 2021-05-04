@@ -18,7 +18,7 @@
         <img src="../assets/lupa.svg" alt="lupa icon"/>
       </v-btn>
   
-      <v-menu offset-y>
+      <v-menu offset-y transition="slide-y-transition">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
               depressed
@@ -30,21 +30,27 @@
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
-        <v-list dark>
-          <v-list-item>
+        <v-list color="#BDC3c7" width="200px" height="140px">
+          <v-list-item class="my-n2">
             <v-list-item-content>
               <router-link to="/profile" tag="button">
-                <v-container>
-                  <v-icon left class="white--text">mdi-account</v-icon>
+                <v-container class="text-left">
+                  <v-icon left class="black--text">mdi-account</v-icon>
                   Perfil
                 </v-container>
               </router-link>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item>
-            <v-list-item-title>
-              Otro item xD
-            </v-list-item-title>
+          <v-divider></v-divider>
+          <v-list-item class="mb-n3">
+            <v-list-item-content>
+              <router-link to="/profile" tag="button"> <!--- agregar el router que corresponde--->
+                <v-container class="text-left">
+                  <v-icon left class="black--text">mdi-plus</v-icon>
+                  Crear Rutina
+                </v-container>
+              </router-link>
+            </v-list-item-content>
           </v-list-item>
         </v-list>
       </v-menu>
