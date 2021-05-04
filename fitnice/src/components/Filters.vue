@@ -1,6 +1,10 @@
 <template>
-  <div class="text-center">
-    <v-menu offset-y transition="slide-y-transition" :close-on-content-click="closeOnContentClick">
+  <div class="text-right inline" >
+    <v-menu
+        offset-y
+        transition="slide-y-transition"
+        :close-on-content-click="closeOnContentClick"
+    >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
             icon
@@ -83,5 +87,8 @@ export default {
 <style scoped>
 #no-background-hover::before {
   background-color: transparent !important;
+}
+.inline {
+  align-self: self-end;
 }
 </style>

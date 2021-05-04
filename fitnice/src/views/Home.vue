@@ -1,7 +1,7 @@
 <template>
   <v-app style="background: #192633">
     <c-header></c-header>
-    <div class="home">
+    <v-container mx-10>
       <h2 class="subtitles">Recomendaciones</h2>
       <v-container>
         <v-row no-gutters style="background: none" align-content="center">
@@ -56,22 +56,16 @@
           </v-col>
         </v-row>
       </v-container>
-    </div>
+    </v-container>
   </v-app>
 </template>
 
 <style scoped>
 .subtitles {
-  color: white;
-}
-.subtitles {
   margin-top: 20px;
   color: white;
   margin-bottom: 20px;
   margin-left: 30px;
-}
-.home {
-  margin-left: 20px;
 }
 .routine {
   margin-bottom: 20px;
