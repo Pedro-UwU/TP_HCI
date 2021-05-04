@@ -64,5 +64,4 @@ export default {
   margin-left: 30px;
   display: inline;
 }
-
 </style>
