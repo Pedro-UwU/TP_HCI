@@ -13,7 +13,7 @@
           <v-icon>mdi-filter</v-icon>
         </v-btn>
       </template>
-      <v-list>
+      <v-list color="#BDC3c7">
         <v-list-group :value="false">
           <template v-slot:activator>
             <v-list-item-title>Categoría</v-list-item-title>
@@ -24,6 +24,7 @@
             link
             >
             <v-checkbox
+                class="mb-n5 my-n2"
                 :v-model="checkbox"
                 :label="title"
             ></v-checkbox>
@@ -39,8 +40,9 @@
               link
           >
             <v-checkbox
-              :v-model="checkbox"
-              :label="title"
+                class="my-n5"
+                :v-model="checkbox"
+                :label="title"
             ></v-checkbox>
           </v-list-item>
         </v-list-group>

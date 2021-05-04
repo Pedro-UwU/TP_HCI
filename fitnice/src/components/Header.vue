@@ -27,7 +27,7 @@
               v-bind="attrs"
               v-on="on"
           >
-            <v-icon>mdi-dots-horizontal</v-icon>
+            <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
         <v-list dark>

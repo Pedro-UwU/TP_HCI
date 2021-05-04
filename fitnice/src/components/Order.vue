@@ -13,7 +13,7 @@
         <v-icon>mdi-order-alphabetical-ascending</v-icon>
       </v-btn>
     </template>
-    <v-list class="px-3 pb-4">
+    <v-list color="#BDC3c7" class="px-3 pb-4">
       <v-radio-group
           hide-details
           v-model="radios"
@@ -42,9 +42,9 @@ export default {
   data () {
     return {
       closeOnContentClick: false,
-      // rating: true,
-      // nameRoutine: false,
-      // nameCreator: false,
+      rating: true,
+      nameRoutine: false,
+      nameCreator: false,
       radios: null
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <v-app style="background: #192633">
     <c-header></c-header>
-    <v-container mx-10>
+    <v-container>
       <h2 class="subtitles">Recomendaciones</h2>
       <v-container>
         <v-row no-gutters style="background: none" align-content="center">
@@ -16,7 +16,7 @@
               xl="2"
               align-self="center"
           >
-            <c-routine-card class="routine" title="Rutina 5" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
+            <c-routine-card class="routine" title="Rutina 5" stars="3.5" fav="false" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
           </v-col>
         </v-row>
       </v-container>
@@ -34,7 +34,7 @@
               xl="2"
               align-self="center"
           >
-            <c-routine-card class="routine" title="Rutina 5" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
+            <c-routine-card class="routine" title="Rutina 5" stars="3.5" fav="true" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
           </v-col>
         </v-row>
       </v-container>
@@ -52,7 +52,7 @@
               xl="2"
               align-self="center"
           >
-            <c-routine-card class="routine" title="Ejercicio 4" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
+            <c-routine-card class="routine" title="Ejercicio 4" stars="4" fav="false" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
           </v-col>
         </v-row>
       </v-container>

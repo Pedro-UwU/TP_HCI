@@ -5,8 +5,15 @@
         <v-card-actions style="color: white">
           <h3 v-text=title></h3>
           <v-spacer></v-spacer>
-          <v-btn icon color="white">
-            <v-icon>mdi-heart</v-icon>
+          <v-btn @click="()  => {
+                if (fav==='true') {
+                  fav='false';
+                } else
+                  fav='true';
+                }"
+                 icon color="white">
+            <v-icon v-if="fav==='true'">mdi-heart</v-icon>
+            <v-icon v-else>mdi-heart-outline</v-icon>
           </v-btn>
         </v-card-actions>
         <v-rating
@@ -19,7 +26,7 @@
             half-increments
             length="5"
             size="20"
-            value="3"
+            :value=stars
         ></v-rating>
       </div>
     </v-img>
@@ -32,7 +39,9 @@ export default {
   props: {
     title: String,
     src: String,
-  }
+    stars: String,
+    fav: String
+  },
 }
 </script>
 
