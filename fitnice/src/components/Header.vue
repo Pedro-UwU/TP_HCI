@@ -13,7 +13,7 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-
+      <ExcercisePopUp></ExcercisePopUp>
       <v-btn icon color="white">
         <img src="../assets/lupa.svg" alt="lupa icon"/>
       </v-btn>
@@ -84,6 +84,8 @@ span a {
 </style>
 
 <script>
+import ExcercisePopUp from "./ExcercisePopUp";
+
 import Vuetify from "vuetify";
 
   var nav = new Vuetify({
@@ -94,7 +96,10 @@ import Vuetify from "vuetify";
     }
   });
 export default {
-  name: "Header"
+  name: "Header",
+  components: {
+    ExcercisePopUp
+  }
 
 }
 </script>
