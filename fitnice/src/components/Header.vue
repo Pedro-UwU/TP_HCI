@@ -72,7 +72,7 @@
         fixed-tabs
         background-color="secondary"
     >
-      <v-tabs-slider color="quaternary"></v-tabs-slider>
+      <v-tabs-slider color="transparent"></v-tabs-slider>
       <v-tab exact-active-class="quaternary--text" to="/">
         Explorar
       </v-tab>
