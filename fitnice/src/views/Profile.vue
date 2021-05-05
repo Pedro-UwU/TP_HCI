@@ -27,7 +27,7 @@
 <!--            </v-btn>-->
 <!--          </v-col>-->
           <v-col class="d-flex justify-center ">
-            <v-btn color="white" style="border-width: 0px" class="white--text quinary" outlined width="25%" rounded>
+            <v-btn class="black--text quinary" width="25%" rounded>
               <v-icon left>mdi-lock</v-icon>
               Cambiar contraseña
             </v-btn>
