@@ -40,7 +40,6 @@ export default {
   methods: {
     switchFav: function () {
       this.fav = !this.fav;
-      console.log(this.fav);
     }
   },
 }

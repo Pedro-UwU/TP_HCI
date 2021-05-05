@@ -21,14 +21,14 @@
           </v-col>
         </v-row>
         <v-row class="mt-5">
+<!--          <v-col class="d-flex justify-center ">-->
+<!--            <v-btn class="white&#45;&#45;text" style="border-width: 2px" outlined width="90%" rounded>-->
+<!--              <v-icon left>mdi-account-edit-outline</v-icon>-->
+<!--              Editar Perfil-->
+<!--            </v-btn>-->
+<!--          </v-col>-->
           <v-col class="d-flex justify-center ">
-            <v-btn class="white--text" style="border-width: 5px" outlined width="90%" rounded>
-              <v-icon left>mdi-account-edit-outline</v-icon>
-              Editar Perfil
-            </v-btn>
-          </v-col>
-          <v-col class="d-flex justify-center ">
-            <v-btn color="blue" style="border-width: 5px" class="white--text" outlined width="90%" rounded>
+            <v-btn color="white" style="border-width: 0px" class="white--text quinary" outlined width="25%" rounded>
               <v-icon left>mdi-lock</v-icon>
               Cambiar contraseña
             </v-btn>
