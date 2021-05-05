@@ -52,18 +52,5 @@ export default {
     COrder: Order,
     CCreateRoutineBtn: CreateRoutineBtn
   },
-  methods: {
-    AmountRoutine(){
-      if (window.screen.availWidth < 600) {
-        return 2;
-      }else if (window.screen.availWidth < 960) {
-        return 4;
-      }
-      else if (window.screen.availWidth < 1264)
-        return 3;
-      else
-        return 4;
-    }
-  },
 }
 </script>

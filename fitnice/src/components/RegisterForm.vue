@@ -61,6 +61,18 @@
             background-color="white"
             height="2.5em"
         ></v-text-field>
+        <v-text-field
+            label="contraseña"
+            v-model="confirmPassword"
+            type="password"
+            :rules="[confirmPasswordRules,passwordConfirmationRule]"
+            required
+            solo
+            placeholder="contraseña"
+            rounded
+            background-color="white"
+            height="2.5em"
+        ></v-text-field>
       </v-form>
     </v-card-text>
     <v-card-actions class="justify-center">
@@ -80,19 +92,28 @@ export default {
   name: "RegisterForm",
 
   data: () => ({
+    isValid: true,
     email: null,
     password: null,
     name:null,
     lastname:null,
-    username: null
-  })
+    username: null,
+    confirmPassword: null,
+    passwordRules: [v => !!v || "Password is required"],
+    confirmPasswordRules: [v => !!v || "Password is required"],
+  }),
+  computed: {
+    passwordConfirmationRule() {
+      return () => (this.password === this.confirmPassword) || 'Password must match'
+    },
+  }
 };
 </script>
 
 <style scoped>
 .login {
   width: 400px ;
-  height: 600px;
+  height: 670px;
   background: #192633;
   opacity: 80%;
   border-radius: 30px;
