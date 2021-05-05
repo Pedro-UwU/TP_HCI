@@ -1,9 +1,17 @@
 <template>
   <v-container>
     <v-row align="center">
-      <h2 @click="tabSelected=true" class="subtitles">Mis Rutinas</h2>
+      <h2
+          @click="tabSelected=true"
+          class="subtitles text-decoration-underline"
+          :class="{ subtitlesNot : !tabSelected }"
+      >Mis Rutinas</h2>
       <h2 class="subtitles">/</h2>
-      <h2 @click="tabSelected=false" class="subtitles">Mis Ejercicios</h2>
+      <h2
+          @click="tabSelected=false"
+          class="subtitles text-decoration-underline"
+          :class="{ subtitlesNot : tabSelected }"
+      >Mis Ejercicios</h2>
       <v-spacer></v-spacer>
       <div  class="text-right" v-if="tabSelected">
         <c-filters class="align-end"></c-filters>
@@ -45,5 +53,9 @@ h2:hover {
   color: white;
   margin-bottom: 20px;
   margin-left: 30px;
+}
+.subtitlesNot {
+  color: #BDC3c7;
+  opacity: 80%;
 }
 </style>
