@@ -1,7 +1,6 @@
 <template>
   <v-app style="background: #192633">
     <c-header></c-header>
-    <div>
       <v-container class="my-10">
         <v-row>
           <div class=" white--text text-h3" align="center">
@@ -35,7 +34,6 @@
           </v-col>
         </v-row>
       </v-container>
-    </div>
   </v-app>
 </template>
 
