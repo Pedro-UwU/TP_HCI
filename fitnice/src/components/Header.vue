@@ -70,8 +70,8 @@
     <template id="nav">
     <v-tabs
         fixed-tabs
-        color="quaternary"
         background-color="secondary"
+        active-class="quaternary--text"
     >
       <v-tabs-slider color="quaternary"></v-tabs-slider>
       <v-tab to="/">
