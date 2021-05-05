@@ -55,7 +55,7 @@
             <v-divider></v-divider>
             <v-list-item class="mb-n3">
               <v-list-item-content>
-                <router-link to="/profile" tag="button"> <!--- agregar el router que corresponde--->
+                <router-link to="/create" tag="button"> <!--- agregar el router que corresponde--->
                   <v-container class="text-left">
                     <v-icon left class="black--text">mdi-plus</v-icon>
                     Crear Rutina
