@@ -71,7 +71,7 @@
     <v-tabs
         fixed-tabs
         color="quaternary"
-        background-color="primary"
+        background-color="secondary"
         dark
     >
       <v-tab to="/">
