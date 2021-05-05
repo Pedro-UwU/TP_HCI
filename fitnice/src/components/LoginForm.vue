@@ -51,7 +51,8 @@ export default {
   name: "LoginForm",
   data: () => ({
     email: null,
-    password: null
+    password: null,
+    isValid: true
   })
 };
 </script>

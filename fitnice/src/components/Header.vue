@@ -1,9 +1,8 @@
 <template>
   <div>
     <v-app-bar
-        color="#374140"
+        class="tertiary"
         dense
-        dark
         height="70px"
     >
       <v-toolbar-title class="mt-2">
@@ -14,47 +13,59 @@
 
       <v-spacer></v-spacer>
       <ExcercisePopUp></ExcercisePopUp>
-      <v-btn icon color="white">
-        <img src="../assets/lupa.svg" alt="lupa icon"/>
-      </v-btn>
-  
-      <v-menu offset-y transition="slide-y-transition">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-              depressed
-              icon
-              class="transparent"
-              v-bind="attrs"
-              v-on="on"
-          >
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-        </template>
-        <v-list color="#BDC3c7" width="200px" height="140px">
-          <v-list-item class="my-n2">
-            <v-list-item-content>
-              <router-link to="/profile" tag="button">
-                <v-container class="text-left">
-                  <v-icon left class="black--text">mdi-account</v-icon>
-                  Perfil
-                </v-container>
-              </router-link>
-            </v-list-item-content>
-          </v-list-item>
-          <v-divider></v-divider>
-          <v-list-item class="mb-n3">
-            <v-list-item-content>
-              <router-link to="/profile" tag="button"> <!--- agregar el router que corresponde--->
-                <v-container class="text-left">
-                  <v-icon left class="black--text">mdi-plus</v-icon>
-                  Crear Rutina
-                </v-container>
-              </router-link>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+      <div>
+<!--        <v-col cols="4">-->
+<!--          <v-text-field-->
+<!--              color="black"-->
+<!--              v-model="search"-->
+<!--              append-icon="mdi-magnify"-->
+<!--              label="Buscar"-->
+<!--              single-line-->
+<!--              hide-details-->
+<!--          ></v-text-field>-->
+<!--        </v-col>-->
 
+        <v-btn icon color="white">
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+
+        <v-menu offset-y transition="slide-y-transition">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+                depressed
+                icon
+                class="transparent"
+                v-bind="attrs"
+                v-on="on"
+            >
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </template>
+          <v-list class="quinary" light width="200px" height="140px">
+            <v-list-item class="my-n2">
+              <v-list-item-content>
+                <router-link to="/profile" tag="button">
+                  <v-container class="text-left">
+                    <v-icon left class="black--text">mdi-account</v-icon>
+                    Perfil
+                  </v-container>
+                </router-link>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider></v-divider>
+            <v-list-item class="mb-n3">
+              <v-list-item-content>
+                <router-link to="/profile" tag="button"> <!--- agregar el router que corresponde--->
+                  <v-container class="text-left">
+                    <v-icon left class="black--text">mdi-plus</v-icon>
+                    Crear Rutina
+                  </v-container>
+                </router-link>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
     </v-app-bar>
     <template id="nav">
     <v-tabs

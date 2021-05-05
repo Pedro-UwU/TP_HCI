@@ -13,7 +13,7 @@
           <v-icon>mdi-filter</v-icon>
         </v-btn>
       </template>
-      <v-list color="#BDC3c7">
+      <v-list class="quinary" light>
         <v-list-group :value="false">
           <template v-slot:activator>
             <v-list-item-title>Categoría</v-list-item-title>

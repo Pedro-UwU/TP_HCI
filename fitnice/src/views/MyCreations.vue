@@ -1,16 +1,19 @@
 <template>
   <v-app style="background: #192633">
     <c-header></c-header>
+    <c-routine-vs-excercise></c-routine-vs-excercise>
   </v-app>
 </template>
 
 <script>
 import Header from "../components/Header";
+import RoutineVsExcercise from "../components/RoutineVsExcercise";
 
 export default {
-name: "MyCreations",
+  name: "MyCreations",
   components: {
-    CHeader: Header
+    CHeader: Header,
+    CRoutineVsExcercise: RoutineVsExcercise,
   }
 }
 </script>
