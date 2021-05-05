@@ -14,6 +14,7 @@
             solo
             placeholder="nombre"
             background-color="white"
+            class="text-input"
             height="2.5em"
         ></v-text-field>
         <v-text-field
@@ -23,6 +24,7 @@
             required
             rounded
             solo
+            class="text-input"
             placeholder="apellido"
             background-color="white"
             height="2.5em"
@@ -34,6 +36,7 @@
             required
             rounded
             solo
+            class="text-input"
             placeholder="e-mail"
             background-color="white"
             height="2.5em"
@@ -45,6 +48,7 @@
             required
             rounded
             solo
+            class="text-input"
             placeholder="nombre de usuario"
             background-color="white"
             height="2.5em"
@@ -56,6 +60,7 @@
             :rules="[v => !!v || 'campo obligatorio']"
             required
             solo
+            class="text-input"
             placeholder="contraseña"
             rounded
             background-color="white"
@@ -68,6 +73,7 @@
             :rules="[confirmPasswordRules,passwordConfirmationRule]"
             required
             solo
+            class="text-input"
             placeholder="contraseña"
             rounded
             background-color="white"
@@ -77,7 +83,7 @@
     </v-card-text>
     <v-card-actions class="justify-center">
       <v-btn
-          color="#141D26 white--text"
+          color="tertiary white--text"
           :disabled="!isValid"
           rounded
           width="50%"
@@ -123,5 +129,8 @@ export default {
 }
 .less-margin {
   margin-top: -20px;
+}
+.text-input >>> input{
+  color: black;
 }
 </style>

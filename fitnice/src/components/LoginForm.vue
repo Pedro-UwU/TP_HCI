@@ -15,7 +15,7 @@
             placeholder="e-mail"
             background-color="white"
             height="2.5em"
-            class="button"
+            class="text-input"
             my-20
         ></v-text-field>
         <v-text-field
@@ -27,7 +27,7 @@
             solo
             placeholder="contraseña"
             rounded
-            class="button"
+            class="text-input"
             background-color="white"
             height="2.5em"
         ></v-text-field>
@@ -76,7 +76,7 @@ export default {
   display: block;
   text-align: center;
 }
-.button >>> input{
+.text-input >>> input{
   color: black;
 }
 </style>
