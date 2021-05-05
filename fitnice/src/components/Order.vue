@@ -13,7 +13,7 @@
         <v-icon>mdi-order-alphabetical-ascending</v-icon>
       </v-btn>
     </template>
-    <v-list color="#BDC3c7" class="px-3 pb-4">
+    <v-list class="quinary px-3 pb-4" light>
       <v-radio-group
           hide-details
           v-model="radios"
