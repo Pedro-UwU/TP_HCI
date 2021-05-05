@@ -32,6 +32,7 @@
           item-text="items"
           item-value="items"
           label="Items por página"
+          class="width"
           return-object
       ></v-select>
     </div>
@@ -51,7 +52,7 @@ export default {
         { items: 5 },
         { items: 10 },
         { items: 20 },
-        { items: 50 }
+        { items: 100 }
       ],
       search: '',
       headers: [
@@ -71,5 +72,9 @@ export default {
 </script>
 
 <style scoped>
-
+.width {
+  width: 10%;
+  margin-right: 45%;
+  margin-left: 45%;
+}
 </style>
