@@ -72,8 +72,8 @@
         fixed-tabs
         color="quaternary"
         background-color="secondary"
-        dark
     >
+      <v-tabs-slider color="quaternary"></v-tabs-slider>
       <v-tab to="/">
         Explorar
       </v-tab>
