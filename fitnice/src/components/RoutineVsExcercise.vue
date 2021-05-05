@@ -1,23 +1,19 @@
 <template>
-  <div>
-    <v-tabs
-        color="white"
-        background-color="#192633"
-        dark
-    >
-      <v-tab @click="switchTab()">Mis Rutinas</v-tab>
-      <v-tab @click="switchTab()">Mis Ejercicios</v-tab>
-    </v-tabs>
-    <v-container v-if="tabSelected">
-      <div class="text-right">
+  <v-container>
+    <v-row align="center">
+      <h2 @click="tabSelected=true" class="subtitles">Mis Rutinas</h2>
+      <h2 class="subtitles">/</h2>
+      <h2 @click="tabSelected=false" class="subtitles">Mis Ejercicios</h2>
+      <v-spacer></v-spacer>
+      <div  class="text-right" v-if="tabSelected">
         <c-filters class="align-end"></c-filters>
         <c-order class="align-end"></c-order>
       </div>
-    </v-container>
-    <v-container v-else>
+      <v-container v-else>
       <c-my-exercises></c-my-exercises>
     </v-container>
-  </div>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -37,15 +33,17 @@ export default {
   data: () => ({
     tabSelected: true
   }),
-
-  methods: {
-    switchTab: function() {
-      this.tabSelected = !this.tabSelected;
-    }
-  }
 }
 </script>
 
 <style scoped>
-
+h2:hover {
+  cursor: pointer;
+}
+.subtitles {
+  margin-top: 20px;
+  color: white;
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
 </style>
