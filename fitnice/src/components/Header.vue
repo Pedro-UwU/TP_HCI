@@ -71,16 +71,15 @@
     <v-tabs
         fixed-tabs
         background-color="secondary"
-        active-class="quaternary--text"
     >
       <v-tabs-slider color="quaternary"></v-tabs-slider>
-      <v-tab to="/">
+      <v-tab exact-active-class="quaternary--text" to="/">
         Explorar
       </v-tab>
-      <v-tab to="/favorites">
+      <v-tab exact-active-class="quaternary--text" to="/favorites">
         Favoritos
       </v-tab>
-      <v-tab to="/my-creations">
+      <v-tab exact-active-class="quaternary--text" to="/my-creations">
         Mis creaciones
       </v-tab>
     </v-tabs>

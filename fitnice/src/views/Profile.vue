@@ -3,9 +3,9 @@
     <c-header></c-header>
       <v-container class="my-10">
         <v-row>
-          <div class=" white--text text-h3" align="center">
+          <h1 class="white--text" align="center">
             Perfil
-          </div>
+          </h1>
         </v-row>
         <v-row align="center">
           <v-col cols="4" justify="center">
