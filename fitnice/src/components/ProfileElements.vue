@@ -22,7 +22,7 @@
               solo
               dense
               flat
-              background-color="#BDC3c7"
+              background-color="quinary"
               class="end-input color-enabled"
           ></v-text-field>
         </v-col>

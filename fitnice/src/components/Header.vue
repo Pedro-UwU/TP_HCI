@@ -70,8 +70,8 @@
     <template id="nav">
     <v-tabs
         fixed-tabs
-        color="#5885B3"
-        background-color="#141D26"
+        color="quaternary"
+        background-color="primary"
         dark
     >
       <v-tab to="/">
@@ -103,7 +103,7 @@ import Vuetify from "vuetify";
     el: nav,
     data : {
       navigation : ["Inicio","Rutinas","Favoritos"],
-      color: "#374140"
+      color: "tertiary"
     }
   });
 export default {
