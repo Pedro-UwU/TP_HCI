@@ -15,6 +15,7 @@
             placeholder="e-mail"
             background-color="white"
             height="2.5em"
+            class="button"
             my-20
         ></v-text-field>
         <v-text-field
@@ -26,6 +27,7 @@
             solo
             placeholder="contraseña"
             rounded
+            class="button"
             background-color="white"
             height="2.5em"
         ></v-text-field>
@@ -36,7 +38,7 @@
       >No tenés cuenta? Registrate!</a>
     <v-card-actions class="justify-center">
       <v-btn
-          color="#141D26 white--text"
+          color="tertiary white--text"
           :disabled="!isValid"
           rounded
           width="50%"
@@ -73,5 +75,8 @@ export default {
   color: white;
   display: block;
   text-align: center;
+}
+.button >>> input{
+  color: black;
 }
 </style>
