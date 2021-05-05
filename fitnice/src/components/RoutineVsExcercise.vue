@@ -10,8 +10,8 @@
         <c-order class="align-end"></c-order>
       </div>
       <v-container v-else>
-      <c-my-exercises></c-my-exercises>
-    </v-container>
+        <c-my-exercises></c-my-exercises>
+      </v-container>
     </v-row>
   </v-container>
 </template>

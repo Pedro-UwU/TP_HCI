@@ -24,7 +24,6 @@ const vuetify = new Vuetify({
             //     quinary: '#BDC3C7',
             // },
             dark: {
-                background: '#192633',
                 primary: '#192633',
                 secondary: '#141D26',
                 tertiary: '#374140',
