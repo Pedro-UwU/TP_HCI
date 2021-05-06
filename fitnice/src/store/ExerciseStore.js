@@ -1,11 +1,6 @@
-class ExerciseStore {
+export default class ExerciseStore {
     constructor() {
-        this.exercises = [
-            new Exercise('Zeus','Tiempo (s)',25,'Piernas',"classeee"),
-            new Exercise('Juan','Repeticiones',40,'Piernas',"fasndvhf"),
-            new Exercise('Poseidon','Tiempo (s)',20,'Piernas',"fnasd"),
-            new Exercise('Zsd','Tiempo (s)',10,'Piernas',"concentrado")
-        ];
+        this.exercises = [];
     }
 
     // exercises: [
@@ -45,5 +40,5 @@ class Exercise {
 }
 
 const ExerciseStoreEx = new ExerciseStore();
-export default ExerciseStore;
+
 export {ExerciseStoreEx};
