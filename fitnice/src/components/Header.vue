@@ -14,21 +14,17 @@
       <v-spacer></v-spacer>
       <ExcercisePopUp></ExcercisePopUp>
       <div>
-<!--        <v-col cols="4">-->
-<!--          <v-text-field-->
-<!--              color="black"-->
-<!--              v-model="search"-->
-<!--              append-icon="mdi-magnify"-->
-<!--              label="Buscar"-->
-<!--              single-line-->
-<!--              hide-details-->
-<!--          ></v-text-field>-->
-<!--        </v-col>-->
-
-        <v-btn icon color="white">
+        <v-text-field v-if="search"
+                      :value="searchText"
+                      rounded
+                      clearable
+                      background-color="white"
+                      class="search-sm mt-5"
+        ></v-text-field>
+      </div>
+        <v-btn @click="showSearch()" icon color="white">
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
-
         <v-menu offset-y transition="slide-y-transition">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -65,7 +61,6 @@
             </v-list-item>
           </v-list>
         </v-menu>
-      </div>
     </v-app-bar>
     <template id="nav">
     <v-tabs
@@ -91,6 +86,10 @@
 span a {
   text-decoration: none;
 }
+.search-sm >>> input{
+  color: black;
+  border: 0px;
+}
 </style>
 
 <script>
@@ -109,6 +108,15 @@ export default {
   name: "Header",
   components: {
     ExcercisePopUp
+  },
+  data: () => ({
+    searchText: "",
+    search: false
+  }),
+  methods: {
+    showSearch: function () {
+      this.search = !this.search;
+    }
   }
 
 }
