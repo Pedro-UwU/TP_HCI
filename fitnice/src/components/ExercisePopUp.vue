@@ -45,7 +45,7 @@
               >
                 <v-text-field
                     :solo="true"
-                    label="nombre de ejercicio*"
+                    label="Nombre de ejercicio*"
                     v-model="infoEx.name"
                     :rules="[v => !!v || 'campo obligatorio']"
                     required
