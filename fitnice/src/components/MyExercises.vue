@@ -12,7 +12,7 @@
     <v-data-table
         class="elevation-1 secondary"
         :headers="headers"
-        :items="exercises"
+        :items="store.exercises"
         :search="search"
         :items-per-page="select.items"
         hide-default-footer
@@ -41,8 +41,10 @@
 </template>
 
 <script>
+import ExerciseStore from "../store/ExerciseStore";
 
 export default {
+
   name: "MyExcercises",
   data () {
     return {
@@ -60,15 +62,15 @@ export default {
         { text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name' },
         { text: 'Formato', value: 'format' },
         { text: 'Cantidad', filterable: false, sortable: false, value: 'amount' },
-        { text: 'Categoría', value: 'category' }
+        { text: 'Categoría', value: 'category' },
+        { text: 'Descripcion', value: 'description'}
       ],
-      exercises: [
-        { name: 'Zeus', format: 'Repeticiones', amount: 10, category: 'Espalda' },
-        { name: 'Athena', format: 'Tiempo (s)', amount: 30, category: 'Piernas' },
-        { name: 'Hades', format: 'Tiempo (s)', amount: 40, category: 'Abdominales' }
-      ],
+      store: ExerciseStore
     }
   },
+  methods: {
+
+  }
 }
 </script>
 

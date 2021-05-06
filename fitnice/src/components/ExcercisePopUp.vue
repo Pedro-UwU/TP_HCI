@@ -28,7 +28,7 @@
                 <v-text-field
                     :solo="true"
                     label="nombre de ejercicio*"
-                    v-model="name"
+                    v-model="infoEx.name"
                     :rules="[v => !!v || 'campo obligatorio']"
                     required
                     background-color="tertiary"
@@ -39,10 +39,10 @@
               >
                 <v-text-field
                     :solo="true"
-                    @keypress="isNumber(number)"
+                    @keypress="isNumber(infoEx.amount)"
                     :rules="[v => !!v || 'campo obligatorio']"
                     label="N°"
-                    v-model="number"
+                    v-model="infoEx.amount"
                     required
                     background-color="tertiary"
                 ></v-text-field>
@@ -53,7 +53,7 @@
                 <v-select
                     :items="['reps.', 'seg.']"
                     :rules="[v => !!v || 'campo obligatorio']"
-                    v-model="what"
+                    v-model="infoEx.format"
                     required
                     solo
                     background-color="tertiary"
@@ -80,11 +80,12 @@
           <v-btn
               color="blue darken-1"
               text
-              @click="dialog = false;
-              name=null;
-              description=null;
-              number=null;
-              what=null;"
+              @click="dialog=false;
+                infoEx.name= '';
+                infoEx.format= '';
+                infoEx.amount= null;
+                infoEx.category= '';
+                infoEx.description= '';"
           >
             Close
           </v-btn>
@@ -92,7 +93,7 @@
               color="blue darken-1"
               text
               :disabled="!isValid"
-              @click="dialog = false"
+              @click="dialog = false; addExcercise()"
           >
             Save
           </v-btn>
@@ -103,20 +104,29 @@
 </template>
 
 <script>
+import ExerciseStore from "../store/ExerciseStore";
+
 export default {
   name: "ExcercisePopUp",
   data: () => ({
     dialog: false,
     isValid: true,
-    name: null,
-    description: null,
-    number: null,
-    what: null
+    infoEx: {
+      name: "",
+      format: "",
+      amount: null,
+      category: "",
+      description: "",
+    },
+    store: ExerciseStore
   }),
   methods: {
+    addExcercise() {
+      this.store.add(this.infoEx);
+    },
     isNumber: function(evt) {
       evt = (evt) ? evt : window.event;
-      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      let charCode = (evt.which) ? evt.which : evt.keyCode;
       if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
         evt.preventDefault();
       } else {
