@@ -22,7 +22,7 @@
         <c-exercise-pop-up/>
       </div>
       <v-container v-if="!tabSelected">
-        <c-my-exercises/>
+        <c-my-exercises></c-my-exercises>
       </v-container>
     </v-row>
   </v-container>

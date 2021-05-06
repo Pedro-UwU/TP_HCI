@@ -2,12 +2,12 @@
   <v-app style="background: #192633">
     <c-header/>
     <v-container class="my-10">
-      <v-row align="center">
+      <v-row align="center" class="my-3">
         <div class=" white--text text-h3">
           Crear Rutina
         </div>
       </v-row>
-      <v-row align="center">
+      <v-row align="center" class="my-3">
         <v-col cols="4" align="center">
           <v-img style="border-radius: 20px !important;" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" aspect-ratio="1" width="90%" class="align-end">
               <v-card class="transparent">
@@ -35,7 +35,7 @@
         </v-col>
       </v-row>
       <v-divider class="my-10"></v-divider>
-      <v-row>
+      <v-row class="my-3">
         <div class=" white--text text-h3">
           Agregar Ejercicios
         </div>
@@ -63,12 +63,34 @@ export default {
     CHeader: Header,
     CCycleCard: CycleCard
   },
+  // data: () => {
+  //   return {
+  //     routineItems: [
+  //       {title: "Categoría", value: "Parte de arriba"},
+  //       {title: "Dificultad", value: "Hardcore"},
+  //       {title: "Duración", value: "3 Parciales de Bases de Datos"}
+  //     ],
+  //
+  //     headers: [
+  //       {text: 'Ejericio', align: 'Start', value:'name', groupable:'False'},
+  //       {text: 'Tiempo/Repeticiones', value:'rep'},
+  //     ],
+  //     ejercicios: [
+  //       {name: "Salto de Cuerda", rep:"5 repeticiones"},
+  //       {name: "Trote", rep:"4 minutos"},
+  //       {name: "Salto de Cuerda", rep:"5 repeticiones"},
+  //       {name: "Trote", rep:"4 minutos"},
+  //       {name: "Salto de Cuerda", rep:"5 repeticiones"},
+  //       {name: "Trote", rep:"4 minutos"}
+  //     ]
+  //   }
+  // }
   data: () => {
     return {
       routineItems: [
-        {title: "Categoría", value: "Parte de arriba"},
-        {title: "Dificultad", value: "Hardcore"},
-        {title: "Duración", value: "3 Parciales de Bases de Datos"}
+            {title: "Categoría", value: "Parte de arriba"},
+            {title: "Dificultad", value: "Hardcore"},
+            {title: "Duración", value: "3 Parciales de Bases de Datos"}
       ],
 
       headers: [
