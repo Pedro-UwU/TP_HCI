@@ -2,12 +2,7 @@ import Exercise from "./Exercise";
 
 class ExerciseStore {
     constructor() {
-        this.exercises = [
-            new Exercise('Zeus','Tiempo (s)',25,'Piernas',"classeee"),
-            new Exercise('Juan','Repeticiones',40,'Piernas',"fasndvhf"),
-            new Exercise('Poseidon','Tiempo (s)',20,'Piernas',"fnasd"),
-            new Exercise('Zsd','Tiempo (s)',10,'Piernas',"concentrado")
-        ];
+        this.exercises = [];
     }
 
     add(exercise) {
@@ -32,5 +27,9 @@ class ExerciseStore {
 
 
 const ExerciseStoreEx = new ExerciseStore();
+ExerciseStoreEx.add(new Exercise('Zeus','Tiempo (s)',25,'Piernas',"classeee"));
+ExerciseStoreEx.add(new Exercise('Juan','Repeticiones',40,'Piernas',"fasndvhf"));
+ExerciseStoreEx.add(new Exercise('Poseidon','Tiempo (s)',20,'Piernas',"fnasd"));
+ExerciseStoreEx.add(new Exercise('Zsd','Tiempo (s)',10,'Piernas',"concentrado"))
 export default ExerciseStore;
 export {ExerciseStoreEx};
