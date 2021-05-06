@@ -41,16 +41,8 @@
         </div>
       </v-row>
       <v-row>
-        <v-col cols="12">
-          <v-data-table
-              class="transparent"
-              dark
-              hide-default-footer
-              :headers="headers"
-              :items="ejercicios"
-          >
-
-          </v-data-table>
+        <v-col>
+          <c-cycle-card class="my-5" :cycle=cExample></c-cycle-card>
         </v-col>
       </v-row>
     </v-container>
@@ -59,11 +51,17 @@
 
 <script>
 import Header from "@/components/Header";
+import CycleCard from "../components/CycleCard";
+import Cycle from "../store/Cycle";
+
+let cycleExample = new Cycle("Calentamiento", 2);
+
 export default {
   name: "CreateRoutine",
   components : {
 //    CRoutineCard: RoutineCard,
-    CHeader: Header
+    CHeader: Header,
+    CCycleCard: CycleCard
   },
   data: () => {
     return {
@@ -77,14 +75,10 @@ export default {
         {text: 'Ejericio', align: 'Start', value:'name', groupable:'False'},
         {text: 'Tiempo/Repeticiones', value:'rep'},
       ],
-      ejercicios: [
-        {name: "Salto de Cuerda", rep:"5 repeticiones"},
-        {name: "Trote", rep:"4 minutos"},
-        {name: "Salto de Cuerda", rep:"5 repeticiones"},
-        {name: "Trote", rep:"4 minutos"},
-        {name: "Salto de Cuerda", rep:"5 repeticiones"},
-        {name: "Trote", rep:"4 minutos"}
-      ]
+
+      cExample: cycleExample
+
+
     }
   }
 }

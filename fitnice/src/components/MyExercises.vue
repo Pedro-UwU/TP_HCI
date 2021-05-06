@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import {ExerciseStoreEx} from "../store/ExerciseStore";
+import ExerciseStore from "../store/ExerciseStore";
 import ExcercisePopUp from "./ExercisePopUp";
 
 export default {
@@ -65,7 +65,7 @@ export default {
         { text: 'Descripcion', value: 'description'},
         { text: 'Actions', value: 'actions', sortable: false }
       ],
-      store: ExerciseStoreEx
+      store: new ExerciseStore()
     }
   },
   components: {
