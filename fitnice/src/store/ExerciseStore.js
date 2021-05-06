@@ -8,14 +8,8 @@ class ExerciseStore {
         ];
     }
 
-    // exercises: [
-    //     { name: 'Zeus', format: 'Repeticiones', amount: 10, category: 'Espalda' ,description:""},
-    //     { name: 'Athena', format: 'Tiempo (s)', amount: 30, category: 'Piernas' ,description:""},
-    //     { name: 'Hades', format: 'Tiempo (s)', amount: 40, category: 'Abdominales' ,description:""}
-    // ],
-
-    add(name,format, amount, category, description) {
-        this.exercises.push(new Exercise(name,format, amount, category, description));
+    add(exercise) {
+        this.exercises.push(exercise);
     }
 
     remove(exercise) {
@@ -34,15 +28,7 @@ class ExerciseStore {
     }
 }
 
-class Exercise {
-    constructor(name,format, amount, category, description) {
-        this.name = name;
-        this.format = format;
-        this.amount = amount;
-        this.category = category;
-        this.description = description;
-    }
-}
+import Exercise from "./Exercise";
 
 const ExerciseStoreEx = new ExerciseStore();
 export default ExerciseStore;

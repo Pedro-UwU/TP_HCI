@@ -29,6 +29,7 @@
         :page.sync="page"
         @page-count="pageCount = $event"
     >
+      <v-edit-dialog></v-edit-dialog>
     </v-data-table>
     <div class="text-center pt-2 px-16 mx-16">
       <v-pagination
