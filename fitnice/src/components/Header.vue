@@ -12,7 +12,6 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <ExcercisePopUp></ExcercisePopUp>
       <div>
         <v-text-field v-if="search"
                       :value="searchText"
@@ -93,7 +92,6 @@ span a {
 </style>
 
 <script>
-import ExcercisePopUp from "./ExcercisePopUp";
 
 import Vuetify from "vuetify";
 
@@ -106,9 +104,6 @@ import Vuetify from "vuetify";
   });
 export default {
   name: "Header",
-  components: {
-    ExcercisePopUp
-  },
   data: () => ({
     searchText: "",
     search: false

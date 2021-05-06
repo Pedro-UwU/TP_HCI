@@ -7,8 +7,10 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            color="primary"
-            dark
+            class="white--text"
+            :plain="true"
+            color="white"
+            :ripple="false"
             v-bind="attrs"
             v-on="on"
             @click="infoEx.name= '';
@@ -17,7 +19,8 @@
                 infoEx.category= '';
                 infoEx.description= '';"
         >
-          Open Dialog
+          Crear Ejercicio
+          <v-icon>mdi-plus</v-icon>
         </v-btn>
       </template>
       <v-card class="white--text" color="primary">

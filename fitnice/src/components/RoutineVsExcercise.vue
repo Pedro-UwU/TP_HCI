@@ -17,7 +17,10 @@
         <c-filters class="align-end"></c-filters>
         <c-order class="align-end"></c-order>
       </div>
-      <v-container v-else>
+      <div v-else>
+        <c-exercise-pop-up/>
+      </div>
+      <v-container v-if="!tabSelected">
         <c-my-exercises></c-my-exercises>
       </v-container>
     </v-row>
@@ -28,6 +31,7 @@
 import MyExercises from "./MyExercises";
 import Filters from "./Filters";
 import Order from "./Order";
+import ExercisePopUp from "./ExercisePopUp";
 
 export default {
   name: "RoutineVsExcercise",
@@ -35,7 +39,8 @@ export default {
   components: {
     CMyExercises: MyExercises,
     CFilters: Filters,
-    COrder: Order
+    COrder: Order,
+    CExercisePopUp: ExercisePopUp
   },
 
   data: () => ({

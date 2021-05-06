@@ -25,17 +25,17 @@
           v-model="page"
           :length="pageCount"
       ></v-pagination>
-      <v-select
-          item-color="white"
-          v-model="select"
-          :items="listItems"
-          item-text="items"
-          item-value="items"
-          label="Items por página"
+<!--      <v-select-->
+<!--          item-color="white"-->
+<!--          v-model="select"-->
+<!--          :items="listItems"-->
+<!--          item-text="items"-->
+<!--          item-value="items"-->
+<!--          label="Items por página"-->
 
-          class="width"
-          return-object
-      ></v-select>
+<!--          class="width"-->
+<!--          return-object-->
+<!--      ></v-select>-->
     </div>
   </v-card>
 </template>
