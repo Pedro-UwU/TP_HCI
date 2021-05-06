@@ -32,7 +32,7 @@
           item-text="items"
           item-value="items"
           label="Items por página"
-          
+
           class="width"
           return-object
       ></v-select>

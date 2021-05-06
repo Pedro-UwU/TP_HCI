@@ -1,0 +1,5 @@
+class ExcerciseStore {
+    constructor() {
+        
+    }
+}

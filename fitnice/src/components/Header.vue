@@ -88,7 +88,7 @@ span a {
 }
 .search-sm >>> input{
   color: black;
-  border: 0px;
+  border: 0;
 }
 </style>
 
