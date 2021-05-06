@@ -59,7 +59,7 @@
                   cols="4"
               >
                 <v-select
-                    :items="['reps.', 'seg.']"
+                    :items="['Tiempo (s)', 'Repeticiones']"
                     :rules="[v => !!v || 'campo obligatorio']"
                     v-model="infoEx.format"
                     required

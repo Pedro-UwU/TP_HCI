@@ -1,5 +1,5 @@
 <template>
-  <v-card class="secondary">
+  <v-card class="secondary my-5">
     <v-card-title>
       <v-text-field
           v-model="search"
