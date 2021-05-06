@@ -21,6 +21,7 @@
         </v-col>
       </v-row>
     </v-container>
+    <AllExercisesPopUp/>
   </v-app>
 </template>
 
@@ -42,10 +43,12 @@ import RoutineCard from "../components/RoutineCard";
 import Filters from "../components/Filters";
 import CreateRoutineBtn from "../components/CreateRoutineBtn";
 import Order from "../components/Order";
+import AllExercisesPopUp from "../components/AllExercisesPopUp";
 
 export default {
   name: "Explore",
   components: {
+    AllExercisesPopUp,
     CHeader: Header,
     CRoutineCard: RoutineCard,
     CFilters: Filters,
