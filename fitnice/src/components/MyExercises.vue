@@ -29,9 +29,7 @@
         :page.sync="page"
         @page-count="pageCount = $event"
     >
-      <template v-slot:item.actions="{ item }">
-        <ExcercisePopUp :exercise="item"/>
-      </template>
+      <v-edit-dialog></v-edit-dialog>
     </v-data-table>
     <div class="text-center pt-2 px-16 mx-16">
       <v-pagination
@@ -44,7 +42,6 @@
 
 <script>
 import {ExerciseStoreEx} from "../store/ExerciseStore";
-import ExcercisePopUp from "./ExercisePopUp";
 
 export default {
 
@@ -62,14 +59,10 @@ export default {
         { text: 'Formato', value: 'format' },
         { text: 'Cantidad', filterable: false, sortable: false, value: 'amount' },
         { text: 'Categoría', value: 'category' },
-        { text: 'Descripcion', value: 'description'},
-        { text: 'Actions', value: 'actions', sortable: false }
+        { text: 'Descripcion', value: 'description'}
       ],
       store: ExerciseStoreEx
     }
-  },
-  components: {
-    ExcercisePopUp
   },
   methods: {
     removeSelected() {

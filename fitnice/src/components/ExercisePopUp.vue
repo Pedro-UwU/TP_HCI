@@ -7,7 +7,6 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            v-if="exercise===undefined"
             class="white--text"
             :plain="true"
             color="white"
@@ -23,15 +22,6 @@
           Crear Ejercicio
           <v-icon>mdi-plus</v-icon>
         </v-btn>
-        <v-icon
-            v-else
-            v-bind="attrs"
-            v-on="on"
-            small
-            @click="loadExercise()"
-        >
-          mdi-pencil
-        </v-icon>
       </template>
       <v-card class="white--text" color="primary">
         <v-card-title>
@@ -149,37 +139,17 @@ export default {
     },
     store: ExerciseStoreEx
   }),
-  props: {
-    exercise: Exercise
-  },
   methods: {
     addExcercise() {
-      if (!this.exercise)
-        this.store.add(new Exercise(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description));
-      else{
-        this.exercise.name = this.infoEx.name;
-        this.exercise.format = this.infoEx.format;
-        this.exercise.amount = this.infoEx.amount;
-        this.exercise.category = this.infoEx.category;
-        this.exercise.description = this.infoEx.description;
-      }
+      this.store.add(new Exercise(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description));
     },
-    isNumber(evt) {
+    isNumber: function(evt) {
       evt = (evt) ? evt : window.event;
       let charCode = (evt.which) ? evt.which : evt.keyCode;
       if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
         evt.preventDefault();
       } else {
         return true;
-      }
-    },
-    loadExercise() {
-      if (this.exercise){
-        this.infoEx.name = this.exercise.name;
-        this.infoEx.format = this.exercise.format;
-        this.infoEx.amount = this.exercise.amount;
-        this.infoEx.category = this.exercise.category;
-        this.infoEx.description = this.exercise.description;
       }
     }
   }
