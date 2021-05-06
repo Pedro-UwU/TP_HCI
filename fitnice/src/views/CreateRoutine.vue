@@ -40,22 +40,9 @@
           Agregar Ejercicios
         </div>
       </v-row>
-      <v-row class="my-3">
-        <div class=" white--text text-h4 mx-3 my-4">
-          Calentamiento
-        </div>
-<!--        <v-col cols="12">-->
-<!--          <v-data-table-->
-<!--              class="transparent"-->
-<!--              dark-->
-<!--              hide-default-footer-->
-<!--              :headers="headers"-->
-<!--              :items="ejercicios"-->
-<!--          >-->
-
-<!--          </v-data-table>-->
-<!--        </v-col>-->
+      <v-row>
         <v-col>
+          <c-cycle-card class="my-5" :cycle=cExample></c-cycle-card>
         </v-col>
       </v-row>
     </v-container>
@@ -64,14 +51,17 @@
 
 <script>
 import Header from "@/components/Header";
-import ExerciseStore from "../store/ExerciseStore";
+import CycleCard from "../components/CycleCard";
+import Cycle from "../store/Cycle";
 
-let calentamientoStore = new ExerciseStore();
+let cycleExample = new Cycle("Calentamiento", 2);
 
 export default {
   name: "CreateRoutine",
   components : {
+//    CRoutineCard: RoutineCard,
     CHeader: Header,
+    CCycleCard: CycleCard
   },
   // data: () => {
   //   return {
@@ -103,7 +93,13 @@ export default {
             {title: "Duración", value: "3 Parciales de Bases de Datos"}
       ],
 
-      calentamiento: calentamientoStore
+      headers: [
+        {text: 'Ejericio', align: 'Start', value:'name', groupable:'False'},
+        {text: 'Tiempo/Repeticiones', value:'rep'},
+      ],
+
+      cExample: cycleExample
+
 
     }
   }

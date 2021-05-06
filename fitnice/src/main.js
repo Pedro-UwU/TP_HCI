@@ -5,14 +5,12 @@ import VueRouter from 'vue-router'
 import Explore from "./views/Explore";
 import NotFound from "./views/NotFound";
 import Login from "./views/Login";
-// import Routines from "./views/Routines";
 import Favorites from "./views/Favorites";
 import Profile from "./views/Profile";
 import Register from "./views/Register";
 import CreateRoutine from "@/views/CreateRoutine";
-// import MyExercises from "./views/MyExercises";
-// import MyRoutines from "./views/MyRoutines";
-import MyCreations from "./views/MyCreations";
+import MyExercises from "./views/MyExercises";
+import MyRoutines from "./views/MyRoutines";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -21,13 +19,12 @@ const router = new VueRouter({
   routes:[
     { path:'/', component: Explore},
     { path:'/login', component: Login},
-    // { path:'/my-routines', component: MyRoutines},
     { path:'/favorites', component: Favorites},
     { path:'/profile', component: Profile},
     { path: '/register', component: Register},
     { path: '/create', component: CreateRoutine},
-    // { path: '/my-exercises', component: MyExercises},
-    { path: '/my-creations', component: MyCreations},
+    { path: '/my-exercises', component: MyExercises},
+    { path: '/my-routines', component: MyRoutines},
     { path: '*', component: NotFound}
   ]
 });

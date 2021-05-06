@@ -73,8 +73,11 @@
       <v-tab exact-active-class="quaternary--text" to="/favorites">
         Favoritos
       </v-tab>
-      <v-tab exact-active-class="quaternary--text" to="/my-creations">
-        Mis creaciones
+      <v-tab exact-active-class="quaternary--text" to="/my-routines">
+        Mis Rutinas
+      </v-tab>
+      <v-tab exact-active-class="quaternary--text" to="/my-exercises">
+        Mis Ejercicios
       </v-tab>
     </v-tabs>
 </template>
