@@ -1,3 +1,5 @@
+import Exercise from "./Exercise";
+
 class ExerciseStore {
     constructor() {
         this.exercises = [
@@ -28,7 +30,6 @@ class ExerciseStore {
     }
 }
 
-import Exercise from "./Exercise";
 
 const ExerciseStoreEx = new ExerciseStore();
 export default ExerciseStore;
