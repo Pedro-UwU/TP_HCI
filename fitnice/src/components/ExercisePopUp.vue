@@ -123,6 +123,7 @@
 
 <script>
 import {ExerciseStoreEx} from "../store/ExerciseStore";
+import Exercise from "../store/Exercise";
 
 export default {
   name: "ExcercisePopUp",
@@ -140,7 +141,7 @@ export default {
   }),
   methods: {
     addExcercise() {
-      this.store.add(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description);
+      this.store.add(new Exercise(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description));
     },
     isNumber: function(evt) {
       evt = (evt) ? evt : window.event;
