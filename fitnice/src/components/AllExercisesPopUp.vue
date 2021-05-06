@@ -33,7 +33,8 @@
                 clearable
             ></v-text-field>
           </v-row>
-          <v-data-table
+          <div >
+            <v-data-table
               class="elevation-1 secondary"
               v-model="selected"
               :headers="headers"
@@ -41,10 +42,14 @@
               :search="search"
               hide-default-footer
               :single-select="singleSelect"
+              items-per-page="10000"
               show-select
               item-key="name"
-          >
-          </v-data-table>
+              height="max"
+              fixed-header
+            >
+            </v-data-table>
+          </div>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -62,7 +67,7 @@
               @click="dialog = false;
                 addExcercise();"
           >
-            Save
+            Add
           </v-btn>
         </v-card-actions>
       </v-card>

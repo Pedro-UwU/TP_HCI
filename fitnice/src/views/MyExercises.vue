@@ -3,7 +3,7 @@
     <c-header></c-header>
     <v-container>
       <v-row align="center">
-        <h2 class="subtitles">Mis Rutinas</h2>
+        <h2 class="subtitles">Mis Ejercicios</h2>
         <v-spacer></v-spacer>
         <div>
           <c-exercise-pop-up/>
