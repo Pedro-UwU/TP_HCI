@@ -11,6 +11,11 @@
             dark
             v-bind="attrs"
             v-on="on"
+            @click="infoEx.name= '';
+                infoEx.format= '';
+                infoEx.amount= null;
+                infoEx.category= '';
+                infoEx.description= '';"
         >
           Open Dialog
         </v-btn>
@@ -80,6 +85,7 @@
                     height="150px"
                     label="descripcion"
                     solo
+                    v-model="infoEx.description"
                     name="descripcion"
                     background-color="tertiary"
                 ></v-textarea>
@@ -93,12 +99,7 @@
           <v-btn
               color="blue darken-1"
               text
-              @click="dialog=false;
-                infoEx.name= '';
-                infoEx.format= '';
-                infoEx.amount= null;
-                infoEx.category= '';
-                infoEx.description= '';"
+              @click="dialog=false;"
           >
             Close
           </v-btn>
@@ -106,12 +107,8 @@
               color="blue darken-1"
               text
               :disabled="!isValid"
-              @click="dialog = false; addExcercise();
-                infoEx.name= '';
-                infoEx.format= '';
-                infoEx.amount= null;
-                infoEx.category= '';
-                infoEx.description= '';"
+              @click="dialog = false;
+                addExcercise();"
           >
             Save
           </v-btn>
