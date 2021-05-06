@@ -62,6 +62,19 @@
               <v-col
                   cols="12"
               >
+                <v-text-field
+                    class="mt-n7"
+                    :solo="true"
+                    label="Categoria"
+                    v-model="infoEx.category"
+                    :rules="[v => !!v || 'campo obligatorio']"
+                    required
+                    background-color="tertiary"
+                ></v-text-field>
+              </v-col>
+              <v-col
+                  cols="12"
+              >
                 <v-textarea
                     class="my-n7"
                     height="150px"
@@ -93,7 +106,12 @@
               color="blue darken-1"
               text
               :disabled="!isValid"
-              @click="dialog = false; addExcercise()"
+              @click="dialog = false; addExcercise();
+                infoEx.name= '';
+                infoEx.format= '';
+                infoEx.amount= null;
+                infoEx.category= '';
+                infoEx.description= '';"
           >
             Save
           </v-btn>
@@ -104,7 +122,7 @@
 </template>
 
 <script>
-import ExerciseStore from "../store/ExerciseStore";
+import {ExerciseStoreEx} from "../store/ExerciseStore";
 
 export default {
   name: "ExcercisePopUp",
@@ -118,7 +136,7 @@ export default {
       category: "",
       description: "",
     },
-    store: ExerciseStore
+    store: ExerciseStoreEx
   }),
   methods: {
     addExcercise() {

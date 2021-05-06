@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import ExerciseStore from "../store/ExerciseStore";
+import {ExerciseStoreEx} from "../store/ExerciseStore";
 
 export default {
 
@@ -65,7 +65,7 @@ export default {
         { text: 'Categoría', value: 'category' },
         { text: 'Descripcion', value: 'description'}
       ],
-      store: ExerciseStore
+      store: ExerciseStoreEx
     }
   },
   methods: {
