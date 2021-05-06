@@ -140,7 +140,7 @@ export default {
   }),
   methods: {
     addExcercise() {
-      this.store.add(this.infoEx);
+      this.store.add(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description);
     },
     isNumber: function(evt) {
       evt = (evt) ? evt : window.event;

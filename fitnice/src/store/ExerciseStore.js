@@ -14,8 +14,8 @@ class ExerciseStore {
     //     { name: 'Hades', format: 'Tiempo (s)', amount: 40, category: 'Abdominales' ,description:""}
     // ],
 
-    add(exercise) {
-        this.exercises.push(exercise);
+    add(name,format, amount, category, description) {
+        this.exercises.push(new Exercise(name,format, amount, category, description));
     }
 
     remove(exercise) {
