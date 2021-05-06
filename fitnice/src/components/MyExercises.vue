@@ -1,15 +1,16 @@
 <template>
   <v-card class="secondary mb-5">
     <v-card-title>
-      <v-row>
+      <v-row class="mx-0">
         <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
             label="Buscar"
             single-line
             hide-details
+            clearable
         ></v-text-field>
-        <v-btn class="mt-5" :disabled="selected.length===0" @click="removeSelected(); selected=[]" icon color="white">
+        <v-btn class="mt-4 mx-1 ml-3" :disabled="selected.length===0" @click="removeSelected(); selected=[]" icon color="white">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </v-row>
