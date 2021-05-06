@@ -15,7 +15,7 @@
           Open Dialog
         </v-btn>
       </template>
-      <v-card class="white--text" color="#141D26">
+      <v-card class="white--text" color="primary">
         <v-card-title>
           <span class="headline">Creacion de ejercicio</span>
         </v-card-title>
@@ -31,7 +31,7 @@
                     v-model="name"
                     :rules="[v => !!v || 'campo obligatorio']"
                     required
-                    background-color="#BDC3c7"
+                    background-color="tertiary"
                 ></v-text-field>
               </v-col>
               <v-col
@@ -44,7 +44,7 @@
                     label="N°"
                     v-model="number"
                     required
-                    background-color="#BDC3c7"
+                    background-color="tertiary"
                 ></v-text-field>
               </v-col>
               <v-col
@@ -56,7 +56,7 @@
                     v-model="what"
                     required
                     solo
-                    background-color="#BDC3c7"
+                    background-color="tertiary"
                 ></v-select>
               </v-col>
               <v-col
@@ -68,7 +68,7 @@
                     label="descripcion"
                     solo
                     name="descripcion"
-                    background-color="#BDC3c7"
+                    background-color="tertiary"
                 ></v-textarea>
               </v-col>
             </v-row>
