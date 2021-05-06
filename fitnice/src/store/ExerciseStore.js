@@ -1,6 +1,11 @@
 class ExerciseStore {
     constructor() {
-        this.exercises = [];
+        this.exercises = [
+            new Exercise('Zeus','Tiempo (s)',25,'Piernas',"classeee"),
+            new Exercise('Juan','Repeticiones',40,'Piernas',"fasndvhf"),
+            new Exercise('Poseidon','Tiempo (s)',20,'Piernas',"fnasd"),
+            new Exercise('Zsd','Tiempo (s)',10,'Piernas',"concentrado")
+        ];
     }
 
     // exercises: [
@@ -26,6 +31,16 @@ class ExerciseStore {
             return null;
         }
         return this.exercises[index];
+    }
+}
+
+class Exercise {
+    constructor(name,format, amount, category, description) {
+        this.name = name;
+        this.format = format;
+        this.amount = amount;
+        this.category = category;
+        this.description = description;
     }
 }
 

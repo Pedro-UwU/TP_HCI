@@ -1,21 +1,30 @@
 <template>
-  <v-card class="secondary my-5">
+  <v-card class="secondary mb-5">
     <v-card-title>
-      <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Buscar"
-          single-line
-          hide-details
-      ></v-text-field>
+      <v-row>
+        <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Buscar"
+            single-line
+            hide-details
+        ></v-text-field>
+        <v-btn class="mt-5" :disabled="selected.length===0" @click="removeSelected(); selected=[]" icon color="white">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </v-row>
     </v-card-title>
     <v-data-table
         class="elevation-1 secondary"
+        v-model="selected"
         :headers="headers"
         :items="store.exercises"
         :search="search"
         :items-per-page="select.items"
         hide-default-footer
+        :single-select="singleSelect"
+        show-select
+        item-key="name"
         :page.sync="page"
         @page-count="pageCount = $event"
     >
@@ -25,17 +34,6 @@
           v-model="page"
           :length="pageCount"
       ></v-pagination>
-<!--      <v-select-->
-<!--          item-color="white"-->
-<!--          v-model="select"-->
-<!--          :items="listItems"-->
-<!--          item-text="items"-->
-<!--          item-value="items"-->
-<!--          label="Items por página"-->
-
-<!--          class="width"-->
-<!--          return-object-->
-<!--      ></v-select>-->
     </div>
   </v-card>
 </template>
@@ -48,15 +46,11 @@ export default {
   name: "MyExcercises",
   data () {
     return {
+      singleSelect: false,
+      selected: [],
       page: 1,
       pageCount: 0,
       select: { items: 10 },
-      listItems: [
-        { items: 5 },
-        { items: 10 },
-        { items: 20 },
-        { items: 100 }
-      ],
       search: '',
       headers: [
         { text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name' },
@@ -69,7 +63,12 @@ export default {
     }
   },
   methods: {
-
+    removeSelected() {
+      let i;
+      for (i= 0; i < this.selected.length; i++) {
+        this.store.remove(this.selected[i])
+      }
+    }
   }
 }
 </script>
