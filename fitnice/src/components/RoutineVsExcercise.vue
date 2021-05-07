@@ -14,6 +14,7 @@
       >Mis Ejercicios</h2>
       <v-spacer></v-spacer>
       <div  class="text-right" v-if="tabSelected">
+        <create-routine-btn></create-routine-btn>
         <c-filters class="align-end"></c-filters>
         <c-order class="align-end"></c-order>
       </div>
@@ -21,7 +22,7 @@
         <c-exercise-pop-up/>
       </div>
       <v-container v-if="!tabSelected">
-        <c-my-exercises/>
+        <c-my-exercises></c-my-exercises>
       </v-container>
     </v-row>
   </v-container>
@@ -32,11 +33,13 @@ import MyExercises from "./MyExercises";
 import Filters from "./Filters";
 import Order from "./Order";
 import ExercisePopUp from "./ExercisePopUp";
+import CreateRoutineBtn from "./CreateRoutineBtn";
 
 export default {
   name: "RoutineVsExcercise",
 
   components: {
+    CreateRoutineBtn,
     CMyExercises: MyExercises,
     CFilters: Filters,
     COrder: Order,

@@ -65,31 +65,17 @@
     <v-tabs
         fixed-tabs
         background-color="secondary"
+        hide-slider
     >
-      <v-tabs-slider color="transparent"></v-tabs-slider>
-      <v-tab exact-active-class="quaternary--text" to="/">
-        Explorar
-      </v-tab>
-      <v-tab exact-active-class="quaternary--text" to="/favorites">
-        Favoritos
-      </v-tab>
-      <v-tab exact-active-class="quaternary--text" to="/my-creations">
-        Mis creaciones
+      <v-tab
+          v-for="(item,i) in navigation"
+          :key="i" exact-active-class="quaternary--text bg" :to="item.link">
+        {{item.name}}
       </v-tab>
     </v-tabs>
 </template>
   </div>
 </template>
-
-<style scoped>
-span a {
-  text-decoration: none;
-}
-.search-sm >>> input{
-  color: black;
-  border: 0;
-}
-</style>
 
 <script>
 
@@ -97,16 +83,20 @@ import Vuetify from "vuetify";
 
   var nav = new Vuetify({
     el: nav,
-    data : {
-      navigation : ["Inicio","Rutinas","Favoritos"],
-      color: "tertiary"
-    }
+  //   data : {
+  //       color: "tertiary"
+  //   }
   });
 export default {
   name: "Header",
   data: () => ({
     searchText: "",
-    search: false
+    search: false,
+    navigation : [
+      {name: "Explorar", link: "/"},
+      {name: "Favoritos", link: "/favorites"},
+      {name: "Mis Rutinas", link: "/my-routines"},
+      {name: "Mis Ejercicios", link: "/my-exercises"}]
   }),
   methods: {
     showSearch: function () {
@@ -117,4 +107,15 @@ export default {
 }
 </script>
 
-
+<style scoped>
+  span a {
+    text-decoration: none;
+  }
+  .search-sm >>> input{
+    color: black;
+    border: 0;
+  }
+  .bg {
+    background: rgba(255,255,255,0.08);
+  }
+</style>

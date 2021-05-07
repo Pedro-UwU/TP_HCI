@@ -7,7 +7,6 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            v-if="exercise===undefined"
             class="white--text"
             :plain="true"
             color="white"
@@ -23,15 +22,6 @@
           Crear Ejercicio
           <v-icon>mdi-plus</v-icon>
         </v-btn>
-        <v-icon
-            v-else
-            v-bind="attrs"
-            v-on="on"
-            small
-            @click="loadExercise()"
-        >
-          mdi-pencil
-        </v-icon>
       </template>
       <v-card class="white--text" color="primary">
         <v-card-title>
@@ -45,7 +35,7 @@
               >
                 <v-text-field
                     :solo="true"
-                    label="nombre de ejercicio*"
+                    label="Nombre de ejercicio*"
                     v-model="infoEx.name"
                     :rules="[v => !!v || 'campo obligatorio']"
                     required
@@ -149,20 +139,9 @@ export default {
     },
     store: ExerciseStoreEx
   }),
-  props: {
-    exercise: Exercise
-  },
   methods: {
     addExcercise() {
-      if (!this.exercise)
-        this.store.add(new Exercise(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description));
-      else{
-        this.exercise.name = this.infoEx.name;
-        this.exercise.format = this.infoEx.format;
-        this.exercise.amount = this.infoEx.amount;
-        this.exercise.category = this.infoEx.category;
-        this.exercise.description = this.infoEx.description;
-      }
+      this.store.add(new Exercise(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description));
     },
     isNumber(evt) {
       if (!(evt instanceof Event)) return false;

@@ -1,13 +1,6 @@
 <template>
   <div>
     <v-container>
-      <v-row align="center">
-        <v-spacer></v-spacer>
-        <c-filters></c-filters>
-        <c-order></c-order>
-      </v-row>
-    </v-container>
-    <v-container>
       <v-row no-gutters style="background: none" align-content="center">
         <v-col
             v-for="n in 4"
@@ -23,15 +16,11 @@
 
 <script>
 import RoutineCard from "./RoutineCard";
-import Order from "./Order";
-import Filters from "./Filters";
 
 export default {
 name: "MyRoutines",
   components: {
     CRoutineCard: RoutineCard,
-    COrder: Order,
-    CFilters: Filters
   }
 }
 </script>
