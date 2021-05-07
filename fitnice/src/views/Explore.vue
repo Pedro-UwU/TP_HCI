@@ -43,7 +43,7 @@ import RoutineCard from "../components/RoutineCard";
 import Filters from "../components/Filters";
 import CreateRoutineBtn from "../components/CreateRoutineBtn";
 import Order from "../components/Order";
-import AllExercisesPopUp from "../components/AllExercisesPopUp";
+import AllExercisesPopUp from "../components/AddExercisePopUp";
 
 export default {
   name: "Explore",

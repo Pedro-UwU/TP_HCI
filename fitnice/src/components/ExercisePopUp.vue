@@ -124,6 +124,7 @@
 <script>
 import {ExerciseStoreEx} from "../store/ExerciseStore";
 import Exercise from "../store/Exercise";
+import {isNumber} from "../lib/NumberLib";
 
 export default {
   name: "ExcercisePopUp",
@@ -144,12 +145,7 @@ export default {
       this.store.add(new Exercise(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description));
     },
     isNumber(evt) {
-      if (!(evt instanceof Event)) return false;
-      if ((evt.keyCode > 31 && (evt.keyCode < 48 || evt.keyCode > 57)) && evt.keyCode !== 46) {
-        evt.preventDefault();
-        return false;
-      }
-      return true;
+      return isNumber(evt)
     },
     loadExercise() {
       if (this.exercise){

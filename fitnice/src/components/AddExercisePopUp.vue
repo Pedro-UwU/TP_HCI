@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <v-row class="justify-end mx-2">
     <v-dialog
         v-model="dialog"
         scrollable
@@ -7,15 +7,13 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            class="white--text"
-            :plain="true"
-            color="white"
-            :ripple="false"
+            class="black--text quinary my-3 mx-5"
+            rounded
             v-bind="attrs"
             v-on="on"
         >
+          <v-icon class="mr-2">mdi-plus</v-icon>
           Agregar Ejercicio
-          <v-icon>mdi-plus</v-icon>
         </v-btn>
       </template>
       <v-card class="primary">
@@ -42,7 +40,7 @@
               :search="search"
               hide-default-footer
               :single-select="singleSelect"
-              items-per-page="10000"
+              :items-per-page=10000
               show-select
               item-key="name"
               height="max"
@@ -63,9 +61,9 @@
           <v-btn
               color="blue darken-1"
               text
-              :disabled="!isValid"
+              :disabled="selected.length === 0"
               @click="dialog = false;
-                addExcercise();"
+                addExercise();"
           >
             Add
           </v-btn>
@@ -77,16 +75,20 @@
 
 <script>
 import {ExerciseStoreEx} from "../store/ExerciseStore";
-// import Exercise from "../store/Exercise";
-// import Cycle from "../store/Cycle";
+import Cycle from "../store/Cycle";
 
 export default {
-  name: "AllExercisesPopUp",
+  name: "AddExercisePopUp",
+  props: {
+    cycle: Cycle
+  },
   data () {
     return {
+      selected: [],
       dialog: false,
       singleSelect: false,
       search: '',
+      isValid: false,
       headers: [
         { text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name' },
         { text: 'Formato', value: 'format' },
@@ -97,6 +99,13 @@ export default {
       store: ExerciseStoreEx
     }
   },
+  methods: {
+    addExercise() {
+      for (let i = 0; i < this.selected.length; i++) {
+        this.cycle.add(this.selected[i])
+      }
+    }
+  }
 
 }
 </script>

@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="5" class=" transparent white--text font-weight-bold text-h6">{{ element.title }}</v-col>
         <v-spacer></v-spacer>
-        <v-col cols="5" right class="transparent subtitle-1 ">
+        <v-col cols="5" right class="transparent subtitle-1">
           <v-text-field v-if="!element.enabled"
               id="selects"
               disabled
@@ -24,6 +24,7 @@
               flat
               background-color="quinary"
               class="end-input color-enabled"
+              @keydown.enter="enabledModText(element)"
           ></v-text-field>
         </v-col>
         <v-col cols="1">

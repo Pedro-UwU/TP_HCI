@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3565008b-94d2-4928-8085-92af2ebec830" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/MyExercises.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/MyExercises.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fitnice/src/lib/NumberLib.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/AllExercisesPopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/AddExercisePopUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/ProfileElements.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/ProfileElements.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/store/ExerciseStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/store/ExerciseStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/views/Explore.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/Explore.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,14 +20,22 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
-        <option value="Vue Single File Component" />
         <option value="CSS File" />
+        <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1rj7HpEO2Tj6XzliVSk6rJw18Pg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -40,6 +56,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

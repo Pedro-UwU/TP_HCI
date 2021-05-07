@@ -137,8 +137,8 @@ export default {
   opacity: 1;
   animation-name: fadeIn;
   -webkit-animation-name: fadeIn;
-  animation-duration: 1.5s;
-  -webkit-animation-duration: 1.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
   -webkit-animation-timing-function: ease-in-out;
   visibility: visible !important;
