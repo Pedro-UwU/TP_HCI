@@ -32,7 +32,7 @@
                       class="color-enabled"
                       @keydown.enter="enabledModText()"
                       @keypress="isNumber($event)"
-                      v-model="cycle.repetitions"
+                      v-on:change="repetitionsValue($event)"
         ></v-text-field>
       </v-col>
       <v-col cols="1">
@@ -118,7 +118,9 @@ export default {
     },
     enabledModText() {
       this.enabled = !this.enabled;
-      console.log(this.cycle);
+    },
+    repetitionsValue(newValue) {
+      this.cycle.repetitions = parseInt(newValue);
     }
   },
   components: {
