@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3565008b-94d2-4928-8085-92af2ebec830" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fitnice/src/components/AllExercisesPopUp.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fitnice/src/components/ExercicesTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fitnice/src/views/MyExercises.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fitnice/src/views/MyRoutines.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/Header.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/MyExercises.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/MyExercises.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/MyRoutines.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/MyRoutines.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/RoutineVsExcercise.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/RoutineVsExcercise.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/store/ExerciseStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/store/ExerciseStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/views/Explore.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/Explore.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +55,7 @@
       <workItem from="1619910469987" duration="5006000" />
       <workItem from="1619971326687" duration="8161000" />
       <workItem from="1620330066408" duration="12215000" />
-      <workItem from="1620400281661" duration="8034000" />
+      <workItem from="1620400281661" duration="8126000" />
     </task>
     <servers />
   </component>

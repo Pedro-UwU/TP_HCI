@@ -42,7 +42,6 @@
 
 <script>
 import {ExerciseStoreEx} from "../store/ExerciseStore";
-import ExcercisePopUp from "./ExercisePopUp";
 
 export default {
 
