@@ -57,7 +57,7 @@
               >
                 <v-text-field
                     :solo="true"
-                    @keypress="isNumber(infoEx.amount)"
+                    @keypress="isNumber($event)"
                     :rules="[v => !!v || 'campo obligatorio']"
                     label="N°"
                     v-model="infoEx.amount"
@@ -165,13 +165,12 @@ export default {
       }
     },
     isNumber(evt) {
-      evt = (evt) ? evt : window.event;
-      let charCode = (evt.which) ? evt.which : evt.keyCode;
-      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+      if (!(evt instanceof Event)) return false;
+      if ((evt.keyCode > 31 && (evt.keyCode < 48 || evt.keyCode > 57)) && evt.keyCode !== 46) {
         evt.preventDefault();
-      } else {
-        return true;
+        return false;
       }
+      return true;
     },
     loadExercise() {
       if (this.exercise){

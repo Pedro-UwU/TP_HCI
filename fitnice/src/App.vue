@@ -20,3 +20,9 @@ export default {
   }),
 };
 </script>
+
+<style>
+  .align-right {
+    float: right;
+  }
+</style>

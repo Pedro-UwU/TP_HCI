@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3565008b-94d2-4928-8085-92af2ebec830" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fitnice/src/store/Cycle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fitnice/src/store/Routine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fitnice/src/styles/centered.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/MyExercises.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/MyExercises.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/store/ExerciseStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/store/ExerciseStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/store/Routine.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/store/Routine.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +21,7 @@
       <list>
         <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -39,6 +40,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -59,7 +61,8 @@
       <workItem from="1619892612224" duration="5696000" />
       <workItem from="1619910469987" duration="5006000" />
       <workItem from="1619971326687" duration="8161000" />
-      <workItem from="1620330066408" duration="7189000" />
+      <workItem from="1620330066408" duration="12215000" />
+      <workItem from="1620400281661" duration="7434000" />
     </task>
     <servers />
   </component>

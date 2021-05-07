@@ -36,13 +36,25 @@
       </v-row>
       <v-divider class="my-10"></v-divider>
       <v-row>
-        <div class=" white--text text-h3">
-          Agregar Ejercicios
-        </div>
+        <v-col>
+          <div class=" white--text text-h3">
+            Agregar Ejercicios
+          </div>
+        </v-col>
+      </v-row>
+      <v-row class="align-center">
+        <v-col class="align-center">
+          <c-cycle-card class="my-5 align-center slide current movable" :cycle=CCalentamiento></c-cycle-card>
+          <c-cycle-card class="my-5 align-center slide current movable" v-for="ciclo in CCiclos" :cycle="ciclo" :key="ciclo.name"></c-cycle-card>
+          <c-cycle-card class="my-5 align-center slide current movable" :cycle=CEnfriamiento></c-cycle-card>
+        </v-col>
       </v-row>
       <v-row>
-        <v-col>
-          <c-cycle-card class="my-5" :cycle=cExample></c-cycle-card>
+        <v-col class="align-center d-flex justify-center">
+          <v-btn width="lg 25%" @click="addCycle()" class="align-center  black--text quinary my-3 mx-5" rounded>
+            <v-icon left>mdi-plus</v-icon>
+            Agregar Ciclo
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -53,13 +65,17 @@
 import Header from "@/components/Header";
 import CycleCard from "../components/CycleCard";
 import Cycle from "../store/Cycle";
+import Routine from "../store/Routine";
 
-let cycleExample = new Cycle("Calentamiento", 2);
+let routine = new Routine("Rutina 1", "Biceps", "Facil", "60 minutos");
+let calentamientoEx = new Cycle("Calentamiento", 2);
+let enfriamientoEx = new Cycle("Enfriamiento", 2);
+routine.addCoolDown(enfriamientoEx);
+routine.addWarmUp(calentamientoEx);
 
 export default {
   name: "CreateRoutine",
   components : {
-//    CRoutineCard: RoutineCard,
     CHeader: Header,
     CCycleCard: CycleCard
   },
@@ -76,9 +92,16 @@ export default {
         {text: 'Tiempo/Repeticiones', value:'rep'},
       ],
 
-      cExample: cycleExample
+      CCalentamiento: routine.warmUp,
+      CEnfriamiento: routine.coolDown,
+      CCiclos: routine.cycles
 
-
+    }
+  },
+  methods: {
+    addCycle() {
+      routine.addCycle(new Cycle(`Ciclo ${routine.cycles.length + 1}`, 2))
+      console.log(routine);
     }
   }
 }
@@ -86,4 +109,38 @@ export default {
 
 <style scoped>
 
+.slide { opacity: 0.5; }
+
+.slide.current {
+  opacity: 1;
+  animation-name: fadeIn;
+  -webkit-animation-name: fadeIn;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  visibility: visible !important;
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    -webkit-transform: scale(0.5);
+    opacity: 0.0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
 </style>
