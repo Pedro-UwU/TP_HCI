@@ -44,9 +44,7 @@
       </v-row>
       <v-row class="align-center">
         <v-col class="align-center">
-          <c-cycle-card class="my-5 align-center slide current movable" :cycle=CCalentamiento></c-cycle-card>
-          <c-cycle-card class="my-5 align-center slide current movable" v-for="ciclo in CCiclos" :routine="routine" :cycle="ciclo" :key="ciclo.name"></c-cycle-card>
-          <c-cycle-card class="my-5 align-center slide current movable" :cycle=CEnfriamiento></c-cycle-card>
+          <c-cycle-card class="my-5 align-center slide current movable" v-for="ciclo in CCiclos" :routine="routine" :cycle="ciclo" :key="ciclo.id"></c-cycle-card>
         </v-col>
       </v-row>
       <v-row>
@@ -70,8 +68,8 @@ import Routine from "../store/Routine";
 let routine = new Routine("Rutina 1", "Biceps", "Facil", "60 minutos");
 let calentamientoEx = new Cycle("Calentamiento", 2);
 let enfriamientoEx = new Cycle("Enfriamiento", 2);
-routine.addCoolDown(enfriamientoEx);
-routine.addWarmUp(calentamientoEx);
+routine.addCycle(calentamientoEx);
+routine.addCycle(enfriamientoEx);
 
 export default {
   name: "CreateRoutine",

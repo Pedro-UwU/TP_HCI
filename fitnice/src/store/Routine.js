@@ -1,11 +1,12 @@
 export default class Routine {
+    static idCount = 0;
     constructor(name, category, difficulty, duration) {
+        this.id = Routine.idCount;
+        Routine.idCount++;
         this.name = name;
         this.category = category;
         this.difficulty = difficulty;
         this.duration =  duration;
-        this.warmUp = null;
-        this.coolDown = null;
         this.cycles = [];
     }
 
@@ -15,13 +16,5 @@ export default class Routine {
 
     removeCycle(cycle) {
         this.cycles.splice(this.cycles.indexOf(cycle), 1);
-    }
-
-    addCoolDown(cycle) {
-        this.coolDown = cycle;
-    }
-
-    addWarmUp(cycle) {
-        this.warmUp = cycle;
     }
 }
