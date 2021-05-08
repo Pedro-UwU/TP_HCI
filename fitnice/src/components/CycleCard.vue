@@ -26,6 +26,12 @@
                       v-on:change="cycleNewName($event)"
         ></v-text-field>
       </v-col>
+      <v-col>
+        <div>
+          <c-delete-cycle-pop-up :routine="routine" :cycle="cycle"/>
+        </div>
+      </v-col>
+      <v-spacer/>
       <v-col class="text-right">
         <div class="text-h5 white--text align-center" >Repeticiones:</div>
       </v-col>
@@ -59,27 +65,6 @@
           mdi-pencil-outline
         </v-icon>
       </v-col>
-<!--      <div v-if="!element.enabled"-->
-<!--                    id="selects"-->
-<!--                    disabled-->
-<!--                    :value="element.content"-->
-<!--                    solo-->
-<!--                    dense-->
-<!--                    flat-->
-<!--                    background-color="transparent"-->
-<!--                    class="end-input color-disabled"-->
-<!--      >-->
-<!--      </div>-->
-<!--      <v-text-field v-else-->
-<!--                    id="selects"-->
-<!--                    :value="element.content"-->
-<!--                    solo-->
-<!--                    dense-->
-<!--                    flat-->
-<!--                    background-color="quinary"-->
-<!--                    class="end-input color-enabled"-->
-<!--                    @keydown.enter="enabledModText(element)"-->
-<!--      ></v-text-field>-->
     </v-row>
     <v-row>
       <v-col>
@@ -120,7 +105,8 @@ export default {
   name: "CycleCard",
   props: {
     cycle: Cycle,
-    cycleName: String
+    cycleName: String,
+    routine: Routine
   },
   data: () => {
     return {
