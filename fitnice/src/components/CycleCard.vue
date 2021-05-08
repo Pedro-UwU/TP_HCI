@@ -110,7 +110,6 @@ import AddExercisePopUp from "./AddExercisePopUp";
 import {isNumber} from "../lib/NumberLib";
 import DeleteCyclePopUp from "./DeleteCyclePopUp";
 import Routine from "../store/Routine";
-// import RemoveExerciseFromCycleBtn from "./RemoveExerciseFromCycleBtn";
 
 export default {
   name: "CycleCard",
@@ -162,7 +161,6 @@ export default {
   components: {
     CAddExercisePopUp: AddExercisePopUp,
     CDeleteCyclePopUp: DeleteCyclePopUp,
-    // CRemoveExerciseFromCycleBtn: RemoveExerciseFromCycleBtn
   }
 }
 </script>
