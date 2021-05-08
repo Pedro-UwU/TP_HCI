@@ -45,7 +45,7 @@
       <v-row class="align-center">
         <v-col class="align-center">
           <c-cycle-card class="my-5 align-center slide current movable" :cycle=CCalentamiento></c-cycle-card>
-          <c-cycle-card class="my-5 align-center slide current movable" v-for="ciclo in CCiclos" :cycle="ciclo" :key="ciclo.name"></c-cycle-card>
+          <c-cycle-card class="my-5 align-center slide current movable" v-for="ciclo in CCiclos" :routine="routine" :cycle="ciclo" :key="ciclo.name"></c-cycle-card>
           <c-cycle-card class="my-5 align-center slide current movable" :cycle=CEnfriamiento></c-cycle-card>
         </v-col>
       </v-row>
@@ -114,6 +114,8 @@ export default {
         {text: 'Tiempo/Repeticiones', value:'rep'},
       ],
 
+
+      routine: routine,
       CCalentamiento: routine.warmUp,
       CEnfriamiento: routine.coolDown,
       CCiclos: routine.cycles

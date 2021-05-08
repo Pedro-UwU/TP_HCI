@@ -9,6 +9,7 @@
         <v-btn
             class="black--text quinary my-3 mx-5"
             rounded
+            :ripple="true"
             v-bind="attrs"
             v-on="on"
         >
@@ -54,7 +55,7 @@
           <v-btn
               color="blue darken-1"
               text
-              @click="dialog=false;"
+              @click="dialog=false; selected= []"
           >
             Close
           </v-btn>
@@ -63,7 +64,7 @@
               text
               :disabled="selected.length === 0"
               @click="dialog = false;
-                addExercise();"
+                addExercise(); selected= []"
           >
             Add
           </v-btn>

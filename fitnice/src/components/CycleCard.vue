@@ -6,7 +6,12 @@
           {{cycle.name.toUpperCase()}}
         </div>
       </v-col>
-
+      <v-col>
+        <div>
+          <c-delete-cycle-pop-up :routine="routine" :cycle="cycle"/>
+        </div>
+      </v-col>
+      <v-spacer/>
       <v-col class="text-right">
         <div class="text-h5 white--text align-center" >Repeticiones:</div>
       </v-col>
@@ -40,27 +45,6 @@
           mdi-pencil-outline
         </v-icon>
       </v-col>
-<!--      <div v-if="!element.enabled"-->
-<!--                    id="selects"-->
-<!--                    disabled-->
-<!--                    :value="element.content"-->
-<!--                    solo-->
-<!--                    dense-->
-<!--                    flat-->
-<!--                    background-color="transparent"-->
-<!--                    class="end-input color-disabled"-->
-<!--      >-->
-<!--      </div>-->
-<!--      <v-text-field v-else-->
-<!--                    id="selects"-->
-<!--                    :value="element.content"-->
-<!--                    solo-->
-<!--                    dense-->
-<!--                    flat-->
-<!--                    background-color="quinary"-->
-<!--                    class="end-input color-enabled"-->
-<!--                    @keydown.enter="enabledModText(element)"-->
-<!--      ></v-text-field>-->
     </v-row>
     <v-row>
       <v-col>
@@ -78,10 +62,6 @@
     <v-row>
         <v-spacer></v-spacer>
         <c-add-exercise-pop-up :cycle="cycle" class="my-0"></c-add-exercise-pop-up>
-<!--          <v-btn @click="openExPopUp()" class="black&#45;&#45;text quinary my-3 mx-5" rounded>-->
-<!--            <v-icon left>mdi-plus</v-icon>-->
-<!--            Agregar Ejercicio-->
-<!--          </v-btn>-->
     </v-row>
   </v-card>
 </template>
@@ -90,12 +70,15 @@
 import Cycle from "../store/Cycle";
 import AddExercisePopUp from "./AddExercisePopUp";
 import {isNumber} from "../lib/NumberLib";
+import DeleteCyclePopUp from "./DeleteCyclePopUp";
+import Routine from "../store/Routine";
 
 export default {
   name: "CycleCard",
   props: {
     cycle: Cycle,
-    cycleName: String
+    cycleName: String,
+    routine: Routine
   },
   data: () => {
     return {
@@ -106,7 +89,6 @@ export default {
         {text: 'Cantidad', filterable: false, sortable: false, value: 'amount'},
         {text: 'Categoría', value: 'category'},
         {text: 'Descripcion', value: 'description'},
-        {text: 'Actions', value: 'actions', sortable: false}
       ]
     }
   },
@@ -125,6 +107,7 @@ export default {
   },
   components: {
     CAddExercisePopUp: AddExercisePopUp,
+    CDeleteCyclePopUp: DeleteCyclePopUp
   }
 }
 </script>
