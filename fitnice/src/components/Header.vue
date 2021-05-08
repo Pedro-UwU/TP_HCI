@@ -48,16 +48,17 @@
               </v-list-item-content>
             </v-list-item>
             <v-divider></v-divider>
-            <v-list-item class="mb-n3">
+            <v-list-item class="my-n2">
               <v-list-item-content>
-                <router-link to="/create" tag="button"> <!--- agregar el router que corresponde--->
+                <router-link to="/login" tag="button">
                   <v-container class="text-left">
-                    <v-icon left class="black--text">mdi-plus</v-icon>
-                    Crear Rutina
+                    <v-icon left class="black--text">mdi-logout</v-icon>
+                    Cerar Sesión
                   </v-container>
                 </router-link>
               </v-list-item-content>
             </v-list-item>
+            <v-divider></v-divider>
           </v-list>
         </v-menu>
     </v-app-bar>

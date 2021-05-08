@@ -42,6 +42,7 @@
           :disabled="!isValid"
           rounded
           width="50%"
+          @click="$router.push('/')"
       >Ingresar</v-btn>
     </v-card-actions>
   </v-card>
