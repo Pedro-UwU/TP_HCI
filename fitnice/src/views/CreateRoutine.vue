@@ -38,7 +38,7 @@
       <v-row>
         <v-col>
           <div class=" white--text text-h3">
-            Agregar Ejercicios
+            Ciclos
           </div>
         </v-col>
       </v-row>
@@ -114,8 +114,6 @@ export default {
 
 
       routine: routine,
-      CCalentamiento: routine.warmUp,
-      CEnfriamiento: routine.coolDown,
       CCiclos: routine.cycles
 
     }

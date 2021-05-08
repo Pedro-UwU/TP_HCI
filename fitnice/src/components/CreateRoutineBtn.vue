@@ -4,6 +4,7 @@
       :plain="true"
       color="white"
       :ripple="false"
+      @click="$router.push('/create')"
   >
     Crear Rutina
     <v-icon>mdi-plus</v-icon>

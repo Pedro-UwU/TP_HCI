@@ -166,5 +166,10 @@ export default {
 </script>
 
 <style scoped>
-
+.color-disabled >>> input {
+  color: white;
+}
+.color-enabled >>> input {
+  color: black;
+}
 </style>
