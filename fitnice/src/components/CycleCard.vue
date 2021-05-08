@@ -83,7 +83,18 @@
     </v-row>
     <v-row>
       <v-spacer/>
-      <c-remove-exercise-from-cycle-btn class=" my-1" :cycle="cycle" :selected="selected"/>
+      <div class="my-1">
+        <v-btn class="black--text quinary my-3 mx-5"
+               :disabled="selected.length===0"
+               :ripple="true"
+               @click="removeSelected(); selected = []"
+               rounded
+        >
+          <v-icon class="mr-2">mdi-delete</v-icon>
+          <span v-if="selected.length<=1">Eliminar Ejercicio</span>
+          <span v-else>Eliminar Ejercicios</span>
+        </v-btn>
+      </div>
       <c-add-exercise-pop-up :cycle="cycle" class="my-1"></c-add-exercise-pop-up>
 <!--          <v-btn @click="openExPopUp()" class="black&#45;&#45;text quinary my-3 mx-5" rounded>-->
 <!--            <v-icon left>mdi-plus</v-icon>-->
@@ -99,7 +110,7 @@ import AddExercisePopUp from "./AddExercisePopUp";
 import {isNumber} from "../lib/NumberLib";
 import DeleteCyclePopUp from "./DeleteCyclePopUp";
 import Routine from "../store/Routine";
-import RemoveExerciseFromCycleBtn from "./RemoveExerciseFromCycleBtn";
+// import RemoveExerciseFromCycleBtn from "./RemoveExerciseFromCycleBtn";
 
 export default {
   name: "CycleCard",
@@ -141,12 +152,17 @@ export default {
     },
     enableNameEdit() {
       this.nameEnabled = !this.nameEnabled;
+    },
+    removeSelected() {
+      for (let i =0; i < this.selected.length; i++){
+        this.cycle.remove(this.selected[i]);
+      }
     }
   },
   components: {
     CAddExercisePopUp: AddExercisePopUp,
     CDeleteCyclePopUp: DeleteCyclePopUp,
-    CRemoveExerciseFromCycleBtn: RemoveExerciseFromCycleBtn
+    // CRemoveExerciseFromCycleBtn: RemoveExerciseFromCycleBtn
   }
 }
 </script>

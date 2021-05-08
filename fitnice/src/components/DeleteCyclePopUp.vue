@@ -36,7 +36,7 @@
               color="blue darken-1"
               text
               @click="dialog = false;
-                    deleteCycle();"
+                    deleteCycle(); selected =[]"
           >
             Delete
           </v-btn>

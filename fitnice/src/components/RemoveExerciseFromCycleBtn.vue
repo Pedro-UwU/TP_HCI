@@ -1,16 +1,5 @@
 <template>
-  <div>
-    <v-btn class="black--text quinary my-3 mx-5"
-           :disabled="selected.length===0"
-           :ripple="true"
-           @click="removeSelected(); selected = []"
-           rounded
-    >
-      <v-icon class="mr-2">mdi-delete</v-icon>
-      <span v-if="selected.length<=1">Eliminar Ejercicio</span>
-      <span v-else>Eliminar Ejercicios</span>
-    </v-btn>
-  </div>
+
 </template>
 
 <script>
