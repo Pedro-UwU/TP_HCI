@@ -78,6 +78,9 @@
           item-key="name"
           show-select
         >
+          <template v-slot:item.actions="{ item }">
+            <c-exercise-pop-up :exercise="item"/>
+          </template>
         </v-data-table>
       </v-col>
     </v-row>
@@ -110,6 +113,7 @@ import AddExercisePopUp from "./AddExercisePopUp";
 import {isNumber} from "../lib/NumberLib";
 import DeleteCyclePopUp from "./DeleteCyclePopUp";
 import Routine from "../store/Routine";
+import ExercisePopUp from "./ExercisePopUp";
 
 export default {
   name: "CycleCard",
@@ -161,6 +165,7 @@ export default {
   components: {
     CAddExercisePopUp: AddExercisePopUp,
     CDeleteCyclePopUp: DeleteCyclePopUp,
+    CExercisePopUp: ExercisePopUp
   }
 }
 </script>
