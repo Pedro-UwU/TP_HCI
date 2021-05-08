@@ -52,6 +52,8 @@
           :headers="headers"
           :items="cycle.exercises"
           hide-default-footer
+          v-model="selected"
+
           :single-select=false
           item-key="name"
           show-select
@@ -60,8 +62,9 @@
       </v-col>
     </v-row>
     <v-row>
-        <v-spacer></v-spacer>
-        <c-add-exercise-pop-up :cycle="cycle" class="my-0"></c-add-exercise-pop-up>
+      <v-spacer/>
+      <c-remove-exercise-from-cycle-btn class=" my-1" :cycle="cycle" :selected="selected"/>
+      <c-add-exercise-pop-up :cycle="cycle" class="my-1"></c-add-exercise-pop-up>
     </v-row>
   </v-card>
 </template>
@@ -72,6 +75,7 @@ import AddExercisePopUp from "./AddExercisePopUp";
 import {isNumber} from "../lib/NumberLib";
 import DeleteCyclePopUp from "./DeleteCyclePopUp";
 import Routine from "../store/Routine";
+import RemoveExerciseFromCycleBtn from "./RemoveExerciseFromCycleBtn";
 
 export default {
   name: "CycleCard",
@@ -83,6 +87,7 @@ export default {
   data: () => {
     return {
       enabled: false,
+      selected: [],
       headers: [
         {text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name'},
         {text: 'Formato', value: 'format'},
@@ -107,12 +112,12 @@ export default {
   },
   components: {
     CAddExercisePopUp: AddExercisePopUp,
-    CDeleteCyclePopUp: DeleteCyclePopUp
+    CDeleteCyclePopUp: DeleteCyclePopUp,
+    CRemoveExerciseFromCycleBtn: RemoveExerciseFromCycleBtn
   }
 }
 </script>
 
 <style scoped>
-
 
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <v-row class="justify-end mx-2">
+  <div class="justify-end">
     <v-dialog
         v-model="dialog"
         scrollable
         max-width="700px"
     >
-      <template v-slot:activator="{ on, attrs }">
+      <template v-slot:activator="{ on, attrs }" class="width">
         <v-btn
             class="black--text quinary my-3 mx-5"
             rounded
@@ -71,7 +71,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
+  </div>
 </template>
 
 <script>
@@ -112,5 +112,7 @@ export default {
 </script>
 
 <style scoped>
-
+.width {
+  width: 100px;
+}
 </style>
