@@ -8,6 +8,8 @@ export default class Routine {
         this.difficulty = difficulty;
         this.duration =  duration;
         this.cycles = [];
+        this.isPublic = true;
+        this.description = '';
     }
 
     addCycle(cycle) {
@@ -16,5 +18,9 @@ export default class Routine {
 
     removeCycle(cycle) {
         this.cycles.splice(this.cycles.indexOf(cycle), 1);
+    }
+
+    setDescription(desc) {
+        this.description = desc;
     }
 }
