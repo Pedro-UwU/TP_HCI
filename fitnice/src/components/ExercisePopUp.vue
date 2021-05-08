@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center" >
+  <v-row >
     <v-dialog
         v-model="dialog"
         persistent
@@ -7,7 +7,8 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            class="white--text"
+            v-if="exercise===undefined"
+            class="transparent white--text"
             :plain="true"
             color="white"
             :ripple="false"
@@ -22,10 +23,21 @@
           Crear Ejercicio
           <v-icon>mdi-plus</v-icon>
         </v-btn>
+        <v-btn v-else
+               v-bind="attrs"
+               v-on="on"
+               small
+               solo
+               plain
+               @click="loadExercise()"
+        >
+          <v-icon>mdi-pencil</v-icon>
+        </v-btn>
       </template>
       <v-card class="white--text" color="primary">
         <v-card-title>
-          <span class="headline">Creacion de ejercicio</span>
+          <span v-if="exercise===undefined" class="headline">Creacion de ejercicio</span>
+          <span v-else class="headline">Editar ejercicio</span>
         </v-card-title>
         <v-card-text class="white--text">
           <v-form v-model="isValid">
@@ -140,9 +152,20 @@ export default {
     },
     store: ExerciseStoreEx
   }),
+  props: {
+    exercise: Exercise
+  },
   methods: {
     addExcercise() {
-      this.store.add(new Exercise(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description));
+      if (!this.exercise)
+        this.store.add(new Exercise(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description));
+      else{
+        this.exercise.name = this.infoEx.name;
+        this.exercise.format = this.infoEx.format;
+        this.exercise.amount = this.infoEx.amount;
+        this.exercise.category = this.infoEx.category;
+        this.exercise.description = this.infoEx.description;
+      }
     },
     isNumber(evt) {
       return isNumber(evt)
