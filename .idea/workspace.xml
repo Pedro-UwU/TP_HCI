@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3565008b-94d2-4928-8085-92af2ebec830" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/fitnice/src/store/ExerciseType.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/store/Cycle.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/store/Cycle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/store/Routine.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/store/Routine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
