@@ -94,12 +94,15 @@
           rounded
           width="50%"
           class="less-margin"
+          @click="sendRegForm()"
       >Registrarse</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import {UserApi} from "../js/user";
+
 export default {
   name: "RegisterForm",
 
@@ -118,6 +121,24 @@ export default {
     passwordConfirmationRule() {
       return () => (this.password === this.confirmPassword) || 'Password must match'
     },
+  },
+  methods: {
+    sendRegForm() {
+      let userInfo = {
+        username: this.username,
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        gender: "male", //TODO agregar genero
+        birthdate: 284007600000, //TODO Agregar fecha de nacimiento
+        email: this.email,
+        phone: "123456", //TODO Agregar Telefono
+        avatarUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png",
+        metadata: null
+      }
+      UserApi.create(userInfo, null)
+    }
+
   }
 };
 </script>
