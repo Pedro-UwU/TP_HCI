@@ -12,6 +12,7 @@ import CreateRoutine from "@/views/CreateRoutine";
 import MyExercises from "./views/MyExercises";
 import MyRoutines from "./views/MyRoutines";
 import SeeRoutine from "./views/SeeRoutine";
+import VerificacionTemporal from "./views/VerificacionTemporal";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -28,6 +29,7 @@ const router = new VueRouter({
     { path: '/my-exercises', component: MyExercises},
     { path: '/my-routines', component: MyRoutines},
     { path: '/seeRoutine:id', component: SeeRoutine},
+    { path: '/verification', component: VerificacionTemporal},
     { path: '*', component: NotFound}
   ]
 });
