@@ -13,6 +13,7 @@
               plain
           >
             Editar Rutina
+            <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </div>
       </v-row>
@@ -108,9 +109,7 @@ export default {
       element.enabled = !element.enabled
     },
     addRoutine() {
-      console.log(this.store.get(this.$route.params.id).name)
       this.store.get(this.$route.params.id).name = this.routineItems[0].content;
-      console.log(this.store.get(this.$route.params.id).name)
       this.store.get(this.$route.params.id).category = this.routineItems[1].content;
       this.store.get(this.$route.params.id).difficulty = this.routineItems[2].content;
       this.store.get(this.$route.params.id).duration = this.routineItems[3].content;

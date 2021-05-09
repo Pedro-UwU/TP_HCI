@@ -23,4 +23,8 @@ export default class Routine {
     setDescription(desc) {
         this.description = desc;
     }
+
+    getIDCount() {
+        return Routine.idCount
+    }
 }

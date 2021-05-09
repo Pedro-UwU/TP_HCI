@@ -7,13 +7,13 @@
           Editar Rutina
         </div>
         <v-spacer/>
-        <div @click="addRoutine(); $router.push('seeRoutine'+$route.params.id)">
+        <div @click="addRoutine(); $router.push('/seeRoutine'+id)">
           <v-btn
               solo
               plain
           >
             Guardar
-            <v-icon>mdi-plus</v-icon>
+            <v-icon>mdi-content-save</v-icon>
           </v-btn>
         </div>
       </v-row>
@@ -101,6 +101,7 @@ import Header from "@/components/Header";
 import CycleCard from "../components/CycleCard";
 import Cycle from "../store/Cycle";
 import {RoutineStoreEx} from "../store/RoutineStore";
+import Routine from "../store/Routine";
 
 export default {
   name: "CreateRoutine",
@@ -111,6 +112,7 @@ export default {
   data: () => {
     return {
       cycles: [],
+      id: String,
       routineItems: [
         {title: "Nombre", content: "", enabled: false},
         {title: "Categoría", content: "", enabled: false},
@@ -132,22 +134,24 @@ export default {
       element.enabled = !element.enabled
     },
     addRoutine() {
-      console.log(this.store.get(this.$route.params.id).name)
-      this.store.get(this.$route.params.id).name = this.routineItems[0].content;
-      console.log(this.store.get(this.$route.params.id).name)
-      this.store.get(this.$route.params.id).category = this.routineItems[1].content;
-      this.store.get(this.$route.params.id).difficulty = this.routineItems[2].content;
-      this.store.get(this.$route.params.id).duration = this.routineItems[3].content;
+      this.store.get(this.id).name = this.routineItems[0].content;
+      this.store.get(this.id).category = this.routineItems[1].content;
+      this.store.get(this.id).difficulty = this.routineItems[2].content;
+      this.store.get(this.id).duration = this.routineItems[3].content;
     },
   },
   mounted() {
     if (this.$route.params.id) {
-      this.store.get(this.$route.params.routineId);
-      this.routineItems[0].content = this.store.get(this.$route.params.id).name;
-      this.routineItems[1].content = this.store.get(this.$route.params.id).category;
-      this.routineItems[2].content = this.store.get(this.$route.params.id).difficulty;
-      this.routineItems[3].content = this.store.get(this.$route.params.id).duration;
-      this.cycles = this.store.get(this.$route.params.id).cycles;
+      this.id = this.$route.params.id
+      this.routineItems[0].content = this.store.get(this.id).name;
+      this.routineItems[1].content = this.store.get(this.id).category;
+      this.routineItems[2].content = this.store.get(this.id).difficulty;
+      this.routineItems[3].content = this.store.get(this.id).duration;
+      this.cycles = this.store.get(this.id).cycles;
+    } else {
+      this.store.add(new Routine('','','',''));
+      this.id = String(Routine.idCount)-1;
+      this.cycles = this.store.get(this.id).cycles;
     }
   }
 }

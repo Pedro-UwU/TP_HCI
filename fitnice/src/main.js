@@ -24,6 +24,7 @@ const router = new VueRouter({
     { path:'/profile', component: Profile},
     { path: '/register', component: Register},
     { path: '/create:id', component: CreateRoutine},
+    { path: '/create', component: CreateRoutine},
     { path: '/my-exercises', component: MyExercises},
     { path: '/my-routines', component: MyRoutines},
     { path: '/seeRoutine:id', component: SeeRoutine},

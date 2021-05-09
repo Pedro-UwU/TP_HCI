@@ -2,7 +2,7 @@
   <v-card class="secondary">
     <v-row class="align-center">
       <v-col cols="3" class="subtitle-1 mt-4 mb-n3">
-        <v-text-field v-if="!nameEnabled"
+        <v-text-field
                       disabled
                       :value="cycle.name"
                       solo
@@ -19,7 +19,7 @@
         <div class="text-h5 white--text align-center" >Repeticiones:</div>
       </v-col>
       <v-col cols="1" class="subtitle-1 mt-4 mb-n3">
-        <v-text-field v-if="!repetitionEnabled"
+        <v-text-field
                       disabled
                       :value="cycle.repetitions"
                       solo
