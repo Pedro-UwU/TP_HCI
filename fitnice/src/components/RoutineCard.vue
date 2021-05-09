@@ -8,7 +8,7 @@
     >
       <v-container class="bottom-image align-content-center">
         <v-card-actions style="color: white">
-          <h3 v-text="routine.name"></h3>
+          <h3 :v-text="(routine !== undefined) ? routine.name : 'Error'"></h3>
           <v-spacer></v-spacer>
           <v-btn @click="switchFav()"
                  icon color="white">

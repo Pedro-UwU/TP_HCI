@@ -136,7 +136,7 @@
 <script>
 import {ExerciseStoreEx} from "../store/ExerciseStore";
 import Exercise from "../store/Exercise";
-import {isNumber} from "../lib/NumberLib";
+import {isNumber} from "../js/NumberLib";
 
 export default {
   name: "ExcercisePopUp",

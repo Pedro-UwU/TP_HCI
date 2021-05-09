@@ -5,7 +5,6 @@
       <v-row align="center">
         <h2 class="subtitles">Favoritos</h2>
         <v-spacer></v-spacer>
-        <c-create-routine-btn></c-create-routine-btn>
         <c-filters></c-filters>
         <c-order></c-order>
       </v-row>
@@ -17,7 +16,7 @@
             :key="n"
             align="center"
         >
-          <c-routine-card class="routine" title="Rutina 5" stars=3.5 fav=true src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
+          <c-routine-card class="routine" title="Rutina 5" :stars=3.5 :fav=true src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
         </v-col>
       </v-row>
     </v-container>

@@ -6,75 +6,81 @@
     <v-card-text>
       <v-form v-model="isValid">
         <v-text-field
-            label="nombre"
+            light
+            label="Nombre"
             v-model="name"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             rounded
             solo
-            placeholder="nombre"
+            placeholder="Nombre"
             background-color="white"
             class="text-input"
             height="2.5em"
         ></v-text-field>
         <v-text-field
-            label="apellido"
+            light
+            label="Apellido"
             v-model="lastname"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             rounded
             solo
             class="text-input"
-            placeholder="apellido"
+            placeholder="Apellido"
             background-color="white"
             height="2.5em"
         ></v-text-field>
         <v-text-field
-            label="e-mail"
+            light
+            label="E-mail"
             v-model="email"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             rounded
             solo
             class="text-input"
-            placeholder="e-mail"
+            placeholder="E-mail"
             background-color="white"
             height="2.5em"
         ></v-text-field>
         <v-text-field
-            label="nombre de usuario"
+            light
+            label="Nombre de usuario"
             v-model="username"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             rounded
             solo
             class="text-input"
-            placeholder="nombre de usuario"
+            placeholder="Nombre de usuario"
             background-color="white"
             height="2.5em"
         ></v-text-field>
         <v-text-field
-            label="contraseña"
+            light
+            label="Contraseña"
             v-model="password"
             type="password"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             solo
             class="text-input"
-            placeholder="contraseña"
+            placeholder="Contraseña"
             rounded
             background-color="white"
             height="2.5em"
         ></v-text-field>
         <v-text-field
-            label="contraseña"
+            light
+            label="Repetir contraseña"
             v-model="confirmPassword"
             type="password"
             :rules="[confirmPasswordRules,passwordConfirmationRule]"
             required
             solo
             class="text-input"
-            placeholder="contraseña"
+            placeholder="Repetir contraseña"
             rounded
             background-color="white"
             height="2.5em"

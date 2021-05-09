@@ -18,7 +18,7 @@
         </div>
       </v-row>
       <v-row align="center" class="my-3">
-        <v-col cols="4" align="center">
+        <v-col cols="4">
           <v-img style="border-radius: 20px !important;" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" aspect-ratio="1" width="90%" class="align-end">
             <v-card class="transparent">
               <v-container class="bottom-image align-content-center">
@@ -34,7 +34,7 @@
                 <v-spacer></v-spacer>
                 <v-col cols="5" right class="transparent subtitle-1">
                   <v-text-field v-if="!element.enabled"
-                                id="selects"
+                                :id="element.title"
                                 disabled
                                 v-model="element.content"
                                 solo
@@ -172,5 +172,9 @@ export default {
     -webkit-transform: scale(1);
     opacity: 1;
   }
+}
+
+align-left {
+  text-align: left;
 }
 </style>

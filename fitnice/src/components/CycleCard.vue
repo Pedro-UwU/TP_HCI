@@ -106,7 +106,7 @@
 <script>
 import Cycle from "../store/Cycle";
 import AddExercisePopUp from "./AddExercisePopUp";
-import {isNumber} from "../lib/NumberLib";
+import {isNumber} from "../js/NumberLib";
 import DeleteCyclePopUp from "./DeleteCyclePopUp";
 import ExercisePopUp from "./ExercisePopUp";
 
