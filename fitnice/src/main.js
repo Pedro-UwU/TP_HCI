@@ -11,6 +11,7 @@ import Register from "./views/Register";
 import CreateRoutine from "@/views/CreateRoutine";
 import MyExercises from "./views/MyExercises";
 import MyRoutines from "./views/MyRoutines";
+import SeeRoutine from "./views/SeeRoutine";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -22,9 +23,10 @@ const router = new VueRouter({
     { path:'/favorites', component: Favorites},
     { path:'/profile', component: Profile},
     { path: '/register', component: Register},
-    { path: '/create', component: CreateRoutine},
+    { path: '/create:id', component: CreateRoutine},
     { path: '/my-exercises', component: MyExercises},
     { path: '/my-routines', component: MyRoutines},
+    { path: '/seeRoutine:id', component: SeeRoutine},
     { path: '*', component: NotFound}
   ]
 });

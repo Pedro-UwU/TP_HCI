@@ -28,7 +28,7 @@
       </v-col>
       <v-col>
         <div>
-          <c-delete-cycle-pop-up :routine="routine" :cycle="cycle"/>
+          <c-delete-cycle-pop-up :cycles="cycles" :cycle="cycle"/>
         </div>
       </v-col>
       <v-spacer/>
@@ -99,10 +99,6 @@
         </v-btn>
       </div>
       <c-add-exercise-pop-up :cycle="cycle" class="my-1"></c-add-exercise-pop-up>
-<!--          <v-btn @click="openExPopUp()" class="black&#45;&#45;text quinary my-3 mx-5" rounded>-->
-<!--            <v-icon left>mdi-plus</v-icon>-->
-<!--            Agregar Ejercicio-->
-<!--          </v-btn>-->
     </v-row>
   </v-card>
 </template>
@@ -112,15 +108,13 @@ import Cycle from "../store/Cycle";
 import AddExercisePopUp from "./AddExercisePopUp";
 import {isNumber} from "../lib/NumberLib";
 import DeleteCyclePopUp from "./DeleteCyclePopUp";
-import Routine from "../store/Routine";
 import ExercisePopUp from "./ExercisePopUp";
 
 export default {
   name: "CycleCard",
   props: {
     cycle: Cycle,
-    cycleName: String,
-    routine: Routine
+    cycles: []
   },
   data: () => {
     return {
@@ -139,8 +133,6 @@ export default {
     }
   },
   methods: {
-    openExPopUp: () => {
-    },
     isNumber(evt) {
       return isNumber(evt);
     },

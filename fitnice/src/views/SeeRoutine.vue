@@ -4,26 +4,25 @@
     <v-container class="my-10">
       <v-row align="center" class="my-3">
         <div class=" white--text text-h3">
-          Crear Rutina
+          Ver Rutina
         </div>
         <v-spacer/>
-        <div @click="addRoutine(); $router.push('seeRoutine'+$route.params.id)">
+        <div @click="$router.push('/create'+$route.params.id)">
           <v-btn
               solo
               plain
           >
-            Guardar Rutina
-            <v-icon>mdi-plus</v-icon>
+            Editar Rutina
           </v-btn>
         </div>
       </v-row>
       <v-row align="center" class="my-3">
         <v-col cols="4" align="center">
           <v-img style="border-radius: 20px !important;" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" aspect-ratio="1" width="90%" class="align-end">
-              <v-card class="transparent">
+            <v-card class="transparent">
               <v-container class="bottom-image align-content-center">
               </v-container>
-              </v-card>
+            </v-card>
           </v-img>
         </v-col>
         <v-col align="left">
@@ -44,21 +43,6 @@
                                 class="end-input color-disabled"
                   >
                   </v-text-field>
-                  <v-text-field v-else
-                                id="selects"
-                                v-model="element.content"
-                                solo
-                                dense
-                                flat
-                                background-color="quinary"
-                                class="end-input color-enabled"
-                                @keydown.enter="enabledModText(element)"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="1">
-                  <v-icon color="grey" @click="enabledModText(element)" >
-                    mdi-pencil-outline
-                  </v-icon>
                 </v-col>
               </v-row>
               <v-divider class="white"></v-divider>
@@ -76,20 +60,12 @@
       </v-row>
       <v-row class="align-center">
         <v-col class="align-center">
-          <c-cycle-card class="my-5 align-center slide current movable"
+          <c-see-cycle-card class="my-5 align-center slide current movable"
                         v-for="ciclo in cycles"
                         :cycles=cycles
                         :cycle="ciclo"
                         :key="ciclo.id"
-          ></c-cycle-card>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="align-center d-flex justify-center">
-          <v-btn width="lg 25%" @click="addCycle()" class="align-center  black--text quinary my-3 mx-5" rounded>
-            <v-icon left>mdi-plus</v-icon>
-            Agregar Ciclo
-          </v-btn>
+          ></c-see-cycle-card>
         </v-col>
       </v-row>
     </v-container>
@@ -98,15 +74,15 @@
 
 <script>
 import Header from "@/components/Header";
-import CycleCard from "../components/CycleCard";
+import SeeCycleCard from "../components/SeeCycleCard";
 import Cycle from "../store/Cycle";
 import {RoutineStoreEx} from "../store/RoutineStore";
 
 export default {
-  name: "CreateRoutine",
+  name: "SeeRoutine",
   components : {
     CHeader: Header,
-    CCycleCard: CycleCard
+    CSeeCycleCard: SeeCycleCard
   },
   data: () => {
     return {
@@ -154,7 +130,6 @@ export default {
 </script>
 
 <style scoped>
-
 .slide { opacity: 0.5; }
 
 .slide.current {

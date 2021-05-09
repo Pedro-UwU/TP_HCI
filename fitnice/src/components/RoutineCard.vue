@@ -1,13 +1,18 @@
 <template>
   <v-card class="my-2 image">
-    <v-img :src=src height="100%" width="100%" class="align-end">
+    <v-img :src=src
+           height="100%"
+           width="100%"
+           class="align-end"
+           @click="$router.push('/seeRoutine'+routineId)"
+    >
       <v-container class="bottom-image align-content-center">
         <v-card-actions style="color: white">
-          <h3 v-text=title></h3>
+          <h3 v-text="routine.name"></h3>
           <v-spacer></v-spacer>
           <v-btn @click="switchFav()"
                  icon color="white">
-            <v-icon v-if="fav">mdi-heart</v-icon>
+            <v-icon v-if=Boolean(fav)>mdi-heart</v-icon>
             <v-icon v-else>mdi-heart-outline</v-icon>
           </v-btn>
         </v-card-actions>
@@ -29,19 +34,28 @@
 </template>
 
 <script>
+import {RoutineStoreEx} from "../store/RoutineStore";
+
 export default {
   name: "RoutineCard",
   props: {
-    title: String,
+    routineId: Number,
     src: String,
     stars: Number,
     fav: Boolean
   },
+  data: () => ({
+    routines: RoutineStoreEx,
+    routine: {}
+  }),
   methods: {
     switchFav: function () {
       this.fav = !this.fav;
     }
   },
+  mounted() {
+    this.routine = this.routines.get(this.routineId);
+  }
 }
 </script>
 

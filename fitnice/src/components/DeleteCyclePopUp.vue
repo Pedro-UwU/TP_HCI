@@ -47,13 +47,12 @@
 </template>
 
 <script>
-import Routine from "../store/Routine";
 import Cycle from "../store/Cycle";
 
 export default {
   name: "DeleteCyclePopUp",
   props: {
-    routine: Routine,
+    cycles: [],
     cycle: Cycle
   },
   data () {
@@ -63,7 +62,11 @@ export default {
   },
   methods: {
     deleteCycle() {
-      this.routine.removeCycle(this.cycle);
+      for (let i =0 ; i < this.cycles.length; i++) {
+        if ( this.cycles[i].name === this.cycle.name ) {
+          this.cycles.splice(i,1);
+        }
+      }
     }
   }
 

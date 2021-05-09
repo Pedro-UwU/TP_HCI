@@ -8,7 +8,7 @@
           <v-text-field v-if="!element.enabled"
               id="selects"
               disabled
-              :value="element.content"
+              v-model="element.content"
               solo
               dense
               flat
@@ -18,7 +18,7 @@
           </v-text-field>
           <v-text-field v-else
               id="selects"
-              :value="element.content"
+              v-model="element.content"
               solo
               dense
               flat
