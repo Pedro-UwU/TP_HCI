@@ -4,7 +4,7 @@
       :plain="true"
       color="white"
       :ripple="false"
-      @click="$router.push('/create')"
+      @click="$router.push('/create'+createRoutine())"
   >
     Crear Rutina
     <v-icon>mdi-plus</v-icon>
@@ -12,8 +12,16 @@
 </template>
 
 <script>
+import {RoutineStoreEx} from "../store/RoutineStore";
+import Routine from "../store/Routine";
+
 export default {
-  name: "CreateRoutineBtn"
+  name: "CreateRoutineBtn",
+  methods: {
+    createRoutine() {
+      return RoutineStoreEx.add(new Routine('','','',''))
+    }
+  }
 }
 </script>
 

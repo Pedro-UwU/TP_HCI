@@ -4,7 +4,7 @@
     <v-container class="my-10">
       <v-row align="center" class="my-3">
         <div class=" white--text text-h3">
-          Crear Rutina
+          Editar Rutina
         </div>
         <v-spacer/>
         <div @click="addRoutine(); $router.push('seeRoutine'+$route.params.id)">
@@ -12,7 +12,7 @@
               solo
               plain
           >
-            Guardar Rutina
+            Guardar
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </div>
