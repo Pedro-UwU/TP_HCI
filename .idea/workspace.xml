@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3565008b-94d2-4928-8085-92af2ebec830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/RegisterForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/js/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/js/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/js/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/js/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/views/VerificacionTemporal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/VerificacionTemporal.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +67,7 @@
       <workItem from="1619971326687" duration="8161000" />
       <workItem from="1620330066408" duration="12215000" />
       <workItem from="1620400281661" duration="8126000" />
+      <workItem from="1620615686843" duration="4462000" />
     </task>
     <servers />
   </component>
