@@ -33,9 +33,9 @@
         ></v-text-field>
       </v-form>
     </v-card-text>
-      <a
-          class="no_tienes"
-      >No tenés cuenta? Registrate!</a>
+    <a
+        class="no_tienes"
+    >No tenés cuenta? Registrate!</a>
     <v-card-actions class="justify-center">
       <v-btn
           color="tertiary white--text"
