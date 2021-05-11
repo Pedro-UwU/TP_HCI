@@ -13,7 +13,7 @@
               plain
           >
             Editar Rutina
-            <v-icon>mdi-pencil</v-icon>
+            <v-icon>mdi-pencil-outline</v-icon>
           </v-btn>
         </div>
       </v-row>

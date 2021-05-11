@@ -33,32 +33,15 @@
                 <v-col cols="5" class=" transparent white--text font-weight-bold text-h6">{{ element.title }}</v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="5" right class="transparent subtitle-1">
-                  <v-text-field v-if="!element.enabled"
-                                id="selects"
-                                disabled
-                                v-model="element.content"
-                                solo
-                                dense
-                                flat
-                                background-color="transparent"
-                                class="end-input color-disabled"
-                  >
-                  </v-text-field>
-                  <v-text-field v-else
-                                id="selects"
-                                v-model="element.content"
-                                solo
-                                dense
-                                flat
-                                background-color="quinary"
-                                class="end-input color-enabled"
-                                @keydown.enter="enabledModText(element)"
+                  <v-text-field
+                    id="selects"
+                    v-model="element.content"
+                    solo
+                    dense
+                    flat
+                    background-color="quinary"
+                    class="end-input color-enabled"
                   ></v-text-field>
-                </v-col>
-                <v-col cols="1">
-                  <v-icon color="grey" @click="enabledModText(element)" >
-                    mdi-pencil-outline
-                  </v-icon>
                 </v-col>
               </v-row>
               <v-divider class="white"></v-divider>
@@ -68,28 +51,29 @@
       </v-row>
       <v-divider class="my-10"></v-divider>
       <v-row>
-        <v-col>
           <div class=" white--text text-h3">
             Ciclos
           </div>
-        </v-col>
+        <v-spacer></v-spacer>
+        <div class="align-center d-flex justify-center">
+          <v-btn @click="addCycle()"
+                 class="white--text"
+                 :plain="true"
+                 color="white"
+                 :ripple="false" rounded>
+            <v-icon left>mdi-plus</v-icon>
+            Agregar Ciclo
+          </v-btn>
+        </div>
       </v-row>
       <v-row class="align-center">
         <v-col class="align-center">
           <c-cycle-card class="my-5 align-center slide current movable"
                         v-for="ciclo in cycles"
-                        :cycles=cycles
+                        :cycles="cycles"
                         :cycle="ciclo"
                         :key="ciclo.id"
           ></c-cycle-card>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="align-center d-flex justify-center">
-          <v-btn width="lg 25%" @click="addCycle()" class="align-center  black--text quinary my-3 mx-5" rounded>
-            <v-icon left>mdi-plus</v-icon>
-            Agregar Ciclo
-          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -114,10 +98,10 @@ export default {
       cycles: [],
       id: String,
       routineItems: [
-        {title: "Nombre", content: "", enabled: false},
-        {title: "Categoría", content: "", enabled: false},
-        {title: "Dificultad", content: "", enabled: false},
-        {title: "Duración", content: "", enabled: false}
+        {title: "Nombre", content: ""},
+        {title: "Categoría", content: ""},
+        {title: "Dificultad", content: ""},
+        {title: "Duración", content: ""}
       ],
       headers: [
         {text: 'Ejericio', align: 'Start', value:'name', groupable:'False'},

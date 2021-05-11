@@ -17,6 +17,7 @@
                       :value="searchText"
                       rounded
                       clearable
+                      light
                       background-color="white"
                       class="search-sm mt-5"
         ></v-text-field>
@@ -36,7 +37,7 @@
               <v-icon>mdi-dots-vertical</v-icon>
             </v-btn>
           </template>
-          <v-list class="quinary" light width="200px" height="140px">
+          <v-list class="quinary" light width="200px">
             <v-list-item class="my-n2">
               <v-list-item-content>
                 <router-link to="/profile" tag="button">
@@ -53,12 +54,11 @@
                 <router-link to="/login" tag="button">
                   <v-container class="text-left">
                     <v-icon left class="black--text">mdi-logout</v-icon>
-                    Cerar Sesión
+                    Cerrar Sesión
                   </v-container>
                 </router-link>
               </v-list-item-content>
             </v-list-item>
-            <v-divider></v-divider>
           </v-list>
         </v-menu>
     </v-app-bar>
@@ -95,7 +95,7 @@ export default {
     search: false,
     navigation : [
       {name: "Explorar", link: "/"},
-      {name: "Favoritos", link: "/favorites"},
+      {name: "Mis Favoritos", link: "/favorites"},
       {name: "Mis Rutinas", link: "/my-routines"},
       {name: "Mis Ejercicios", link: "/my-exercises"}]
   }),

@@ -7,11 +7,11 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            class="white--text transparent "
-            icon
+            class="grey--text transparent"
+            small
             solo
             plain
-            :ripple="true"
+            icon
             v-bind="attrs"
             v-on="on"
         >
@@ -20,7 +20,7 @@
       </template>
       <v-card class="primary">
         <v-card-title>
-          <span>¿Desea eliminar <br>"{{cycle.name}} ?"</span>
+          <span>¿Desea eliminar <br>"{{exercise.name}}" ?</span>
         </v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -35,7 +35,7 @@
               color="blue darken-1"
               text
               @click="dialog = false;
-                    deleteCycle();"
+                    deleteExercise();"
           >
             Eliminar
           </v-btn>
@@ -46,13 +46,14 @@
 </template>
 
 <script>
-import Cycle from "../store/Cycle";
+import Exercise from "../store/Exercise";
+import ExerciseStore from "../store/ExerciseStore";
 
 export default {
-  name: "DeleteCyclePopUp",
+name: "DeleteExercisePopUp",
   props: {
-    cycles: Array,
-    cycle: Cycle
+    exercise: Exercise,
+    store: ExerciseStore
   },
   data () {
     return {
@@ -60,15 +61,10 @@ export default {
     }
   },
   methods: {
-    deleteCycle() {
-      for (let i =0 ; i < this.cycles.length; i++) {
-        if ( this.cycles[i].name === this.cycle.name ) {
-          this.cycles.splice(i,1);
-        }
-      }
+    deleteExercise() {
+      this.store.remove(this.exercise);
     }
   }
-
 }
 </script>
 

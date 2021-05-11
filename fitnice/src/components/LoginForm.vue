@@ -6,45 +6,49 @@
     <v-card-text>
       <v-form v-model="isValid">
         <v-text-field
-            label="e-mail"
+            label="E-mail"
             v-model="email"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             rounded
             solo
-            placeholder="e-mail"
+            light
+            placeholder="E-mail"
             background-color="white"
             height="2.5em"
             class="text-input"
             my-20
         ></v-text-field>
         <v-text-field
-            label="contraseña"
+            label="Contraseña"
             v-model="password"
-            type="password"
+            :type="value ? 'password' : 'text'"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             solo
-            placeholder="contraseña"
+            light
+            placeholder="Contraseña"
             rounded
             class="text-input"
             background-color="white"
             height="2.5em"
+            :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (value = !value)"
         ></v-text-field>
       </v-form>
     </v-card-text>
-    <a
-        class="no_tienes"
-    >No tenés cuenta? Registrate!</a>
     <v-card-actions class="justify-center">
       <v-btn
-          color="tertiary white--text"
+          color="black--text quinary"
           :disabled="!isValid"
           rounded
-          width="50%"
+          width="75%"
           @click="$router.push('/')"
       >Ingresar</v-btn>
     </v-card-actions>
+    <a
+        class="no_tienes"
+    >¿No tenés cuenta? ¡Registrate!</a>
   </v-card>
 </template>
 
@@ -55,7 +59,8 @@ export default {
   data: () => ({
     email: null,
     password: null,
-    isValid: true
+    isValid: true,
+    value: true
   })
 };
 </script>

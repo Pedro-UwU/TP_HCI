@@ -1,5 +1,5 @@
 <template>
-  <v-row >
+  <div >
     <v-dialog
         v-model="dialog"
         persistent
@@ -27,11 +27,12 @@
                v-bind="attrs"
                v-on="on"
                small
+               icon
                solo
                plain
                @click="loadExercise()"
         >
-          <v-icon>mdi-pencil</v-icon>
+          <v-icon color="grey">mdi-pencil-outline</v-icon>
         </v-btn>
       </template>
       <v-card class="white--text" color="primary">
@@ -116,7 +117,7 @@
               text
               @click="dialog=false;"
           >
-            Close
+            Cerrar
           </v-btn>
           <v-btn
               color="blue darken-1"
@@ -125,12 +126,12 @@
               @click="dialog = false;
                 addExcercise();"
           >
-            Save
+            Guardar
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
+  </div>
 </template>
 
 <script>

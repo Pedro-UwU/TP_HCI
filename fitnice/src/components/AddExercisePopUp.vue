@@ -17,19 +17,21 @@
           Agregar Ejercicio
         </v-btn>
       </template>
-      <v-card class="primary">
+      <v-card class="primary" height="600px">
         <v-card-title>
           <span class="headline">Mis Ejercicios</span>
         </v-card-title>
         <v-card-text>
           <v-row class="mx-0 my-2 mt-0">
             <v-text-field
+                color="white"
                 v-model="search"
                 append-icon="mdi-magnify"
                 label="Buscar"
                 single-line
                 hide-details
                 clearable
+                dark
             ></v-text-field>
           </v-row>
           <div >
@@ -45,7 +47,6 @@
               show-select
               item-key="name"
               height="max"
-              fixed-header
             >
             </v-data-table>
           </div>
@@ -57,7 +58,7 @@
               text
               @click="dialog=false; selected= []"
           >
-            Close
+            Cerrar
           </v-btn>
           <v-btn
               color="blue darken-1"
@@ -66,7 +67,7 @@
               @click="dialog = false;
                 addExercise(); selected= []"
           >
-            Add
+            Agregar
           </v-btn>
         </v-card-actions>
       </v-card>

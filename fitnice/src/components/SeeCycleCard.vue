@@ -67,7 +67,7 @@ export default {
         {text: 'Formato', value: 'format'},
         {text: 'Cantidad', filterable: false, sortable: false, value: 'amount'},
         {text: 'Categoría', value: 'category'},
-        {text: 'Descripcion', value: 'description'}
+        {text: 'Descripción', value: 'description'}
       ]
     }
   },

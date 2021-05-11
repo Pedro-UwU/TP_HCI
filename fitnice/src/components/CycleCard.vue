@@ -1,8 +1,7 @@
 <template>
   <v-card class="secondary">
-    <v-row class="align-center">
-      <v-icon color="grey" class="ml-8" @click="enableNameEdit()" >mdi-pencil-outline</v-icon>
-      <v-col cols="3" class="subtitle-1 mt-4 mb-n3">
+    <v-row class="align-center" justify="right">
+      <v-col cols="3" class="subtitle-1 mt-4 mb-n3 ml-3">
         <v-text-field v-if="!nameEnabled"
                       disabled
                       :value="cycle.name"
@@ -10,7 +9,7 @@
                       dense
                       flat
                       background-color="transparent"
-                      class="color-disabled"
+                      class="color-disabled text-h6"
                       v-model="cycle.name"
         >
         </v-text-field>
@@ -22,20 +21,14 @@
                       flat
                       background-color="quinary"
                       class="color-enabled"
-                      @keydown.enter="enableNameEdit()"
                       v-on:change="cycleNewName($event)"
         ></v-text-field>
       </v-col>
-      <v-col>
-        <div>
-          <c-delete-cycle-pop-up :cycles="cycles" :cycle="cycle"/>
-        </div>
-      </v-col>
       <v-spacer/>
-      <v-col class="text-right">
+      <v-col cols="3" align-self="right" class="text-right mr-auto">
         <div class="text-h5 white--text align-center" >Repeticiones:</div>
       </v-col>
-      <v-col cols="1" class="subtitle-1 mt-4 mb-n3">
+      <v-col cols="1" class="subtitle-1 mr-auto mt-4 mb-n3">
         <v-text-field v-if="!repetitionEnabled"
                       disabled
                       :value="cycle.repetitions"
@@ -55,15 +48,24 @@
                       flat
                       background-color="quinary"
                       class="color-enabled"
-                      @keydown.enter="enabledModText()"
                       @keypress="isNumber($event)"
                       v-on:change="repetitionsValue($event)"
         ></v-text-field>
       </v-col>
-      <v-col cols="1">
-        <v-icon color="grey" @click="enabledModText()" >
-          mdi-pencil-outline
-        </v-icon>
+      <v-col class="mr-auto">
+        <v-row>
+          <v-btn class="white--text transparent "
+                 icon
+                 solo
+                 plain
+                 :ripple="true"
+                 @click="enabledModText();enableNameEdit()">
+            <v-icon>
+              mdi-pencil-outline
+            </v-icon>
+          </v-btn>
+        <c-delete-cycle-pop-up :cycles="cycles" :cycle="cycle"/>
+        </v-row>
       </v-col>
     </v-row>
     <v-row>
@@ -74,30 +76,19 @@
           hide-default-footer
           v-model="selected"
 
-          :single-select=false
           item-key="name"
-          show-select
         >
           <template v-slot:item.actions="{ item }">
-            <c-exercise-pop-up :exercise="item"/>
+            <v-row>
+              <c-exercise-pop-up :exercise="item"/>
+              <c-delete-exercise-pop-up :store="cycle" :exercise="item"/>
+            </v-row>
           </template>
         </v-data-table>
       </v-col>
     </v-row>
     <v-row>
       <v-spacer/>
-      <div class="my-1">
-        <v-btn class="black--text quinary my-3 mx-5"
-               :disabled="selected.length===0"
-               :ripple="true"
-               @click="removeSelected(); selected = []"
-               rounded
-        >
-          <v-icon class="mr-2">mdi-delete</v-icon>
-          <span v-if="selected.length<=1">Eliminar Ejercicio</span>
-          <span v-else>Eliminar Ejercicios</span>
-        </v-btn>
-      </div>
       <c-add-exercise-pop-up :cycle="cycle" class="my-1"></c-add-exercise-pop-up>
     </v-row>
   </v-card>
@@ -109,12 +100,13 @@ import AddExercisePopUp from "./AddExercisePopUp";
 import {isNumber} from "../js/NumberLib";
 import DeleteCyclePopUp from "./DeleteCyclePopUp";
 import ExercisePopUp from "./ExercisePopUp";
+import DeleteExercisePopUp from "./DeleteExercisePopUp";
 
 export default {
   name: "CycleCard",
   props: {
     cycle: Cycle,
-    cycles: []
+    cycles: Array
   },
   data: () => {
     return {
@@ -127,8 +119,8 @@ export default {
         {text: 'Formato', value: 'format'},
         {text: 'Cantidad', filterable: false, sortable: false, value: 'amount'},
         {text: 'Categoría', value: 'category'},
-        {text: 'Descripcion', value: 'description'},
-        {text: 'Actions', value: 'actions', sortable: false}
+        {text: 'Descripción', value: 'description'},
+        {text: 'Acciones', value: 'actions', sortable: false}
       ]
     }
   },
@@ -157,7 +149,8 @@ export default {
   components: {
     CAddExercisePopUp: AddExercisePopUp,
     CDeleteCyclePopUp: DeleteCyclePopUp,
-    CExercisePopUp: ExercisePopUp
+    CExercisePopUp: ExercisePopUp,
+    CDeleteExercisePopUp: DeleteExercisePopUp
   }
 }
 </script>

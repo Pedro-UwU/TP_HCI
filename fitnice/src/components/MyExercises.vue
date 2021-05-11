@@ -9,10 +9,8 @@
             single-line
             hide-details
             clearable
+            color="white"
         ></v-text-field>
-        <v-btn class="mt-4 mx-1 ml-3" :disabled="selected.length===0" @click="removeSelected(); selected=[]" icon color="white">
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
       </v-row>
     </v-card-title>
     <v-data-table
@@ -23,14 +21,15 @@
         :search="search"
         :items-per-page="select.items"
         hide-default-footer
-        :single-select="singleSelect"
-        show-select
         item-key="name"
         :page.sync="page"
         @page-count="pageCount = $event"
     >
       <template v-slot:item.actions="{ item }">
-        <c-exercise-pop-up :exercise="item"/>
+        <v-row>
+          <c-exercise-pop-up :exercise="item"/>
+          <c-delete-exercise-pop-up :store="store" :exercise="item"/>
+        </v-row>
       </template>
     </v-data-table>
     <div class="text-center pt-2 px-16 mx-16">
@@ -45,6 +44,7 @@
 <script>
 import {ExerciseStoreEx} from "../store/ExerciseStore";
 import ExercisePopUp from "./ExercisePopUp";
+import DeleteExercisePopUp from "./DeleteExercisePopUp";
 
 export default {
 
@@ -62,22 +62,15 @@ export default {
         { text: 'Formato', value: 'format' },
         { text: 'Cantidad', filterable: false, sortable: false, value: 'amount' },
         { text: 'Categoría', value: 'category' },
-        { text: 'Descripcion', value: 'description'},
-        { text: 'Actions', value: 'actions', sortable: false}
+        { text: 'Descripción', value: 'description'},
+        { text: 'Acciones', value: 'actions', sortable: false}
       ],
       store: ExerciseStoreEx
     }
   },
   components: {
-    CExercisePopUp: ExercisePopUp
-  },
-  methods: {
-    removeSelected() {
-      let i;
-      for (i= 0; i < this.selected.length; i++) {
-        this.store.remove(this.selected[i])
-      }
-    }
+    CExercisePopUp: ExercisePopUp,
+    CDeleteExercisePopUp: DeleteExercisePopUp
   }
 }
 </script>

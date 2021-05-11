@@ -3,7 +3,7 @@
     <c-header></c-header>
     <v-container>
       <v-row align="center">
-        <h2 class="subtitles">Favoritos</h2>
+        <h2 class="subtitles">Mis Favoritos</h2>
         <v-spacer></v-spacer>
         <c-filters></c-filters>
         <c-order></c-order>

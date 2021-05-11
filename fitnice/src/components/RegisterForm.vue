@@ -76,7 +76,7 @@
             label="Repetir contraseña"
             v-model="confirmPassword"
             type="password"
-            :rules="[confirmPasswordRules,passwordConfirmationRule]"
+            :rules="[confirmPasswordRules,passwordConfirmationRule,v => !!v || 'campo obligatorio']"
             required
             solo
             class="text-input"
@@ -89,10 +89,10 @@
     </v-card-text>
     <v-card-actions class="justify-center">
       <v-btn
-          color="tertiary white--text"
+          color="black--text quinary"
           :disabled="!isValid"
           rounded
-          width="50%"
+          width="75%"
           class="less-margin"
           @click="sendRegForm()"
       >Registrarse</v-btn>
