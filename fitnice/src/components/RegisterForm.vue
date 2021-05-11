@@ -61,7 +61,7 @@
             light
             label="Contraseña"
             v-model="password"
-            type="password"
+            :type="value1 ? 'password' : 'text'"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             solo
@@ -70,12 +70,14 @@
             rounded
             background-color="white"
             height="2.5em"
+            :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (value1 = !value1)"
         ></v-text-field>
         <v-text-field
             light
             label="Repetir contraseña"
             v-model="confirmPassword"
-            type="password"
+            :type="value2 ? 'password' : 'text'"
             :rules="[confirmPasswordRules,passwordConfirmationRule,v => !!v || 'campo obligatorio']"
             required
             solo
@@ -83,6 +85,8 @@
             placeholder="Repetir contraseña"
             rounded
             background-color="white"
+            :append-icon="value2 ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (value2 = !value2)"
             height="2.5em"
         ></v-text-field>
       </v-form>
@@ -107,6 +111,8 @@ export default {
   name: "RegisterForm",
 
   data: () => ({
+    value1: true,
+    value2: true,
     isValid: true,
     email: null,
     password: null,

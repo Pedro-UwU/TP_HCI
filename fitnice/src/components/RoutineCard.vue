@@ -4,11 +4,10 @@
            height="100%"
            width="100%"
            class="align-end"
-           @click="$router.push('/seeRoutine'+routineId)"
     >
       <v-container class="bottom-image align-content-center">
         <v-card-actions style="color: white">
-          <h3 v-text="(routine !== undefined) ? routine.name : 'Error'"></h3>
+          <h3 @click="$router.push('/seeRoutine'+routineId)" v-text="(routine !== undefined) ? routine.name : 'Error'"></h3>
           <v-spacer></v-spacer>
           <v-btn @click="switchFav()"
                  icon color="white">
