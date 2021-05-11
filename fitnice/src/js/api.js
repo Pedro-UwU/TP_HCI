@@ -53,7 +53,7 @@ class Api {
                 'Content-Type': 'application/json; charset=utf-8'
             },
             body: JSON.stringify(data)
-        }, controller).then(response => console.log(response.json())).then(data => console.log(data));
+        }, controller);
     }
 
     static async put(url, secure, data, controller) {

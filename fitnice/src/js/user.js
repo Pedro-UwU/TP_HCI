@@ -28,8 +28,12 @@ class UserApi {
     }
 
     static async getProfileElements() {
-        const result = Api.get(`${Api.baseUrl}/users/current`)
-        return result;
+        if (Api.token === undefined) {
+            throw 'Must be logged in'
+        }
+        let data = Api.get(`${Api.baseUrl}/users/current`, true, null);
+        console.log("api.js", data);
+        return data;
     }
 }
 

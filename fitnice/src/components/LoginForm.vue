@@ -56,6 +56,7 @@
 
 import {UserApi, Credentials} from "../js/user";
 import {router} from "../main";
+import {Api} from "../js/api";
 
 
 export default {
@@ -70,6 +71,7 @@ export default {
     login() {
       console.log(UserApi.login(new Credentials(this.user, this.password), null).then(value => {
         router.push("/")
+        console.log(Api.token)
         value;
       }).catch(e => {
         if (e.code == 4) {

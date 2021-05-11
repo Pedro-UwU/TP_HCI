@@ -40,10 +40,13 @@
 
 <script>
 
+import {UserApi} from "../js/user";
+
 export default {
   name: "ProfileElements",
   data: function () {
     return {
+      elements: null,
       profileElements: [
         {title: "Nombre", content: 'John', enabled: false},
         {title: "Apellido", content: 'Doe', enabled: false},
@@ -59,11 +62,22 @@ export default {
       element.enabled = !element.enabled
     },
     loadProfileElements() {
-
+      UserApi.getProfileElements();
     }
   },
-  beforeCreate() {
-    this.loadProfileElements();
+  async beforeCreate() {
+    await UserApi.getProfileElements().then(res => {
+      console.log(res.id)
+      this.profileElements = [
+        {title: "Nombre", content: res.firstName, enabled: false},
+        {title: "Apellido", content: res.lastName, enabled: false},
+        {title: "E-mail", content: res.email, enabled: false},
+        {title: "Usuario", content: res.username, enabled: false},
+        {title: "Pais", content: "", enabled: false},
+        {title: "Fecha de Nacimiento", content: "", enabled: false}
+      ]
+      console.log(res);
+    })
   }
 }
 </script>
