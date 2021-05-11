@@ -7,7 +7,9 @@
     >
       <v-container class="bottom-image align-content-center">
         <v-card-actions style="color: white">
-          <h3 @click="$router.push('/seeRoutine'+routineId)" v-text="(routine !== undefined) ? routine.name : 'Error'"></h3>
+          <a @click="$router.push('/seeRoutine'+routineId)" class="text-style">
+            <h3 v-text="(routine !== undefined) ? routine.name : 'Error'"></h3>
+          </a>
           <v-spacer></v-spacer>
           <v-btn @click="switchFav()"
                  icon color="white">
@@ -62,11 +64,17 @@ export default {
 .bottom-image {
   background: #141D26;
   opacity: 80%;
-
+  height: 100px;
 }
 .image {
   border-radius: 20px !important;
   width: 250px;
   height: 250px;
+}
+.text-style {
+  text-decoration: underline;
+  color: white;
+  display: block;
+  text-align: center;
 }
 </style>
