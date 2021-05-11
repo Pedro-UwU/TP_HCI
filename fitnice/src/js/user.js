@@ -19,7 +19,12 @@ class UserApi {
 
     static async create(userInfo, controller) {
         const result = await Api.post(`${Api.baseUrl}/users`, false, userInfo, controller);
-        console.log(result);
+        return result;
+    }
+
+    static async validate(data, controller) {
+        const result = Api.post(`${Api.baseUrl}/users/verify_email`, false, data, controller);
+        return result;
     }
 }
 

@@ -19,12 +19,8 @@ export default {
   },
   created : async () => {
     let url = new URL(window.location.href);
-    let email = await url.searchParams.keys();
-    console.log(email.next())
-    // let credentials = {
-    //   email: url.searchParams.get("email"),
-    //   code: url.searchParams.get("code")
-    // }
+    //let email = await url.searchParams.keys();
+    console.log(url.toString());
   }
 
 }

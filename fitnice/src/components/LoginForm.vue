@@ -1,19 +1,19 @@
 <template>
   <v-card class="login">
     <v-card-title class="justify-center">
-      <img src="../assets/fitnice-removebg-preview.png"  alt="logo" align="center" width="80%">
+      <img src="../assets/fitnice-removebg-preview.png"  alt="logo" class="align-center" width="80%">
     </v-card-title>
     <v-card-text>
       <v-form v-model="isValid">
         <v-text-field
-            label="E-mail"
-            v-model="email"
+            label="Usuario"
+            v-model="user"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             rounded
             solo
             light
-            placeholder="E-mail"
+            placeholder="Usuario"
             background-color="white"
             height="2.5em"
             class="text-input"
@@ -43,7 +43,7 @@
           :disabled="!isValid"
           rounded
           width="75%"
-          @click="$router.push('/')"
+          @click="login()"
       >Ingresar</v-btn>
     </v-card-actions>
     <a
@@ -54,14 +54,30 @@
 
 <script>
 
+import {UserApi, Credentials} from "../js/user";
+import {router} from "../main";
+
+
 export default {
   name: "LoginForm",
   data: () => ({
-    email: null,
+    user: null,
     password: null,
     isValid: true,
     value: true
-  })
+  }),
+  methods: {
+    login() {
+      console.log(UserApi.login(new Credentials(this.user, this.password), null).then(value => {
+        console.log(value);
+      }).catch(e => {
+        if (e.code == 4) {
+          alert("Nombre de usuario o contraseña incorrectos.")
+        }
+      }));
+      router.push("/")
+    }
+  }
 };
 </script>
 

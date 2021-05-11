@@ -12,13 +12,12 @@ import CreateRoutine from "@/views/CreateRoutine";
 import MyExercises from "./views/MyExercises";
 import MyRoutines from "./views/MyRoutines";
 import SeeRoutine from "./views/SeeRoutine";
-import VerificacionTemporal from "./views/VerificacionTemporal";
 import VerificationSuccess from "./views/VerificationSuccess";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+export const router = new VueRouter({
   routes:[
     { path:'/', component: Explore},
     { path:'/login', component: Login},
@@ -30,8 +29,7 @@ const router = new VueRouter({
     { path: '/my-exercises', component: MyExercises},
     { path: '/my-routines', component: MyRoutines},
     { path: '/seeRoutine:id', component: SeeRoutine},
-    { path: '/verification', component: VerificacionTemporal},
-    { path: '/verification-success', component: VerificationSuccess},
+    { path: '/verification', component: VerificationSuccess},
     { path: '*', component: NotFound}
   ]
 });
