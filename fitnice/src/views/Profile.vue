@@ -10,7 +10,7 @@
         <v-row align="center">
           <v-col cols="4" justify="center">
             <v-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" max-width="80%" contain></v-img>
-            <v-btn depressed align="center" width="80%" class="transparent white--text my-5 ">
+            <v-btn depressed width="80%" class="align-center transparent white--text my-5 ">
               <v-icon left class="white--text">mdi-pencil-outline</v-icon>
               Editar Foto
             </v-btn>

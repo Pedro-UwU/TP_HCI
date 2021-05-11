@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3565008b-94d2-4928-8085-92af2ebec830" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fitnice/src/js/urlParams.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/LoginForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/js/ASDASJAS.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/ProfileElements.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/ProfileElements.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/js/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/js/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/js/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/js/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/views/VerificacionTemporal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/VerificacionTemporal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/views/VerificationSuccess.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/VerificationSuccess.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/views/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/Profile.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +73,7 @@
       <workItem from="1620400281661" duration="8126000" />
       <workItem from="1620615686843" duration="4462000" />
       <workItem from="1620695852716" duration="4866000" />
-      <workItem from="1620736433233" duration="1164000" />
+      <workItem from="1620736433233" duration="3764000" />
     </task>
     <servers />
   </component>

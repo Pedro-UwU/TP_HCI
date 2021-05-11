@@ -69,13 +69,15 @@ export default {
   methods: {
     login() {
       console.log(UserApi.login(new Credentials(this.user, this.password), null).then(value => {
-        console.log(value);
+        router.push("/")
+        value;
       }).catch(e => {
         if (e.code == 4) {
           alert("Nombre de usuario o contraseña incorrectos.")
+        } else {
+          console.log(e)
         }
       }));
-      router.push("/")
     }
   }
 };

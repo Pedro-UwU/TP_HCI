@@ -26,6 +26,11 @@ class UserApi {
         const result = Api.post(`${Api.baseUrl}/users/verify_email`, false, data, controller);
         return result;
     }
+
+    static async getProfileElements() {
+        const result = Api.get(`${Api.baseUrl}/users/current`)
+        return result;
+    }
 }
 
 class Credentials {

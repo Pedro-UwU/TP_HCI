@@ -57,8 +57,13 @@ export default {
   methods: {
     enabledModText: function (element) {
       element.enabled = !element.enabled
-
     },
+    loadProfileElements() {
+
+    }
+  },
+  beforeCreate() {
+    this.loadProfileElements();
   }
 }
 </script>
