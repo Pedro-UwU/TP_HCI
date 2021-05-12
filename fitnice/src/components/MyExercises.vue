@@ -19,7 +19,7 @@
         :headers="headers"
         :items="exercises"
         :search="search"
-        :items-per-page="select.items"
+        :items-per-page="itemsPerPage"
         hide-default-footer
         item-key="name"
         :page.sync="page"
@@ -33,10 +33,15 @@
       </template>
     </v-data-table>
     <div class="text-center pt-2 px-16 mx-16">
-      <v-pagination
-          v-model="page"
-          :length="pageCount"
-      ></v-pagination>
+      <v-container>
+      <v-btn class="primary" rounded small @click="previousPage()">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-btn class="transparent" text disabled elevation="0">{{page}}</v-btn>
+      <v-btn class="primary" rounded small @click="nextPage()">
+        <v-icon>mdi-arrow-right</v-icon>
+      </v-btn>
+      </v-container>
     </div>
   </v-card>
 </template>
@@ -48,6 +53,9 @@ import DeleteExercisePopUp from "./DeleteExercisePopUp";
 import {ExerciseApi} from "../js/ExerciseApi";
 import Exercise from "../store/Exercise";
 
+
+const itemsPerPage = 2;
+
 export default {
 
   name: "MyExcercises",
@@ -58,7 +66,7 @@ export default {
       exercises: [],
       page: 1,
       pageCount: 0,
-      select: { items: 10 },
+      itemsPerPage: itemsPerPage,
       search: '',
       headers: [
         { text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name' },
@@ -73,8 +81,46 @@ export default {
     CExercisePopUp: ExercisePopUp,
     CDeleteExercisePopUp: DeleteExercisePopUp
   },
+  methods: {
+    nextPage() {
+      try {
+        ExerciseApi.getExercises(this.page, itemsPerPage).then(res => {
+          if (res.content.length === 0) {
+            return;
+          }
+          this.page++;
+          this.exercises = [];
+          for (let i = 0; i<res.content.length; i++) {
+            let exInfo = res.content[i];
+            let newEx = new Exercise(exInfo.name, exInfo.detail, exInfo.type, exInfo.id);
+            this.exercises.push(newEx)
+        }
+        })
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    previousPage() {
+      if (this.page > 1) {
+        this.page--;
+        try {
+          ExerciseApi.getExercises(this.page-1, itemsPerPage).then(res => {
+            this.exercises = [];
+            for (let i = 0; i<res.content.length; i++) {
+              let exInfo = res.content[i];
+              let newEx = new Exercise(exInfo.name, exInfo.detail, exInfo.type, exInfo.id);
+              this.exercises.push(newEx)
+            }
+          })
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
+    }
+  },
   beforeCreate() {
-    ExerciseApi.getExercises(0, 10).then(res => {
+    ExerciseApi.getExercises(0, itemsPerPage).then(res => {
       for (let i = 0; i<res.content.length; i++) {
         let exInfo = res.content[i];
         let newEx = new Exercise(exInfo.name, exInfo.detail, exInfo.type, exInfo.id);
