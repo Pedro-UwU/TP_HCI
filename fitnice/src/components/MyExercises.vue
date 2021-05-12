@@ -51,7 +51,7 @@ import {ExerciseStoreEx} from "../store/ExerciseStore";
 import ExercisePopUp from "./ExercisePopUp";
 import DeleteExercisePopUp from "./DeleteExercisePopUp";
 import {ExerciseApi} from "../js/ExerciseApi";
-import Exercise from "../store/Exercise";
+import Exercise, {exerciseType} from "../store/Exercise";
 
 
 const itemsPerPage = 2;
@@ -69,10 +69,10 @@ export default {
       itemsPerPage: itemsPerPage,
       search: '',
       headers: [
-        { text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name' },
-        { text: 'Categoría', value: 'type' },
-        { text: 'Descripción', value: 'detail'},
-        { text: 'Acciones', value: 'actions', sortable: false}
+        { text: 'Nombre', width: "15%", align: 'start'/*, filterable: true*/, value: 'name' },
+        { text: 'Categoría', align:'start', width: '15%', value: 'type' },
+        { text: 'Descripción', width: '60%', value: 'detail'},
+        { text: 'Acciones', width:'10%', value: 'actions', sortable: false}
       ],
       store: ExerciseStoreEx
     }
@@ -92,7 +92,8 @@ export default {
           this.exercises = [];
           for (let i = 0; i<res.content.length; i++) {
             let exInfo = res.content[i];
-            let newEx = new Exercise(exInfo.name, exInfo.detail, exInfo.type, exInfo.id);
+            let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
+            let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
             this.exercises.push(newEx)
         }
         })
@@ -108,7 +109,8 @@ export default {
             this.exercises = [];
             for (let i = 0; i<res.content.length; i++) {
               let exInfo = res.content[i];
-              let newEx = new Exercise(exInfo.name, exInfo.detail, exInfo.type, exInfo.id);
+              let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
+              let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
               this.exercises.push(newEx)
             }
           })
@@ -123,10 +125,10 @@ export default {
     ExerciseApi.getExercises(0, itemsPerPage).then(res => {
       for (let i = 0; i<res.content.length; i++) {
         let exInfo = res.content[i];
-        let newEx = new Exercise(exInfo.name, exInfo.detail, exInfo.type, exInfo.id);
+        let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
+        let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
         this.exercises.push(newEx)
       }
-      console.log(this.exercises);
     })
   }
 }

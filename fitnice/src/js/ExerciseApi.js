@@ -19,4 +19,15 @@ class ExerciseApi {
         let result = Api.get(`${Api.baseUrl}/exercises?page=${page}&size=${itemsPerPage}&orderBy=id&direction=desc`, true, null);
         return result;
     }
+
+    static async editExercise(exercise) {
+        let data = {
+            name: exercise.name,
+            detail: exercise.detail,
+            type: (exercise.type === exerciseType.EXERCISE) ? "exercise" : "rest",
+            metadata: null
+        }
+        let result = Api.put(`${Api.baseUrl}/exercises/${exercise.id}`,true,data,null);
+        return result;
+    }
 }

@@ -57,7 +57,7 @@
               </v-col>
               <v-col>
                 <v-select
-                    :items="[exerciseType.EXERCISE, exerciseType.REST]"
+                    :items="['Ejercicio','Descanso']"
                     label="Tipo"
                     :rules="[v => !!v || 'campo obligatorio']"
                     v-model="infoEx.type"
@@ -111,9 +111,10 @@
 import {ExerciseStoreEx} from "../store/ExerciseStore";
 import Exercise, {exerciseType} from "../store/Exercise";
 import {isNumber} from "../js/NumberLib";
+import {ExerciseApi} from "../js/ExerciseApi";
 
 export default {
-  name: "ExcercisePopUp",
+  name: "ExercisePopUp",
   data: () => ({
     exerciseType: exerciseType,
     dialog: false,
@@ -130,28 +131,35 @@ export default {
   },
   methods: {
     addExercise() {
-      if (!this.exercise)
-        this.store.add(new Exercise(this.infoEx.name ,this.infoEx.detail,this.infoEx.type));
-      else{
+      if (!this.exercise) {
+        let newEx = new Exercise(this.infoEx.name, this.infoEx.detail, this.infoEx.type);
+        try {
+          ExerciseApi.addExercise(newEx);
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
         this.exercise.name = this.infoEx.name;
-        this.exercise.format = this.infoEx.format;
-        this.exercise.amount = this.infoEx.amount;
-        this.exercise.category = this.infoEx.category;
-        this.exercise.description = this.infoEx.description;
+        this.exercise.detail = this.infoEx.detail;
+        this.exercise.type = this.infoEx.type;
+        try {
+          ExerciseApi.editExercise(this.exercise)
+        } catch (e) {
+          console.log(e);
+        }
       }
     },
     isNumber(evt) {
       return isNumber(evt)
     },
     loadExercise() {
+      console.log("ExercisePopUp.vue " + this.exercise.type);
       if (this.exercise){
         this.infoEx.name = this.exercise.name;
-        this.infoEx.format = this.exercise.format;
-        this.infoEx.amount = this.exercise.amount;
-        this.infoEx.category = this.exercise.category;
-        this.infoEx.description = this.exercise.description;
+        this.infoEx.type = this.exercise.type;
+        this.infoEx.detail = this.exercise.detail;
       }
-    }
+    },
   }
 }
 </script>
