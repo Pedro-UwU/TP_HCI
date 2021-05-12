@@ -41,42 +41,37 @@
 <script>
 
 import {UserApi} from "../js/user";
+import {UserStore} from "../store/UserStore";
 
 export default {
   name: "ProfileElements",
   data: function () {
     return {
       elements: null,
-      profileElements: [
-        {title: "Nombre", content: 'John', enabled: false},
-        {title: "Apellido", content: 'Doe', enabled: false},
-        {title: "E-mail", content: 'jonh@email.com', enabled: false},
-        {title: "Usuario", content: 'jDoe22', enabled: false},
-        {title: "Pais", content: "", enabled: false},
-        {title: "Fecha de Nacimiento", content: "", enabled: false}
-      ]
+      profileElements: []
     }
   },
   methods: {
     enabledModText: function (element) {
+      if (element.enabled) {
+        UserStore.lastName = this.profileElements[1].content;
+        UserStore.firstName = this.profileElements[0].content;
+        UserStore.gender = this.profileElements[4].content;
+        UserApi.saveUserElements();
+
+      }
       element.enabled = !element.enabled
-    },
-    loadProfileElements() {
-      UserApi.getProfileElements();
     }
   },
   async beforeCreate() {
-    await UserApi.getProfileElements().then(res => {
-      console.log(res.id)
+    await UserApi.getProfileElements().then(() => {
       this.profileElements = [
-        {title: "Nombre", content: res.firstName, enabled: false},
-        {title: "Apellido", content: res.lastName, enabled: false},
-        {title: "E-mail", content: res.email, enabled: false},
-        {title: "Usuario", content: res.username, enabled: false},
-        {title: "Pais", content: "", enabled: false},
-        {title: "Fecha de Nacimiento", content: "", enabled: false}
+        {title: "Nombre", content: UserStore.firstName, enabled: false},
+        {title: "Apellido", content: UserStore.lastName, enabled: false},
+        {title: "E-mail", content: UserStore.email, enabled: false},
+        {title: "Usuario", content: UserStore.username, enabled: false},
+        {title: "Genero", content: UserStore.gender, enabled: false}
       ]
-      console.log(res);
     })
   }
 }

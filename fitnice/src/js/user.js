@@ -1,4 +1,5 @@
 import { Api } from './api.js';
+import {loadUserData, UserStore} from "../store/UserStore";
 
 export { UserApi, Credentials };
 
@@ -31,9 +32,15 @@ class UserApi {
         if (Api.token === undefined) {
             throw 'Must be logged in'
         }
-        let data = Api.get(`${Api.baseUrl}/users/current`, true, null);
+        let data = await Api.get(`${Api.baseUrl}/users/current`, true, null);
+        loadUserData(data);
         console.log("api.js", data);
         return data;
+    }
+
+    static async saveUserElements() {
+        let result = Api.put(`${Api.baseUrl}/users/current`, true, UserStore, null)
+        return result
     }
 }
 
