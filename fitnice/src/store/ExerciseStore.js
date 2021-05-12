@@ -1,4 +1,4 @@
-import Exercise from "./Exercise";
+import Exercise, {exerciseType} from "./Exercise";
 
 class ExerciseStore {
     constructor() {
@@ -27,10 +27,10 @@ class ExerciseStore {
 
 
 const ExerciseStoreEx = new ExerciseStore();
-ExerciseStoreEx.add(new Exercise('Zeus','Tiempo (s)',25,'Piernas',"classeee"));
-ExerciseStoreEx.add(new Exercise('Juan','Repeticiones',40,'Piernas',"fasndvhf"));
-ExerciseStoreEx.add(new Exercise('Poseidon','Tiempo (s)',20,'Piernas',"fnasd"));
-ExerciseStoreEx.add(new Exercise('Zsd','Tiempo (s)',10,'Piernas',"concentrado"))
+ExerciseStoreEx.add(new Exercise('Zeus','Cosas con pesas', exerciseType.EXERCISE));
+ExerciseStoreEx.add(new Exercise('Zeus2','Cosas con pesas', exerciseType.EXERCISE));
+ExerciseStoreEx.add(new Exercise('Zeus3','Cosas con pesas', exerciseType.EXERCISE));
+ExerciseStoreEx.add(new Exercise('Zeus4','Cosas con pesas', exerciseType.EXERCISE));
 
 export default ExerciseStore;
 export {ExerciseStoreEx};

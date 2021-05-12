@@ -55,43 +55,16 @@
                     background-color="tertiary"
                 ></v-text-field>
               </v-col>
-              <v-col
-                  cols="2"
-              >
-                <v-text-field
-                    :solo="true"
-                    @keypress="isNumber($event)"
-                    :rules="[v => !!v || 'campo obligatorio']"
-                    label="N°"
-                    v-model="infoEx.amount"
-                    required
-                    background-color="tertiary"
-                ></v-text-field>
-              </v-col>
-              <v-col
-                  cols="4"
-              >
+              <v-col>
                 <v-select
-                    :items="['Tiempo (s)', 'Repeticiones']"
+                    :items="[exerciseType.EXERCISE, exerciseType.REST]"
+                    label="Tipo"
                     :rules="[v => !!v || 'campo obligatorio']"
-                    v-model="infoEx.format"
+                    v-model="infoEx.type"
                     required
                     solo
                     background-color="tertiary"
                 ></v-select>
-              </v-col>
-              <v-col
-                  cols="12"
-              >
-                <v-text-field
-                    class="mt-n7"
-                    :solo="true"
-                    label="Categoria"
-                    v-model="infoEx.category"
-                    :rules="[v => !!v || 'campo obligatorio']"
-                    required
-                    background-color="tertiary"
-                ></v-text-field>
               </v-col>
               <v-col
                   cols="12"
@@ -101,7 +74,7 @@
                     height="150px"
                     label="descripcion"
                     solo
-                    v-model="infoEx.description"
+                    v-model="infoEx.detail"
                     name="descripcion"
                     background-color="tertiary"
                 ></v-textarea>
@@ -124,7 +97,7 @@
               text
               :disabled="!isValid"
               @click="dialog = false;
-                addExcercise();"
+                addExercise();"
           >
             Guardar
           </v-btn>
@@ -136,20 +109,19 @@
 
 <script>
 import {ExerciseStoreEx} from "../store/ExerciseStore";
-import Exercise from "../store/Exercise";
+import Exercise, {exerciseType} from "../store/Exercise";
 import {isNumber} from "../js/NumberLib";
 
 export default {
   name: "ExcercisePopUp",
   data: () => ({
+    exerciseType: exerciseType,
     dialog: false,
     isValid: true,
     infoEx: {
       name: "",
-      format: "",
-      amount: null,
-      category: "",
-      description: "",
+      type: "",
+      detail: "",
     },
     store: ExerciseStoreEx
   }),
@@ -157,9 +129,9 @@ export default {
     exercise: Exercise
   },
   methods: {
-    addExcercise() {
+    addExercise() {
       if (!this.exercise)
-        this.store.add(new Exercise(this.infoEx.name,this.infoEx.format,this.infoEx.amount,this.infoEx.category,this.infoEx.description));
+        this.store.add(new Exercise(this.infoEx.name ,this.infoEx.detail,this.infoEx.type));
       else{
         this.exercise.name = this.infoEx.name;
         this.exercise.format = this.infoEx.format;

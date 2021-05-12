@@ -34,7 +34,6 @@ class UserApi {
         }
         let data = await Api.get(`${Api.baseUrl}/users/current`, true, null);
         loadUserData(data);
-        console.log("api.js", data);
         return data;
     }
 

@@ -63,8 +63,8 @@ export default {
       element.enabled = !element.enabled
     }
   },
-  async beforeCreate() {
-    await UserApi.getProfileElements().then(() => {
+  beforeCreate() {
+    UserApi.getProfileElements().then(() => {
       this.profileElements = [
         {title: "Nombre", content: UserStore.firstName, enabled: false},
         {title: "Apellido", content: UserStore.lastName, enabled: false},
