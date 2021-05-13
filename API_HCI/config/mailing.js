@@ -8,23 +8,45 @@ module.exports = {
         password: 'aqKRv7xVWG5amC9qqD'
     },
     registerVerification: {
-        from: 'Exercise <noreply@exercise.com>',
-        subject: 'Email Confirmation',
+        from: 'Fitnice <noreply@fitnice.com>',
+        subject: 'Confirmación de e-mail en Fitnice',
         htmlBodyTemplate:
             `<div>
-                <h1 style="text-align: center;">
-                    <strong>Welcome to <span style="color: #fc987e;">Exercise</span></strong>
-                </h1>
-                <p>
-                    <span>Valid until <%EXPIRATION_DATE%></span>
-                </p>
-                <div>
-                    <a href="<%CONFIRM_LINK%>">Click para confirmar</a>
-                <div>
-                <h1 style="text-align: center;">
-                    <strong>Your code is <span style="color: #fc987e;"><%CODE%></span></strong>
-                </h1>
-            </div>`,
+			<head>
+			<style>
+				body {
+					background-color: #192633;
+				}
+				a {
+					display: inline-block;
+					font-family: Roboto;
+					font-size: 22px;
+				}
+				h1 {
+					font-family: Roboto;
+				}
+				p {
+					font-family: Roboto;
+					font-size: 15px;
+				}			</style>
+			</head>
+			<body>
+				<h1 style="text-align: center; color: white">
+				    <strong>
+				    	¡ Bienvenido a
+				    	<span style="color: #45688C">Fitnice</span>
+				    	!
+				    </strong>
+				</h1>
+				<div style="text-align: center">
+				    <a href="<%CONFIRM_LINK%>" style="color: #BDC3C7">Click para confirmar e-mail</a>
+				<div>
+				<p style="text-align: center; color: white">
+				    <span>Válido por 24 horas></span>
+				</p>
+			</body>
+			</head>
+			</div>`,
         confirmationLink: 'http://localhost:8080/#/verification?email=<%EMAIL%>&code=<%CODE%>',
         codeExpirationInterval: 24 * 60 * 60 * 1000
     }
