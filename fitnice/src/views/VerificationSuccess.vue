@@ -9,6 +9,7 @@
         </h2>
         <a
             class="textStyle"
+            @click="$router.push('/login')"
         >Ir a Iniciar Sesión</a>
       </v-card>
   </v-app>
