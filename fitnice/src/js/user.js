@@ -38,6 +38,7 @@ class UserApi {
     }
 
     static async saveUserElements() {
+        UserStore.gender = (UserStore.gender==='Masculino')?'male' : 'female';
         let result = Api.put(`${Api.baseUrl}/users/current`, true, UserStore, null)
         return result
     }

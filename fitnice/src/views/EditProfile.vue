@@ -12,7 +12,7 @@
             :plain="true"
             color="white"
             :ripple="false"
-            @click="$router.push('/profile')"
+            @click="save();$router.push('/profile')"
         >
           Guardar
         </v-btn>
@@ -44,12 +44,18 @@
 <script>
 import Header from "@/components/Header";
 import EditProfileElements from "@/components/EditProfileElements";
+import {UserApi} from "../js/user";
 
 export default {
   name: "EditProfile",
   components: {
     CHeader: Header,
     CEditProfileElements: EditProfileElements
+  },
+  methods: {
+    save() {
+      UserApi.saveUserElements();
+    }
   }
 }
 </script>

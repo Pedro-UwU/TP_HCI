@@ -66,11 +66,13 @@ export default {
   beforeCreate() {
     UserApi.getProfileElements().then(() => {
       this.profileElements = [
-        {title: "Nombre", content: UserStore.firstName, enabled: false},
-        {title: "Apellido", content: UserStore.lastName, enabled: false},
-        {title: "E-mail", content: UserStore.email, enabled: false},
-        {title: "Usuario", content: UserStore.username, enabled: false},
-        {title: "Genero", content: UserStore.gender, enabled: false}
+        {title: "Nombre", content: UserStore.firstName},
+        {title: "Apellido", content: UserStore.lastName},
+        {title: "E-mail", content: UserStore.email},
+        {title: "Usuario", content: UserStore.username},
+        // {title: "Genero", content: (UserStore.gender==='male')? 'masculino':'femenino'}
+        {title: "Genero", content: UserStore.gender}
+
       ]
     })
   }

@@ -20,7 +20,8 @@ export function loadUserData(data) {
     UserStore.username = data.username;
     UserStore.firstName = data.firstName;
     UserStore.lastName = data.lastName;
-    UserStore.gender = data.gender;
+    UserStore.gender = (data.gender==='male')?'Masculino':'Femenino';
+    // UserStore.gender = data.gender;
     UserStore.birthdate = data.birthdate;
     UserStore.email = data.email;
     UserStore.phone = data.phone;
