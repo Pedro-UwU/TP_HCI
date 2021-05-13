@@ -3,15 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3565008b-94d2-4928-8085-92af2ebec830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_HCI/api/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/api/swagger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_HCI/api/swagger2.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_HCI/controllers/Favourite.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/controllers/Favourite.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_HCI/controllers/Routine.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/controllers/Routine.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_HCI/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_HCI/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_HCI/service/FavouriteService.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/service/FavouriteService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_HCI/service/RoutineService.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/service/RoutineService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/DeleteExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/DeleteExercisePopUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/RegisterForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/js/ExerciseApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/js/ExerciseApi.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +72,6 @@
       <workItem from="1620615686843" duration="4462000" />
       <workItem from="1620695852716" duration="4866000" />
       <workItem from="1620736433233" duration="8773000" />
-      <workItem from="1620932762923" duration="554000" />
     </task>
     <servers />
   </component>

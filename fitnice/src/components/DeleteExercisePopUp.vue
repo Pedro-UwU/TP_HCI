@@ -47,13 +47,13 @@
 
 <script>
 import Exercise from "../store/Exercise";
-import {ExerciseApi} from "../js/ExerciseApi";
+import ExerciseStore from "../store/ExerciseStore";
 
 export default {
 name: "DeleteExercisePopUp",
   props: {
     exercise: Exercise,
-    reload: Function
+    store: ExerciseStore
   },
   data () {
     return {
@@ -62,13 +62,8 @@ name: "DeleteExercisePopUp",
   },
   methods: {
     deleteExercise() {
-      if (this.exercise !== undefined) {
-        ExerciseApi.deleteExercise(this.exercise.id).then(() => {
-          this.reload();
-        }).catch((e) => {
-          console.log(e)
-        });
-      }
+      console.log(this.exercise.id)
+
     }
   }
 }
