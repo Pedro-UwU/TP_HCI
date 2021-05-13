@@ -8,7 +8,7 @@
           Te hemos enviado un codigo de verificación
         </h2>
         <h2 class="titleStyle ma-3 pa-3">
-          Revisa tu casilla de correos!
+          ¡Revisa tu casilla de correos!
         </h2>
     </v-card>
   </v-app>

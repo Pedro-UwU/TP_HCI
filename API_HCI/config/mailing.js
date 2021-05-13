@@ -42,7 +42,7 @@ module.exports = {
 				    <a href="<%CONFIRM_LINK%>" style="color: #BDC3C7">Click para confirmar e-mail</a>
 				<div>
 				<p style="text-align: center; color: white">
-				    <span>Válido por 24 horas></span>
+				    <span>Válido por 24 horas</span>
 				</p>
 			</body>
 			</head>
