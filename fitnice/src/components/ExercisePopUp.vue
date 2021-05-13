@@ -127,33 +127,30 @@ export default {
     store: ExerciseStoreEx
   }),
   props: {
-    exercise: Exercise
+    exercise: Exercise,
+    reload: String
   },
   methods: {
     addExercise() {
+      console.log("ASDDDD" + this.reload);
       if (!this.exercise) {
         let newEx = new Exercise(this.infoEx.name, this.infoEx.detail, this.infoEx.type);
-        try {
-          ExerciseApi.addExercise(newEx);
-        } catch (e) {
+        ExerciseApi.addExercise(newEx).catch((e) => {
           console.log(e);
-        }
+        })
       } else {
         this.exercise.name = this.infoEx.name;
         this.exercise.detail = this.infoEx.detail;
         this.exercise.type = this.infoEx.type;
-        try {
-          ExerciseApi.editExercise(this.exercise)
-        } catch (e) {
+        ExerciseApi.editExercise(this.exercise).catch((e) => {
           console.log(e);
-        }
+        })
       }
     },
     isNumber(evt) {
       return isNumber(evt)
     },
     loadExercise() {
-      console.log("ExercisePopUp.vue " + this.exercise.type);
       if (this.exercise){
         this.infoEx.name = this.exercise.name;
         this.infoEx.type = this.exercise.type;

@@ -27,8 +27,8 @@
     >
       <template v-slot:item.actions="{ item }">
         <v-row>
-          <c-exercise-pop-up :exercise="item"/>
-          <c-delete-exercise-pop-up :store="store" :exercise="item"/>
+          <c-exercise-pop-up :exercise="item" reload="reloadPage"/>
+          <c-delete-exercise-pop-up :exercise="item" :reload="reloadPage"/>
         </v-row>
       </template>
     </v-data-table>
@@ -54,7 +54,7 @@ import {ExerciseApi} from "../js/ExerciseApi";
 import Exercise, {exerciseType} from "../store/Exercise";
 
 
-const itemsPerPage = 2;
+const itemsPerPage = 20;
 
 export default {
 
@@ -82,6 +82,21 @@ export default {
     CDeleteExercisePopUp: DeleteExercisePopUp
   },
   methods: {
+    reloadPage() {
+      try {
+        ExerciseApi.getExercises(this.page-1, itemsPerPage).then(res => {
+          this.exercises = [];
+          for (let i = 0; i<res.content.length; i++) {
+            let exInfo = res.content[i];
+            let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
+            let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
+            this.exercises.push(newEx)
+          }
+        })
+      } catch (e) {
+        console.log(e);
+      }
+    },
     nextPage() {
       try {
         ExerciseApi.getExercises(this.page, itemsPerPage).then(res => {

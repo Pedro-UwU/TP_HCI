@@ -5,8 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/DeleteExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/DeleteExercisePopUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/RegisterForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/js/ExerciseApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/js/ExerciseApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/MyExercises.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/MyExercises.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/views/MyExercises.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/MyExercises.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

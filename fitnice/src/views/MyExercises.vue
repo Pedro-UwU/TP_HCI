@@ -2,7 +2,7 @@
   <v-app style="background: #192633">
     <c-header></c-header>
     <v-container>
-      <v-row align="center">
+      <v-row class="align-content-center">
         <h2 class="subtitles">Mis Ejercicios</h2>
         <v-spacer></v-spacer>
         <div>
