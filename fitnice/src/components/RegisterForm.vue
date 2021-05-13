@@ -125,7 +125,7 @@ export default {
   }),
   computed: {
     passwordConfirmationRule() {
-      return () => (this.password === this.confirmPassword) || 'Password must match'
+      return () => (this.password === this.confirmPassword) || 'las contraseñas no coinciden'
     },
   },
   methods: {
