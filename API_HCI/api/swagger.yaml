@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "This is an Exercise server.  You can find \nout more about Swagger\
     \ at \n[http://swagger.io](http://swagger.io) or on \n[irc.freenode.net, #swagger](http://swagger.io/irc/).\n"
-  version: "2.0.1"
+  version: "2.0.2"
   title: "Swagger Exercise"
   termsOfService: "http://swagger.io/terms/"
   contact:
@@ -784,8 +784,6 @@ paths:
       parameters:
         - $ref: "#/parameters/page"
         - $ref: "#/parameters/size"
-        - $ref: "#/parameters/routineOrderBy"
-        - $ref: "#/parameters/direction"
       responses:
         "200":
           description: "OK"
@@ -2004,8 +2002,6 @@ paths:
         - $ref: "#/parameters/routineId"
         - $ref: "#/parameters/page"
         - $ref: "#/parameters/size"
-        - $ref: "#/parameters/sportOrderBy"
-        - $ref: "#/parameters/direction"
       responses:
         200:
           description: "OK"
