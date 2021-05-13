@@ -1,7 +1,3 @@
-import Routine from "./Routine";
-import Cycle from "./Cycle";
-import Exercise from "./Exercise";
-
 export default class RoutineStore {
     constructor() {
         this.routines = [];
@@ -28,11 +24,4 @@ export default class RoutineStore {
 }
 
 const RoutineStoreEx = new RoutineStore();
-let routine1 = new Routine("rutina 1","Brazos","Dificil",12);
-let cycle1 = new Cycle('primer ciclo','5');
-let ex1 = new Exercise('ej 1','fsdafds','3','fdsa','fsdsvf');RoutineStoreEx.add(routine1);
-cycle1.add(ex1);
-routine1.addCycle(cycle1);
-RoutineStoreEx.add(new Routine("rutina 2","Brazos","Dificil",12))
-RoutineStoreEx.add(new Routine("rutina 3","Brazos","Dificil",12))
 export {RoutineStoreEx};
