@@ -13,6 +13,8 @@ import MyExercises from "./views/MyExercises";
 import MyRoutines from "./views/MyRoutines";
 import SeeRoutine from "./views/SeeRoutine";
 import VerificationSuccess from "./views/VerificationSuccess";
+import EditProfile from "./views/EditProfile";
+import Verification from "./views/Verification";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -30,6 +32,8 @@ export const router = new VueRouter({
     { path: '/my-routines', component: MyRoutines},
     { path: '/seeRoutine:id', component: SeeRoutine},
     { path: '/verification', component: VerificationSuccess},
+    { path: '/edit-profile', component: EditProfile},
+    { path: '/verificationPending', component: Verification},
     { path: '*', component: NotFound}
   ]
 });

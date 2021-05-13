@@ -48,6 +48,7 @@
     </v-card-actions>
     <a
         class="no_tienes"
+        @click="$router.push('/register')"
     >¿No tenés cuenta? ¡Registrate!</a>
   </v-card>
 </template>

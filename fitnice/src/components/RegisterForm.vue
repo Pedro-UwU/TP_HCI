@@ -98,7 +98,7 @@
           rounded
           width="75%"
           class="less-margin"
-          @click="sendRegForm()"
+          @click="sendRegForm(); $router.push('/verificationPending')"
       >Registrarse</v-btn>
     </v-card-actions>
   </v-card>
