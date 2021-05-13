@@ -8,7 +8,7 @@
         <v-text-field
             light
             label="Nombre"
-            v-model="name"
+            v-model="firstName"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             rounded
@@ -21,7 +21,7 @@
         <v-text-field
             light
             label="Apellido"
-            v-model="lastname"
+            v-model="lastName"
             :rules="[v => !!v || 'campo obligatorio']"
             required
             rounded
@@ -116,8 +116,8 @@ export default {
     isValid: true,
     email: null,
     password: null,
-    name:null,
-    lastname:null,
+    firstName:null,
+    lastName:null,
     username: null,
     confirmPassword: null,
     passwordRules: [v => !!v || "Password is required"],
@@ -136,7 +136,7 @@ export default {
         firstName: this.firstName,
         lastName: this.lastName,
         gender: "male", //TODO agregar genero
-        birthdate: 284007600000, //TODO Agregar fecha de nacimiento
+        birthdate: 1,
         email: this.email,
         phone: "123456", //TODO Agregar Telefono
         avatarUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png",

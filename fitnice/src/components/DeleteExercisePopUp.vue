@@ -62,7 +62,8 @@ name: "DeleteExercisePopUp",
   },
   methods: {
     deleteExercise() {
-      this.store.remove(this.exercise);
+      console.log(this.exercise.id)
+
     }
   }
 }
