@@ -13,6 +13,8 @@
                 flat
                 background-color="quinary"
                 class="end-input color-enabled"
+                :value="element.content"
+                @change="saveNameAndLastName()"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -37,18 +39,19 @@
           <v-col cols="5" right class="subtitle-1">
             <div class="text-right">
               <v-menu
-                  top
+                  bottom
                   offset-y
+                  transition="slide-y-transition"
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                      color="primary"
+                      color="quinary"
                       v-bind="attrs"
                       v-on="on"
                       solo
                       width="auto"
                       @click="isOpen = !isOpen"
-                      class="normal-text"
+                      class="normal-text black--text"
                   >
                     {{element.content}}
                     <v-icon v-if="isOpen">mdi-menu-up</v-icon>
@@ -61,7 +64,7 @@
                       v-for="(item, index) in genders"
                       :key="index"
                       class="cursor"
-                      @click="copyGender(item)"
+                      @click="copyGender(item); isOpen = !isOpen"
                   >
                     <v-list-item-title class="black--text">{{ item }}</v-list-item-title>
                   </v-list-item>
@@ -93,7 +96,11 @@ export default {
     copyGender(gender) {
       UserStore.gender = gender
       this.profileElements[4].content = gender
-    }
+    },
+    saveNameAndLastName() {
+      UserStore.firstName = this.profileElements[0].content;
+      UserStore.lastName = this.profileElements[1].content;
+    },
   },
   beforeCreate() {
     UserApi.getProfileElements().then(() => {
@@ -102,7 +109,6 @@ export default {
         {title: "Apellido", content: UserStore.lastName},
         {title: "E-mail", content: UserStore.email},
         {title: "Usuario", content: UserStore.username},
-        // {title: "Genero", content: (UserStore.gender==='male')? 'masculino':'femenino'}
         {title: "Genero", content: UserStore.gender}
       ]
     })

@@ -15,14 +15,15 @@
             @click="save();$router.push('/profile')"
         >
           Guardar
+          <v-icon>mdi-content-save</v-icon>
         </v-btn>
       </v-row>
       <v-row align="center">
         <v-col cols="4" justify="center">
           <v-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" max-width="80%" contain></v-img>
             <v-btn depressed width="80%" class="align-center transparent white--text my-5 ">
-              <v-icon left class="white--text">mdi-pencil-outline</v-icon>
               Editar Foto
+              <v-icon right class="white--text">mdi-pencil-outline</v-icon>
             </v-btn>
         </v-col>
         <v-col>

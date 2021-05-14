@@ -106,6 +106,7 @@
 
 <script>
 import {UserApi} from "../js/user";
+import {UserStore} from "../store/UserStore";
 
 export default {
   name: "RegisterForm",
@@ -142,6 +143,7 @@ export default {
         avatarUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png",
         metadata: null
       }
+      UserStore.email = userInfo.email
       UserApi.create(userInfo, null)
     }
 

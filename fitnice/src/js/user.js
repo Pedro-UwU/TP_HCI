@@ -28,6 +28,11 @@ class UserApi {
         return result;
     }
 
+    static async resendVerification(data, controller) {
+        const result = Api.post(`${Api.baseUrl}/users/resend_verification`,false,data,controller);
+        return result;
+    }
+
     static async getProfileElements() {
         if (Api.token === undefined) {
             throw 'Must be logged in'

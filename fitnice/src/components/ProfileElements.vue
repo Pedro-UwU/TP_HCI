@@ -27,11 +27,6 @@
               @keydown.enter="enabledModText(element)"
           ></v-text-field>
         </v-col>
-<!--        <v-col cols="1">-->
-<!--        <v-icon color="grey" @click="enabledModText(element)" >-->
-<!--          mdi-pencil-outline-->
-<!--        </v-icon>-->
-<!--        </v-col>-->
       </v-row>
       <v-divider class="white"></v-divider>
     </v-container>

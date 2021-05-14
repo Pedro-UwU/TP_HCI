@@ -4,20 +4,39 @@
       <v-card-title class="justify-center">
         <img src="../assets/fitnice-removebg-preview.png"  alt="logo" align="center" width="80%">
       </v-card-title>
-        <h2 class="titleStyle ma-3 pa-3">
-          Te hemos enviado un codigo de verificación
-        </h2>
-        <h2 class="titleStyle ma-3 pa-3">
-          ¡Revisa tu casilla de correos!
-        </h2>
+      <h2 class="titleStyle ma-3 pa-3">
+        Te hemos enviado un codigo de verificación
+      </h2>
+      <h2 class="titleStyle ma-3 pa-3">
+        ¡Revisa tu casilla de correos!
+      </h2>
+
+      <v-card-actions class="justify-center">
+          <v-btn
+              color="black--text quinary"
+              rounded
+              width="75%"
+              @click="resendVerification();"
+          >
+            Reenviar codigo
+          </v-btn>
+      </v-card-actions>
     </v-card>
   </v-app>
 </template>
 
 <script>
+import {UserApi} from '../js/user';
+import {UserStore} from "../store/UserStore";
 
 export default {
   name: "Verification",
+  methods: {
+    resendVerification() {
+      let email = { email: UserStore.email}
+      UserApi.resendVerification(email);
+    }
+  }
 }
 </script>
 
