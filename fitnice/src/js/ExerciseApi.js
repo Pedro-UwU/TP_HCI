@@ -28,11 +28,13 @@ class ExerciseApi {
             metadata: null
         }
         let result = Api.put(`${Api.baseUrl}/exercises/${exercise.id}`,true,data,null);
-        return result;
+        console.log(result);
+        return result
     }
 
     static async deleteExercise(id) {
         let result = Api.delete(`${Api.baseUrl}/exercises/${id}`, true, null)
+        console.log(result);
         return result
     }
 }
