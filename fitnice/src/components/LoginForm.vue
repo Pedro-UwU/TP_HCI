@@ -36,6 +36,7 @@
             @click:append="() => (value = !value)"
         ></v-text-field>
       </v-form>
+      <h5 align="center" class="error--text">{{ errorMessage }}</h5>
     </v-card-text>
     <v-card-actions class="justify-center">
       <v-btn
@@ -65,7 +66,8 @@ export default {
     user: null,
     password: null,
     isValid: true,
-    value: true
+    value: true,
+    errorMessage: ""
   }),
   methods: {
     login() {
@@ -73,7 +75,7 @@ export default {
         router.push("/");
       }).catch(e => {
         if (e.code == 4) {
-          alert("Nombre de usuario o contraseña incorrectos.")
+          this.errorMessage = "Nombre de usuario o contraseña incorrectos."
         } else {
           console.log(e)
         }

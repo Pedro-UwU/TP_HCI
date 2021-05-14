@@ -90,6 +90,7 @@
             height="2.5em"
         ></v-text-field>
       </v-form>
+      <h5 align="center" class="error--text">{{ errorMessage }}</h5>
     </v-card-text>
     <v-card-actions class="justify-center">
       <v-btn
@@ -98,7 +99,7 @@
           rounded
           width="75%"
           class="less-margin"
-          @click="sendRegForm(); $router.push('/verificationPending')"
+          @click="sendRegForm();"
       >Registrarse</v-btn>
     </v-card-actions>
   </v-card>
@@ -123,6 +124,7 @@ export default {
     confirmPassword: null,
     passwordRules: [v => !!v || "Password is required"],
     confirmPasswordRules: [v => !!v || "Password is required"],
+    errorMessage: ""
   }),
   computed: {
     passwordConfirmationRule() {
@@ -143,8 +145,18 @@ export default {
         avatarUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png",
         metadata: null
       }
-      UserStore.email = userInfo.email
-      UserApi.create(userInfo, null)
+      UserApi.create(userInfo, null).then(() => {
+        UserStore.email = userInfo.email;
+        this.$router.push('/verificationPending');
+      }).catch(e => {
+        if (e.code == 1) {
+          this.errorMessage = "Escriba un e-mail correcto"
+        } else if (e.code  ==  2){
+          this.errorMessage = "Ese mail ya esta registrado"
+        } else  {
+          console.log(e.code);
+        }
+      });
     }
 
   }
