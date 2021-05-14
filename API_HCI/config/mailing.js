@@ -38,11 +38,14 @@ module.exports = {
 				    	!
 				    </strong>
 				</h1>
+				<p style="text-align: center; color: white">
+				    <span>Sólo estás a un paso de empezar a entrenar con nosotros, debes confirmar tu e-mail</span>
+				</p>
 				<div style="text-align: center">
-				    <a href="<%CONFIRM_LINK%>" style="color: #BDC3C7">Click para confirmar e-mail</a>
+				    <a href="<%CONFIRM_LINK%>" style="color: #BDC3C7">Click aquí para confirmar e-mail</a>
 				<div>
 				<p style="text-align: center; color: white">
-				    <span>Válido por 24 horas</span>
+				    <span>Link válido por 24 horas</span>
 				</p>
 			</body>
 			</head>
