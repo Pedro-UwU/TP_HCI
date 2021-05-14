@@ -13,23 +13,24 @@ module.exports = {
         htmlBodyTemplate:
             `<div>
 			<head>
-			<style>
-				body {
-					background-color: #192633;
-				}
-				a {
-					display: inline-block;
-					font-family: Roboto;
-					font-size: 22px;
-				}
-				h1 {
-					font-family: Roboto;
-				}
-				p {
-					font-family: Roboto;
-					font-size: 15px;
-				}			</style>
-			</head>
+		    	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+				<style>
+					body {
+						background-color: #192633;
+					}
+					a {
+						display: inline-block;
+						font-family: "Roboto";
+						font-size: 22px;
+					}
+					h1 {
+						font-family: "Roboto";
+					}
+					p {
+						font-family: "Roboto";
+						font-size: 15px;
+					}			</style>
+				</head>
 			<body>
 				<h1 style="text-align: center; color: white">
 				    <strong>
@@ -48,7 +49,6 @@ module.exports = {
 				    <span>Link válido por 24 horas</span>
 				</p>
 			</body>
-			</head>
 			</div>`,
         confirmationLink: 'http://localhost:8080/#/verification?email=<%EMAIL%>&code=<%CODE%>',
         codeExpirationInterval: 24 * 60 * 60 * 1000
