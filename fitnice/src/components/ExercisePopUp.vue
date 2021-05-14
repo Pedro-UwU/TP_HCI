@@ -149,7 +149,6 @@ export default {
       }
     },
     loadExercise() {
-      console.log("ExercisePopUp.vue " + this.exercise.type);
       if (this.exercise){
         this.infoEx.name = this.exercise.name;
         this.infoEx.type = this.exercise.type;

@@ -80,7 +80,6 @@ import {isNumber} from "../js/NumberLib";
 import {ExerciseApi} from "../js/ExerciseApi";
 import Exercise, {exerciseType} from "../store/Exercise";
 import {ExStore} from "../store/ExStore";
-import {RStore} from "../store/RStore";
 
 
 export default {
@@ -116,9 +115,7 @@ export default {
           order: base + i + 1
         }
         this.cycleContent.push(element)
-        console.log(element.order)
       }
-      console.log(RStore)
     },
     getExercises() {
       ExStore.exercises = [];

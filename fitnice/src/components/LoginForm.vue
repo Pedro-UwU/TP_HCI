@@ -69,7 +69,7 @@ export default {
   }),
   methods: {
     login() {
-      console.log(UserApi.login(new Credentials(this.user, this.password), null).then(value => {
+      UserApi.login(new Credentials(this.user, this.password), null).then(value => {
         router.push("/")
         value;
       }).catch(e => {
@@ -78,7 +78,7 @@ export default {
         } else {
           console.log(e)
         }
-      }));
+      });
     }
   }
 };

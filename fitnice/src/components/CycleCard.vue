@@ -72,7 +72,7 @@
               mdi-pencil-outline
             </v-icon>
           </v-btn>
-        <c-delete-cycle-pop-up :cycles="cycles" :cycle="cycle"/>
+        <c-delete-cycle-pop-up :cycles="cycles" :cycle-exercises="cycleExercises" :cycle="cycle"/>
         </v-row>
       </v-col>
     </v-row>
@@ -138,6 +138,7 @@
             <v-row class="align-content-center">
               <v-col class="align-content-center">
                 <v-text-field
+                    v-if="item.exercise.type !== 'Descanso' && item.exercise.type !== 'rest'"
                     v-model="item.repetitions"
                     solo
                     dense
@@ -146,8 +147,7 @@
                     background-color="quinary"
                     class="color-enabled align-end mt-4 mb-n2"
                     @keypress="isNumber($event)"
-                >
-                </v-text-field>
+                />
               </v-col>
             </v-row>
           </template>
@@ -199,8 +199,6 @@ export default {
       return isNumber(evt);
     },
     enabledModText() {
-
-      console.log("this.cycle")
       this.repetitionEnabled = !this.repetitionEnabled;
     },
     repetitionsValue(newValue) {

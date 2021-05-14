@@ -9,6 +9,8 @@
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/DeleteCyclePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/DeleteCyclePopUp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/DeleteExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/DeleteExercisePopUp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/store/RStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/store/RStore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

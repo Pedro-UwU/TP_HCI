@@ -141,7 +141,6 @@ export default {
         cycleOrder: order,
         exercises: []
       })
-      console.log(RStore);
     },
     enabledModText: function (element) {
       element.enabled = !element.enabled
@@ -151,11 +150,16 @@ export default {
       RStore.currentRoutine.category = this.routineItems[1].content;
       RStore.currentRoutine.difficulty = this.routineItems[2].content;
       RStore.currentRoutine.isPublic = this.routineItems[3].content;
-      console.log(RStore.currentRoutine);
+      console.log(RStore);
     }
   },
   beforeCreate() {
     RStore.currentRoutine = currentRoutine;
+    RStore.currentRoutine.difficulty = "rookie";
+    RStore.currentRoutine.category = {
+      id: 7
+    }
+    RStore.currentRoutine.isPublic = true;
     RStore.currentCycles = [];
     RStore.cycleExercises = [];
   }

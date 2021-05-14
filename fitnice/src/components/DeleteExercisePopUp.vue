@@ -70,9 +70,7 @@ name: "DeleteExercisePopUp",
         if (found) {
           this.store[i].order--;
         }
-
       }
-      console.log(this.store);
     }
   }
 }
