@@ -110,8 +110,8 @@ export default {
       for (let i = 0; i < this.selected.length; i++) {
         let element = {
           exercise: this.selected[i],
-          duration: 0,
-          repetitions: 0,
+          duration: 1,
+          repetitions: 1,
           order: base + i + 1
         }
         this.cycleContent.push(element)

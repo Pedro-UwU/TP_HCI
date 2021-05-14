@@ -26,6 +26,7 @@ export class CycleApi {
             duration: duration,
             repetitions: repetitions
         }
+        console.log(exerciseId)
         let result = Api.post(`${Api.baseUrl}/cycles/${cycleId}/exercises/${exerciseId}`, true, data, null)
         console.log("CycleApi.js" + result)
         return result
@@ -36,4 +37,5 @@ export class CycleApi {
         console.log("CycleApi.js" + result)
         return result
     }
+
 }

@@ -136,7 +136,7 @@ export default {
     addCycle() {
       let order = this.cOrder;
       this.cOrder++;
-      RStore.currentCycles.push(new Cycle(`Ciclo ${order}`, CycleTypes.warmup, order, 0,));
+      RStore.currentCycles.push(new Cycle(`Ciclo ${order}`, CycleTypes.warmup, order, 1,));
       RStore.cycleExercises.push({
         cycleOrder: order,
         exercises: []
@@ -151,13 +151,14 @@ export default {
       RStore.currentRoutine.difficulty = this.routineItems[2].content;
       RStore.currentRoutine.isPublic = this.routineItems[3].content;
       console.log(RStore);
+      RStore.createRoutine();
     }
   },
   beforeCreate() {
     RStore.currentRoutine = currentRoutine;
     RStore.currentRoutine.difficulty = "rookie";
     RStore.currentRoutine.category = {
-      id: 7
+      id: 1
     }
     RStore.currentRoutine.isPublic = true;
     RStore.currentCycles = [];

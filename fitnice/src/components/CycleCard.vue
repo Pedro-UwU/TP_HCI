@@ -27,7 +27,7 @@
       <v-spacer/>
       <v-col>
         <v-select
-            :items="[CycleTypes.warmup, CycleTypes.exercise, CycleTypes.cooldown]"
+            :items="['warmup', 'exercise', 'cooldown']"
             v-model="cycle.type"
             label="Categoría"
         >

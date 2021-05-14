@@ -6,10 +6,7 @@
       <change beforePath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/AddExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/AddExercisePopUp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/DeleteCyclePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/DeleteCyclePopUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/DeleteExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/DeleteExercisePopUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/ExercisePopUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/js/CycleApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/js/CycleApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/store/RStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/store/RStore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" afterDir="false" />
     </list>

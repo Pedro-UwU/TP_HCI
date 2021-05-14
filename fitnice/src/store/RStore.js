@@ -17,10 +17,14 @@ export const RStore = {
                     if (res.id === undefined) 'Error, no se pudo agregar el ciclo'
                     for (let j = 0; j < this.cycleExercises[i].exercises.length; j++) {
                         //Aca agrego el ejercicio
-                        
+                        console.log(JSON.stringify(this.cycleExercises[i]))
+                        console.log(this.cycleExercises[i].exercises[j].exercise.type);
+                        CycleApi.addExerciseToCycle(res.id,this.cycleExercises[i].exercises[j].exercise.id,this.cycleExercises[i].exercises[j].order, this.cycleExercises[i].exercises[j].duration,this.cycleExercises[i].exercises[j].repetitions)
                     }
                 })
             }
+            console.log(res)
         })
+        console.log("All Ok");
     }
 }
