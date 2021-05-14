@@ -13,23 +13,26 @@ module.exports = {
         htmlBodyTemplate:
             `<div>
 			<head>
-    			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+		    	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 				<style>
 					body {
 						background-color: #192633;
-						font-family: "Roboto", sans-serif;
 					}
 					a {
 						display: inline-block;
+						font-family: "Roboto";
 						font-size: 22px;
 					}
+					h1 {
+						font-family: "Roboto";
+					}
 					p {
+						font-family: "Roboto";
 						font-size: 15px;
-					}			
-				</style>
-			</head>
+					}			</style>
+				</head>
 			<body>
-				<h1 style="text-align: center; color: white;>
+				<h1 style="text-align: center; color: white">
 				    <strong>
 				    	¡ Bienvenido a
 				    	<span style="color: #45688C">Fitnice</span>
