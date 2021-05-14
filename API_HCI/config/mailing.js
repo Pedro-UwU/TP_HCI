@@ -13,25 +13,23 @@ module.exports = {
         htmlBodyTemplate:
             `<div>
 			<head>
-			<style>
-				body {
-					background-color: #192633;
-				}
-				a {
-					display: inline-block;
-					font-family: Roboto;
-					font-size: 22px;
-				}
-				h1 {
-					font-family: Roboto;
-				}
-				p {
-					font-family: Roboto;
-					font-size: 15px;
-				}			</style>
+    			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+				<style>
+					body {
+						background-color: #192633;
+						font-family: "Roboto", sans-serif;
+					}
+					a {
+						display: inline-block;
+						font-size: 22px;
+					}
+					p {
+						font-size: 15px;
+					}			
+				</style>
 			</head>
 			<body>
-				<h1 style="text-align: center; color: white">
+				<h1 style="text-align: center; color: white;>
 				    <strong>
 				    	¡ Bienvenido a
 				    	<span style="color: #45688C">Fitnice</span>
@@ -48,7 +46,6 @@ module.exports = {
 				    <span>Link válido por 24 horas</span>
 				</p>
 			</body>
-			</head>
 			</div>`,
         confirmationLink: 'http://localhost:8080/#/verification?email=<%EMAIL%>&code=<%CODE%>',
         codeExpirationInterval: 24 * 60 * 60 * 1000
