@@ -45,6 +45,7 @@
 import Header from "@/components/Header";
 import EditProfileElements from "@/components/EditProfileElements";
 import {UserApi} from "../js/user";
+import {Api} from "../js/api";
 
 export default {
   name: "EditProfile",
@@ -55,6 +56,11 @@ export default {
   methods: {
     save() {
       UserApi.saveUserElements();
+    }
+  },
+  beforeCreate() {
+    if (Api.token === undefined){
+      this.$router.push('/login');
     }
   }
 }

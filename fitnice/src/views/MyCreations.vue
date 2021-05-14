@@ -8,12 +8,18 @@
 <script>
 import Header from "../components/Header";
 import RoutineVsExcercise from "../components/RoutineVsExcercise";
+import {Api} from "../js/api";
 
 export default {
   name: "MyCreations",
   components: {
     CHeader: Header,
     CRoutineVsExcercise: RoutineVsExcercise,
+  },
+  beforeCreate() {
+    if (Api.token === undefined){
+      this.$router.push('/login');
+    }
   }
 }
 </script>

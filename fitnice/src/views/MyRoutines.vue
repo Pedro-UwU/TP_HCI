@@ -30,6 +30,7 @@ import CreateRoutineBtn from "../components/CreateRoutineBtn";
 import Filters from "../components/Filters";
 import Order from "../components/Order";
 import RoutineCard from "../components/RoutineCard";
+import {Api} from "../js/api";
 
 export default {
 name: "MyRoutines",
@@ -40,6 +41,11 @@ name: "MyRoutines",
     // CMyRoutines: MyRoutines,
     CCreateRoutineBtn: CreateRoutineBtn,
     CRoutineCard: RoutineCard
+  },
+  beforeCreate() {
+    if (Api.token === undefined){
+      this.$router.push('/login');
+    }
   }
 
 }

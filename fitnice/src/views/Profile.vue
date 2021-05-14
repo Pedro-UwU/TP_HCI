@@ -41,11 +41,17 @@
 <script>
 import Header from "@/components/Header";
 import ProfileElements from "@/components/ProfileElements";
+import {Api} from "../js/api";
 export default {
   name: "Profile",
   components: {
     CHeader: Header,
     CProfileElements: ProfileElements
+  },
+  beforeCreate() {
+    if (Api.token === undefined){
+      this.$router.push('/login');
+    }
   }
 }
 </script>

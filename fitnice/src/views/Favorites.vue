@@ -28,6 +28,7 @@ import Header from "../components/Header";
 import Filters from "../components/Filters";
 import Order from "../components/Order";
 import RoutineCard from "../components/RoutineCard";
+import {Api} from "../js/api";
 
 
 export default {
@@ -37,6 +38,11 @@ name: "Favorites",
     CFilters: Filters,
     COrder: Order,
     CRoutineCard: RoutineCard
+  },
+  beforeCreate() {
+    if (Api.token === undefined){
+      this.$router.push('/login');
+    }
   }
 }
 </script>

@@ -44,6 +44,7 @@ import Filters from "../components/Filters";
 import CreateRoutineBtn from "../components/CreateRoutineBtn";
 import Order from "../components/Order";
 import {RoutineStoreEx} from "../store/RoutineStore";
+import {Api} from "../js/api";
 
 export default {
   name: "Explore",
@@ -57,5 +58,10 @@ export default {
     COrder: Order,
     CCreateRoutineBtn: CreateRoutineBtn
   },
+  beforeCreate() {
+    if (Api.token === undefined){
+      this.$router.push('/login');
+    }
+  }
 }
 </script>

@@ -86,6 +86,7 @@ import CycleCard from "../components/CycleCard";
 import Cycle from "../store/Cycle";
 import {RoutineStoreEx} from "../store/RoutineStore";
 import Routine from "../store/Routine";
+import {Api} from "../js/api";
 
 export default {
   name: "CreateRoutine",
@@ -136,6 +137,11 @@ export default {
       this.store.add(new Routine('','','',''));
       this.id = String(Routine.idCount)-1;
       this.cycles = this.store.get(this.id).cycles;
+    }
+  },
+  beforeCreate() {
+    if (Api.token === undefined){
+      this.$router.push('/login');
     }
   }
 }

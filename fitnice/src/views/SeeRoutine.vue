@@ -78,6 +78,7 @@ import Header from "@/components/Header";
 import SeeCycleCard from "../components/SeeCycleCard";
 import Cycle from "../store/Cycle";
 import {RoutineStoreEx} from "../store/RoutineStore";
+import {Api} from "../js/api";
 
 export default {
   name: "SeeRoutine",
@@ -123,6 +124,11 @@ export default {
       this.routineItems[2].content = this.store.get(this.$route.params.id).difficulty;
       this.routineItems[3].content = this.store.get(this.$route.params.id).duration;
       this.cycles = this.store.get(this.$route.params.id).cycles;
+    }
+  },
+  beforeCreate() {
+    if (Api.token === undefined){
+      this.$router.push('/login');
     }
   }
 }

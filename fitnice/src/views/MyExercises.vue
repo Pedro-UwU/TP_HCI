@@ -20,6 +20,7 @@
 import Header from "../components/Header";
 import MyExercises from "../components/MyExercises";
 import ExercisePopUp from "../components/ExercisePopUp";
+import {Api} from "../js/api";
 
 
 export default {
@@ -29,6 +30,11 @@ export default {
     CMyExercises: MyExercises,
     CExercisePopUp: ExercisePopUp
 
+  },
+  beforeCreate() {
+    if (Api.token === undefined){
+      this.$router.push('/login');
+    }
   }
 
 }
