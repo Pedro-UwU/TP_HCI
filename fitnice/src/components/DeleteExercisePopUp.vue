@@ -20,7 +20,7 @@
       </template>
       <v-card class="primary">
         <v-card-title>
-          <span>¿Desea eliminar <br>"{{exercise.name}}" ?</span>
+          <span>¿Desea eliminar <br>"{{exercise.exercise.name}}" ?</span>
         </v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -46,14 +46,13 @@
 </template>
 
 <script>
-import Exercise from "../store/Exercise";
-import ExerciseStore from "../store/ExerciseStore";
 
 export default {
 name: "DeleteExercisePopUp",
   props: {
-    exercise: Exercise,
-    store: ExerciseStore
+    exercise: Object,
+    store: Array,
+    index: Number
   },
   data () {
     return {
@@ -62,8 +61,18 @@ name: "DeleteExercisePopUp",
   },
   methods: {
     deleteExercise() {
-      console.log(this.exercise.id)
+      let found = false;
+      for (let i = 0; i < this.store.length; i++) {
+        if (this.store[i].exercise.name ===  this.exercise.exercise.name && i === this.index) {
+          this.store.splice(i, 1);
+          found = true;
+        }
+        if (found) {
+          this.store[i].order--;
+        }
 
+      }
+      console.log(this.store);
     }
   }
 }

@@ -126,7 +126,7 @@ export default {
     store: ExerciseStoreEx
   }),
   props: {
-    exercise: Exercise
+    exercise: Object
   },
   methods: {
     addExercise() {

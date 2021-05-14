@@ -107,15 +107,16 @@ export default {
   },
   methods: {
     addExercise() {
+      let base = this.cycleContent.length;
       for (let i = 0; i < this.selected.length; i++) {
         let element = {
           exercise: this.selected[i],
           duration: 0,
           repetitions: 0,
+          order: base + i + 1
         }
         this.cycleContent.push(element)
-        console.log(JSON.stringify(element));
-        console.log(this.cycleContent);
+        console.log(element.order)
       }
       console.log(RStore)
     },

@@ -115,6 +115,7 @@ export default {
   },
   data: () => {
     return {
+      cOrder: 1,
       cycles: RStore.currentCycles,
       id: String,
       currentRoutine: currentRoutine,
@@ -133,7 +134,8 @@ export default {
   },
   methods: {
     addCycle() {
-      let order = RStore.currentCycles.length + 1;
+      let order = this.cOrder;
+      this.cOrder++;
       RStore.currentCycles.push(new Cycle(`Ciclo ${order}`, CycleTypes.warmup, order, 0,));
       RStore.cycleExercises.push({
         cycleOrder: order,

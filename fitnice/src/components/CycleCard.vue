@@ -25,6 +25,14 @@
         ></v-text-field>
       </v-col>
       <v-spacer/>
+      <v-col>
+        <v-select
+            :items="[CycleTypes.warmup, CycleTypes.exercise, CycleTypes.cooldown]"
+            v-model="cycle.type"
+            label="Categoría"
+        >
+        </v-select>
+      </v-col>
       <v-col cols="3" class="text-right mr-auto">
         <div class="text-h5 white--text align-center" >Repeticiones:</div>
       </v-col>
@@ -75,13 +83,72 @@
           :items="cycleExercises"
           hide-default-footer
           v-model="selected"
+          :sort-by="['order']"
 
           item-key="name"
         >
           <template v-slot:item.actions="{ item }">
             <v-row>
-              <c-exercise-pop-up :exercise="item"/>
-              <c-delete-exercise-pop-up :store="cycle" :exercise="item"/>
+              <v-btn
+                  class="grey--text transparent"
+                  small
+                  solo
+                  plain
+                  icon
+                  @click="moveDown(item.order-1)"
+              ><v-icon>mdi-arrow-up</v-icon></v-btn>
+              <v-btn
+                  class="grey--text transparent"
+                  small
+                  solo
+                  plain
+                  icon
+                  @click="moveUp(item.order-1)"
+              ><v-icon>mdi-arrow-down</v-icon></v-btn>
+              <c-delete-exercise-pop-up :store="cycleExercises" :exercise="item" :index="item.order - 1"/>
+            </v-row>
+          </template>
+          <template v-slot:item.name="{ item }">
+            <div class="text"> {{item.exercise.name }}</div>
+          </template>
+          <template v-slot:item.type="{ item }">
+            <div class="text"> {{item.exercise.type }}</div>
+          </template>
+          <template v-slot:item.detail="{ item }">
+            <div class="text"> {{item.exercise.detail }}</div>
+          </template>
+          <template v-slot:item.duration="{ item }">
+              <v-row class="align-content-center">
+                <v-col class="align-content-center">
+              <v-text-field
+                v-model="item.duration"
+                solo
+                dense
+                flat
+                filled
+                background-color="quinary"
+                class="color-enabled align-end mt-4 mb-n2"
+                @keypress="isNumber($event)"
+              >
+              </v-text-field>
+                </v-col>
+            </v-row>
+          </template>
+          <template v-slot:item.repetitions="{ item }">
+            <v-row class="align-content-center">
+              <v-col class="align-content-center">
+                <v-text-field
+                    v-model="item.repetitions"
+                    solo
+                    dense
+                    flat
+                    filled
+                    background-color="quinary"
+                    class="color-enabled align-end mt-4 mb-n2"
+                    @keypress="isNumber($event)"
+                >
+                </v-text-field>
+              </v-col>
             </v-row>
           </template>
         </v-data-table>
@@ -95,11 +162,11 @@
 </template>
 
 <script>
-import Cycle from "../store/Cycle";
+import Cycle, {CycleTypes} from "../store/Cycle";
 import AddExercisePopUp from "./AddExercisePopUp";
 import {isNumber} from "../js/NumberLib";
 import DeleteCyclePopUp from "./DeleteCyclePopUp";
-import ExercisePopUp from "./ExercisePopUp";
+// import ExercisePopUp from "./ExercisePopUp";
 import DeleteExercisePopUp from "./DeleteExercisePopUp";
 
 export default {
@@ -115,10 +182,15 @@ export default {
       selected: [],
       repetitionEnabled: false,
       nameEnabled: false,
+      CycleTypes: CycleTypes,
       headers: [
+        {text: 'Orden', value: 'order'},
         {text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name'},
-        {text: 'Categoría'},
-        {text: 'Descripción'}
+        {text: 'Categoría', value: 'type'},
+        {text: 'Descripción', value: 'detail'},
+        {text: 'Duración (seg)', value: 'duration', align: 'start',sortable: false, width:'10%'},
+        {text: 'Repeticiones', value: 'repetitions', align: 'start', sortable: false, width:'10%'},
+        {text: 'Acciones', value: 'actions', sortable: false, width: '10%'}
       ]
     }
   },
@@ -140,16 +212,28 @@ export default {
     enableNameEdit() {
       this.nameEnabled = !this.nameEnabled;
     },
-    removeSelected() {
-      for (let i =0; i < this.selected.length; i++){
-        this.cycle.remove(this.selected[i]);
+    moveDown(index) {
+      if (index > 0) {
+        this.cycleExercises[index].order--;
+        this.cycleExercises[index-1].order++;
+        let aux = this.cycleExercises[index];
+        this.cycleExercises[index] = this.cycleExercises[index-1]
+        this.cycleExercises[index-1] = aux;
+      }
+    },
+    moveUp(index) {
+      if (index < (this.cycleExercises.length-1)) {
+        this.cycleExercises[index].order++;
+        this.cycleExercises[index+1].order--;
+        let aux = this.cycleExercises[index];
+        this.cycleExercises[index] = this.cycleExercises[index+1]
+        this.cycleExercises[index+1] = aux;
       }
     }
   },
   components: {
     CAddExercisePopUp: AddExercisePopUp,
     CDeleteCyclePopUp: DeleteCyclePopUp,
-    CExercisePopUp: ExercisePopUp,
     CDeleteExercisePopUp: DeleteExercisePopUp
   }
 }

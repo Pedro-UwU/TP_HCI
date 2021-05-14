@@ -61,9 +61,14 @@ export default {
   },
   methods: {
     deleteCycle() {
+      let found = false;
       for (let i =0 ; i < this.cycles.length; i++) {
         if ( this.cycles[i].name === this.cycle.name ) {
           this.cycles.splice(i,1);
+          found=true;
+        }
+        if (found) {
+          this.cycles[i].order--;
         }
       }
     }
