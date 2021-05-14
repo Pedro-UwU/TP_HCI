@@ -48,7 +48,6 @@ module.exports = {
 				    <span>Link válido por 24 horas</span>
 				</p>
 			</body>
-			</head>
 			</div>`,
         confirmationLink: 'http://localhost:8080/#/verification?email=<%EMAIL%>&code=<%CODE%>',
         codeExpirationInterval: 24 * 60 * 60 * 1000
