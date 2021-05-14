@@ -21,6 +21,10 @@ export class RoutineApi {
         return result
     }
 
+    static async getRoutines() {
+        // let result = Api.get(`${Api.baseUrl}/routines`)
+    }
+
     static async deleteRoutine(id) {
         let result = Api.delete(`${Api.baseUrl}/routines/${id}`, true, null)
         console.log("RoutineApi.js" + result)
