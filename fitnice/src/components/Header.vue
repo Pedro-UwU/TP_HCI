@@ -51,7 +51,7 @@
             <v-divider></v-divider>
             <v-list-item class="my-n2">
               <v-list-item-content>
-                <router-link to="/login" tag="button">
+                <router-link to="/login" tag="button" @click="logout()">
                   <v-container class="text-left">
                     <v-icon left class="black--text">mdi-logout</v-icon>
                     Cerrar Sesión
@@ -81,8 +81,9 @@
 <script>
 
 import Vuetify from "vuetify";
+import {UserApi} from "../js/user";
 
-  var nav = new Vuetify({
+var nav = new Vuetify({
     el: nav,
   //   data : {
   //       color: "tertiary"
@@ -102,6 +103,9 @@ export default {
   methods: {
     showSearch: function () {
       this.search = !this.search;
+    },
+    logout() {
+      UserApi.logout();
     }
   }
 
