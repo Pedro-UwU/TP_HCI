@@ -20,4 +20,20 @@ export class CycleApi {
         console.log("CycleApi.js" + result)
         return result
     }
+    static async addExerciseToCycle(cycleId, exerciseId, order, duration, repetitions) {
+        let data = {
+            order: order,
+            duration: duration,
+            repetitions: repetitions
+        }
+        let result = Api.post(`${Api.baseUrl}/cycles/${cycleId}/exercises/${exerciseId}`, true, data, null)
+        console.log("CycleApi.js" + result)
+        return result
+    }
+
+    static async removeExerciseFromCycle(cycleId, exerciseId) {
+        let result = Api.delete(`${Api.baseUrl}/cycles/${cycleId}/exercises/${exerciseId}`)
+        console.log("CycleApi.js" + result)
+        return result
+    }
 }

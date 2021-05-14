@@ -11,11 +11,14 @@ export const UserStore = {
     metadata: null,
     date: null,
     lastActivity: null,
-    verified: null
+    verified: null,
+
+    token: null
 }
 
-export function loadUserData(data) {
 
+
+export function loadUserData(data) {
     UserStore.id = data.id;
     UserStore.username = data.username;
     UserStore.firstName = data.firstName;
@@ -30,3 +33,4 @@ export function loadUserData(data) {
     UserStore.lastActivity = data.lastActivity;
     UserStore.verified = data.verified;
 }
+

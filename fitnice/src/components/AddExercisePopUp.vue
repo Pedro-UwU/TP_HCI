@@ -43,12 +43,11 @@
               :search="search"
               hide-default-footer
               :single-select="singleSelect"
-              :items-per-page=10000
+              :items-per-page="itemsPerPage"
               show-select
-              item-key="name"
+              item-key="id"
               height="max"
-            >
-            </v-data-table>
+            />
           </div>
         </v-card-text>
         <v-card-actions>
@@ -76,16 +75,23 @@
 </template>
 
 <script>
-import {ExerciseStoreEx} from "../store/ExerciseStore";
 import Cycle from "../store/Cycle";
+import {isNumber} from "../js/NumberLib";
+import {ExerciseApi} from "../js/ExerciseApi";
+import Exercise, {exerciseType} from "../store/Exercise";
+import {ExStore} from "../store/ExStore";
+import {RStore} from "../store/RStore";
+
 
 export default {
   name: "AddExercisePopUp",
   props: {
-    cycle: Cycle
+    cycle: Cycle,
+    cycleContent: Array
   },
   data () {
     return {
+      itemsPerPage: 10000,
       selected: [],
       dialog: false,
       singleSelect: false,
@@ -93,20 +99,43 @@ export default {
       isValid: false,
       headers: [
         { text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name' },
-        { text: 'Formato', value: 'format' },
-        { text: 'Cantidad', filterable: false, sortable: false, value: 'amount' },
-        { text: 'Categoría', value: 'category' },
-        { text: 'Descripcion', value: 'description'},
+        { text: 'Descripcion', sorteable: false, value: 'detail'},
+        { text: 'Categoría', value: 'type' },
       ],
-      store: ExerciseStoreEx
+      store: ExStore
     }
   },
   methods: {
     addExercise() {
       for (let i = 0; i < this.selected.length; i++) {
-        this.cycle.add(this.selected[i])
+        let element = {
+          exercise: this.selected[i],
+          duration: 0,
+          repetitions: 0,
+        }
+        this.cycleContent.push(element)
+        console.log(JSON.stringify(element));
+        console.log(this.cycleContent);
       }
+      console.log(RStore)
+    },
+    getExercises() {
+      ExStore.exercises = [];
+      ExerciseApi.getExercises(0, this.itemsPerPage).then(res => {
+        for (let i = 0; i<res.content.length; i++) {
+          let exInfo = res.content[i];
+          let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
+          let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
+          ExStore.exercises.push(newEx)
+        }
+      })
+    },
+    checkNumber(evt) {
+      return isNumber(evt);
     }
+  },
+  beforeMount() {
+    this.getExercises()
   }
 
 }

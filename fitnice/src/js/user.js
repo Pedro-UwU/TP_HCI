@@ -11,6 +11,7 @@ class UserApi {
     static async login(credentials, controller) {
         const result = await Api.post(`${UserApi.url}/login`, false, credentials, controller);
         Api.token = result.token;
+
     }
 
     static async logout(controller) {

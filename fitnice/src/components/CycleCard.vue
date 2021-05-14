@@ -1,6 +1,6 @@
 <template>
   <v-card class="secondary">
-    <v-row class="align-center" justify="right">
+    <v-row class="align-center" justify="end">
       <v-col cols="3" class="subtitle-1 mt-4 mb-n3 ml-3">
         <v-text-field v-if="!nameEnabled"
                       disabled
@@ -25,7 +25,7 @@
         ></v-text-field>
       </v-col>
       <v-spacer/>
-      <v-col cols="3" align-self="right" class="text-right mr-auto">
+      <v-col cols="3" class="text-right mr-auto">
         <div class="text-h5 white--text align-center" >Repeticiones:</div>
       </v-col>
       <v-col cols="1" class="subtitle-1 mr-auto mt-4 mb-n3">
@@ -72,7 +72,7 @@
       <v-col>
         <v-data-table class="elevation-1 secondary mx-3"
           :headers="headers"
-          :items="cycle.exercises"
+          :items="cycleExercises"
           hide-default-footer
           v-model="selected"
 
@@ -89,7 +89,7 @@
     </v-row>
     <v-row>
       <v-spacer/>
-      <c-add-exercise-pop-up :cycle="cycle" class="my-1"></c-add-exercise-pop-up>
+      <c-add-exercise-pop-up :cycle="cycle" :cycle-content="cycleExercises" class="my-1"></c-add-exercise-pop-up>
     </v-row>
   </v-card>
 </template>
@@ -106,6 +106,7 @@ export default {
   name: "CycleCard",
   props: {
     cycle: Cycle,
+    cycleExercises: Array,
     cycles: Array
   },
   data: () => {
@@ -116,11 +117,8 @@ export default {
       nameEnabled: false,
       headers: [
         {text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name'},
-        {text: 'Formato', value: 'format'},
-        {text: 'Cantidad', filterable: false, sortable: false, value: 'amount'},
-        {text: 'Categoría', value: 'category'},
-        {text: 'Descripción', value: 'description'},
-        {text: 'Acciones', value: 'actions', sortable: false}
+        {text: 'Categoría'},
+        {text: 'Descripción'}
       ]
     }
   },
@@ -129,6 +127,8 @@ export default {
       return isNumber(evt);
     },
     enabledModText() {
+
+      console.log("this.cycle")
       this.repetitionEnabled = !this.repetitionEnabled;
     },
     repetitionsValue(newValue) {

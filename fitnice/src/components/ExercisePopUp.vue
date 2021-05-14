@@ -110,7 +110,6 @@
 <script>
 import {ExerciseStoreEx} from "../store/ExerciseStore";
 import Exercise, {exerciseType} from "../store/Exercise";
-import {isNumber} from "../js/NumberLib";
 import {ExerciseApi} from "../js/ExerciseApi";
 
 export default {
@@ -148,9 +147,6 @@ export default {
           console.log(e);
         }
       }
-    },
-    isNumber(evt) {
-      return isNumber(evt)
     },
     loadExercise() {
       console.log("ExercisePopUp.vue " + this.exercise.type);

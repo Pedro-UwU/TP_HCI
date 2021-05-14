@@ -7,26 +7,26 @@
           Editar Rutina
         </div>
         <v-spacer/>
-        <div @click="addRoutine(); $router.push('/seeRoutine'+id)">
+        <div @click.once="saveRoutine()">
           <v-btn
               solo
               plain
           >
+            <v-icon left>mdi-content-save</v-icon>
             Guardar
-            <v-icon>mdi-content-save</v-icon>
           </v-btn>
         </div>
       </v-row>
       <v-row align="center" class="my-3">
-        <v-col cols="4" align="center">
-          <v-img style="border-radius: 20px !important;" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" aspect-ratio="1" width="90%" class="align-end">
+        <v-col cols="4" class="align-center">
+          <v-img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" aspect-ratio="1" width="90%" class="align-end borderRounded">
               <v-card class="transparent">
               <v-container class="bottom-image align-content-center">
               </v-container>
               </v-card>
           </v-img>
         </v-col>
-        <v-col align="left">
+        <v-col class="align-start">
           <v-list class="transparent">
             <v-container v-for="element in routineItems" :key="element.title">
               <v-row>
@@ -34,7 +34,7 @@
                 <v-spacer></v-spacer>
                 <v-col cols="5" right class="transparent subtitle-1">
                   <v-text-field
-                    id="selects"
+                    :id="element.title"
                     v-model="element.content"
                     solo
                     dense
@@ -51,10 +51,37 @@
       </v-row>
       <v-divider class="my-10"></v-divider>
       <v-row>
-          <div class=" white--text text-h3">
+        <v-col>
+          <div class=" white--text text-h4 mt-n5">
+            Descripción
+          </div>
+          <v-textarea v-model="currentRoutine.detail" filled class="mb-n10 mt-5">
+
+          </v-textarea>
+        </v-col>
+      </v-row>
+      <v-divider class="my-10"></v-divider>
+      <v-row>
+        <v-col>
+          <div class=" white--text text-h4">
             Ciclos
           </div>
-        <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+        </v-col>
+      </v-row>
+      <v-row class="align-center">
+        <v-col class="align-center">
+          <c-cycle-card class="my-5 align-center slide current movable"
+                        v-for="cycle in cycles"
+                        :cycles="cycles"
+                        :cycle="cycle"
+                        :key="cycle.name"
+                        :cycle-exercises="store.cycleExercises[cycle.order-1].exercises"
+          ></c-cycle-card>
+        </v-col>
+      </v-row>
+      <v-row class = align-content-center>
+        <v-col>
         <div class="align-center d-flex justify-center">
           <v-btn @click="addCycle()"
                  class="white--text"
@@ -65,15 +92,6 @@
             Agregar Ciclo
           </v-btn>
         </div>
-      </v-row>
-      <v-row class="align-center">
-        <v-col class="align-center">
-          <c-cycle-card class="my-5 align-center slide current movable"
-                        v-for="ciclo in cycles"
-                        :cycles="cycles"
-                        :cycle="ciclo"
-                        :key="ciclo.id"
-          ></c-cycle-card>
         </v-col>
       </v-row>
     </v-container>
@@ -81,11 +99,13 @@
 </template>
 
 <script>
-import Header from "@/components/Header";
+import Header from "../components/Header";
 import CycleCard from "../components/CycleCard";
-import Cycle from "../store/Cycle";
-import {RoutineStoreEx} from "../store/RoutineStore";
+import Cycle, {CycleTypes} from "../store/Cycle";
 import Routine from "../store/Routine";
+import {RStore} from "../store/RStore";
+
+let currentRoutine = new Routine();
 
 export default {
   name: "CreateRoutine",
@@ -95,53 +115,55 @@ export default {
   },
   data: () => {
     return {
-      cycles: [],
+      cycles: RStore.currentCycles,
       id: String,
+      currentRoutine: currentRoutine,
       routineItems: [
-        {title: "Nombre", content: ""},
-        {title: "Categoría", content: ""},
-        {title: "Dificultad", content: ""},
-        {title: "Duración", content: ""}
+        {title: "Nombre", content: currentRoutine.name},
+        {title: "Categoría", content: currentRoutine.category},
+        {title: "Dificultad", content: currentRoutine.difficulty},
+        {title: "Visibilidad", content: currentRoutine.isPublic}
       ],
       headers: [
         {text: 'Ejericio', align: 'Start', value:'name', groupable:'False'},
         {text: 'Tiempo/Repeticiones', value:'rep'},
       ],
-      store: RoutineStoreEx
+      store: RStore
     }
   },
   methods: {
     addCycle() {
-      this.cycles.push(new Cycle(`Ciclo ${this.cycles.length + 1}`, 2))
+      let order = RStore.currentCycles.length + 1;
+      RStore.currentCycles.push(new Cycle(`Ciclo ${order}`, CycleTypes.warmup, order, 0,));
+      RStore.cycleExercises.push({
+        cycleOrder: order,
+        exercises: []
+      })
+      console.log(RStore);
     },
     enabledModText: function (element) {
       element.enabled = !element.enabled
     },
-    addRoutine() {
-      this.store.get(this.id).name = this.routineItems[0].content;
-      this.store.get(this.id).category = this.routineItems[1].content;
-      this.store.get(this.id).difficulty = this.routineItems[2].content;
-      this.store.get(this.id).duration = this.routineItems[3].content;
-    },
-  },
-  mounted() {
-    if (this.$route.params.id) {
-      this.id = this.$route.params.id
-      this.routineItems[0].content = this.store.get(this.id).name;
-      this.routineItems[1].content = this.store.get(this.id).category;
-      this.routineItems[2].content = this.store.get(this.id).difficulty;
-      this.routineItems[3].content = this.store.get(this.id).duration;
-      this.cycles = this.store.get(this.id).cycles;
-    } else {
-      this.store.add(new Routine('','','',''));
-      this.id = String(Routine.idCount)-1;
-      this.cycles = this.store.get(this.id).cycles;
+    saveRoutine() {
+      RStore.currentRoutine.name = this.routineItems[0].content;
+      RStore.currentRoutine.category = this.routineItems[1].content;
+      RStore.currentRoutine.difficulty = this.routineItems[2].content;
+      RStore.currentRoutine.isPublic = this.routineItems[3].content;
+      console.log(RStore.currentRoutine);
     }
+  },
+  beforeCreate() {
+    RStore.currentRoutine = currentRoutine;
+    RStore.currentCycles = [];
+    RStore.cycleExercises = [];
   }
 }
 </script>
 
 <style scoped>
+.borderRounded {
+  border-radius: 20px !important;
+}
 
 .slide { opacity: 0.5; }
 
