@@ -17,12 +17,12 @@
         class="elevation-1 secondary"
         v-model="selected"
         :headers="headers"
-        :items="exercises"
+        :items="store.exercises"
         :search="search"
-        :items-per-page="itemsPerPage"
+        :items-per-page="store.itemsPerPage"
         hide-default-footer
         item-key="name"
-        :page.sync="page"
+        :page.sync="store.page"
         @page-count="pageCount = $event"
     >
       <template v-slot:item.actions="{ item }">
@@ -37,7 +37,7 @@
       <v-btn class="primary" rounded small @click="previousPage()">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
-      <v-btn class="transparent" text disabled elevation="0">{{page}}</v-btn>
+      <v-btn class="transparent" text disabled elevation="0">{{store.page}}</v-btn>
       <v-btn class="primary" rounded small @click="nextPage()">
         <v-icon>mdi-arrow-right</v-icon>
       </v-btn>
@@ -47,14 +47,10 @@
 </template>
 
 <script>
-import {ExerciseStoreEx} from "../store/ExerciseStore";
+import {ExerciseStore} from "../store/ExerciseStore";
 import ExercisePopUp from "./ExercisePopUp";
-import DeleteExercisePopUp from "./DeleteExercisePopUp";
-import {ExerciseApi} from "../js/ExerciseApi";
-import Exercise, {exerciseType} from "../store/Exercise";
+import DeleteExerciseFromApiPopUp from "./DeleteExerciseFromApiPopUp";
 
-
-const itemsPerPage = 2;
 
 export default {
 
@@ -64,9 +60,6 @@ export default {
       singleSelect: false,
       selected: [],
       exercises: [],
-      page: 1,
-      pageCount: 0,
-      itemsPerPage: itemsPerPage,
       search: '',
       headers: [
         { text: 'Nombre', width: "15%", align: 'start'/*, filterable: true*/, value: 'name' },
@@ -74,62 +67,60 @@ export default {
         { text: 'Descripción', width: '60%', value: 'detail'},
         { text: 'Acciones', width:'10%', value: 'actions', sortable: false}
       ],
-      store: ExerciseStoreEx
+      store: ExerciseStore
     }
   },
   components: {
     CExercisePopUp: ExercisePopUp,
-    CDeleteExercisePopUp: DeleteExercisePopUp
+    CDeleteExercisePopUp: DeleteExerciseFromApiPopUp
   },
   methods: {
     nextPage() {
-      try {
-        ExerciseApi.getExercises(this.page, itemsPerPage).then(res => {
-          if (res.content.length === 0) {
-            return;
-          }
-          this.page++;
-          this.exercises = [];
-          for (let i = 0; i<res.content.length; i++) {
-            let exInfo = res.content[i];
-            let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
-            let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
-            this.exercises.push(newEx)
-        }
-        })
-      } catch (e) {
-        console.log(e);
-      }
+      ExerciseStore.page++;
+      ExerciseStore.reload();
+      // try {
+      //   ExerciseApi.getExercises(this.page, itemsPerPage).then(res => {
+      //     if (res.content.length === 0) {
+      //       return;
+      //     }
+      //
+      //     this.page++;
+      //     ExerciseStore.exercises = [];
+      //     for (let i = 0; i<res.content.length; i++) {
+      //       let exInfo = res.content[i];
+      //       let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
+      //       let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
+      //       ExerciseStore.exercises.push(newEx)
+      //   }
+      //   })
+      // } catch (e) {
+      //   console.log(e);
+      // }
     },
     previousPage() {
-      if (this.page > 1) {
-        this.page--;
-        try {
-          ExerciseApi.getExercises(this.page-1, itemsPerPage).then(res => {
-            this.exercises = [];
-            for (let i = 0; i<res.content.length; i++) {
-              let exInfo = res.content[i];
-              let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
-              let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
-              this.exercises.push(newEx)
-            }
-          })
-        } catch (e) {
-          console.log(e);
-        }
+      if (ExerciseStore.page > 0) {
+        ExerciseStore.page--;
+        // try {
+        //   ExerciseApi.getExercises(this.page-1, itemsPerPage).then(res => {
+        //     ExerciseStore.exercises = [];
+        //     for (let i = 0; i<res.content.length; i++) {
+        //       let exInfo = res.content[i];
+        //       let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
+        //       let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
+        //       ExerciseStore.exercises.push(newEx)
+        //     }
+        //   })
+        // } catch (e) {
+        //   console.log(e);
+        // }
+        ExerciseStore.reload();
       }
 
     }
   },
   beforeCreate() {
-    ExerciseApi.getExercises(0, itemsPerPage).then(res => {
-      for (let i = 0; i<res.content.length; i++) {
-        let exInfo = res.content[i];
-        let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
-        let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
-        this.exercises.push(newEx)
-      }
-    })
+    ExerciseStore.page=0;
+    ExerciseStore.reload();
   }
 }
 </script>

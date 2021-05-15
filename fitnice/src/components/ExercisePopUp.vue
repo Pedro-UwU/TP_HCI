@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import {ExerciseStoreEx} from "../store/ExerciseStore";
+import {ExerciseStore, ExerciseStoreEx} from "../store/ExerciseStore";
 import Exercise, {exerciseType} from "../store/Exercise";
 import {ExerciseApi} from "../js/ExerciseApi";
 
@@ -133,7 +133,7 @@ export default {
       if (!this.exercise) {
         let newEx = new Exercise(this.infoEx.name, this.infoEx.detail, this.infoEx.type);
         try {
-          ExerciseApi.addExercise(newEx);
+          ExerciseApi.addExercise(newEx).then(() => ExerciseStore.reload());
         } catch (e) {
           console.log(e);
         }
@@ -142,7 +142,7 @@ export default {
         this.exercise.detail = this.infoEx.detail;
         this.exercise.type = this.infoEx.type;
         try {
-          ExerciseApi.editExercise(this.exercise)
+          ExerciseApi.editExercise(this.exercise).then(() => ExerciseStore.reload())
         } catch (e) {
           console.log(e);
         }

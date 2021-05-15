@@ -1,36 +1,24 @@
 import Exercise, {exerciseType} from "./Exercise";
+import {ExerciseApi} from "../js/ExerciseApi";
 
-class ExerciseStore {
-    constructor() {
-        this.exercises = [];
-    }
-
-    add(exercise) {
-        this.exercises.push(exercise);
-    }
-
-    remove(exercise) {
-        let index = this.exercises.findIndex(i => (i === exercise));
-        if (index === -1)
-            return false;
-
-        this.exercises.splice(index, 1);
-    }
-
-    get(index) {
-        if (index > this.exercises.length) {
-            return null;
-        }
-        return this.exercises[index];
+export const ExerciseStore = {
+    exercises: [],
+    page: 0,
+    itemsPerPage: 15,
+    reload() {
+        ExerciseApi.getExercises(this.page, this.itemsPerPage).then(res => {
+            if (res.content.length === 0 && this.page > 0) {
+                this.page--;
+            } else {
+                this.exercises = []
+                for (let i = 0; i < res.content.length; i++) {
+                    let exInfo = res.content[i];
+                    let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE : exerciseType.REST;
+                    let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
+                    this.exercises.push(newEx)
+                }
+            }
+            console.log('Reloaded')
+        })
     }
 }
-
-
-const ExerciseStoreEx = new ExerciseStore();
-ExerciseStoreEx.add(new Exercise('Zeus','Cosas con pesas', exerciseType.EXERCISE));
-ExerciseStoreEx.add(new Exercise('Zeus2','Cosas con pesas', exerciseType.EXERCISE));
-ExerciseStoreEx.add(new Exercise('Zeus3','Cosas con pesas', exerciseType.EXERCISE));
-ExerciseStoreEx.add(new Exercise('Zeus4','Cosas con pesas', exerciseType.EXERCISE));
-
-export default ExerciseStore;
-export {ExerciseStoreEx};
