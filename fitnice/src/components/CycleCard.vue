@@ -2,7 +2,7 @@
   <v-card class="secondary">
     <v-row class="align-center" justify="end">
       <v-col cols="3" class="subtitle-1 mt-4 mb-n3 ml-3">
-        <v-text-field v-if="!nameEnabled"
+        <v-text-field v-if="!nameEnabled || readOnly"
                       disabled
                       :value="cycle.name"
                       solo
@@ -37,7 +37,7 @@
         <div class="text-h5 white--text align-center" >Repeticiones:</div>
       </v-col>
       <v-col cols="1" class="subtitle-1 mr-auto mt-4 mb-n3">
-        <v-text-field v-if="!repetitionEnabled"
+        <v-text-field v-if="!repetitionEnabled || readOnly"
                       disabled
                       :value="cycle.repetitions"
                       solo
@@ -62,7 +62,9 @@
       </v-col>
       <v-col class="mr-auto">
         <v-row>
-          <v-btn class="white--text transparent "
+          <v-btn
+                 v-if="!readOnly"
+                 class="white--text transparent "
                  icon
                  solo
                  plain
@@ -88,7 +90,7 @@
           item-key="name"
         >
           <template v-slot:item.actions="{ item }">
-            <v-row>
+            <v-row v-if="!readOnly">
               <v-btn
                   class="grey--text transparent"
                   small
@@ -174,7 +176,8 @@ export default {
   props: {
     cycle: Cycle,
     cycleExercises: Array,
-    cycles: Array
+    cycles: Array,
+    readOnly: {type: Boolean, default: false}
   },
   data: () => {
     return {
