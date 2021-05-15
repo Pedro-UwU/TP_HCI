@@ -5,12 +5,11 @@
         <img src="../assets/fitnice-removebg-preview.png"  alt="logo" align="center" width="80%">
       </v-card-title>
       <h2 class="titleStyle ma-3 pa-3">
-        Te hemos enviado un codigo de verificación
+        Te hemos enviado un enlace de verificación
       </h2>
       <h2 class="titleStyle ma-3 pa-3">
         ¡Revisa tu casilla de correos!
       </h2>
-
       <v-card-actions class="justify-center">
           <v-btn
               color="black--text quinary"
@@ -18,7 +17,7 @@
               width="75%"
               @click="resendVerification();"
           >
-            Reenviar codigo
+            Reenviar enlace
           </v-btn>
       </v-card-actions>
     </v-card>

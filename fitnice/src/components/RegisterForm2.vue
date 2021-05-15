@@ -1,0 +1,257 @@
+<template>
+  <v-card class="login">
+    <v-card-title class="justify-center">
+      <img src="../assets/fitnice-removebg-preview.png"  alt="logo" align="center" width="80%">
+    </v-card-title>
+    <v-card-text>
+      <v-stepper non-linear class="transparent elevation-0" v-model="e1">
+        <v-stepper-header class="elevation-0">
+          <v-stepper-step
+            editable
+            step="1"
+            color="secondary"
+          >Datos de registro</v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step
+            editable
+            step="2"
+            color="secondary"
+          >Datos personales</v-stepper-step>
+        </v-stepper-header>
+        <v-stepper-items class="mx-n6">
+          <v-stepper-content step="1">
+            <v-form v-model="isValid">
+              <v-text-field
+                  light
+                  label="E-mail"
+                  v-model="email"
+                  :rules="[v => !!v || 'campo obligatorio']"
+                  required
+                  rounded
+                  solo
+                  class="text-input"
+                  placeholder="E-mail"
+                  background-color="white"
+                  height="2.5em"
+              ></v-text-field>
+              <v-text-field
+                  light
+                  label="Nombre de usuario"
+                  v-model="username"
+                  :rules="[v => !!v || 'campo obligatorio']"
+                  required
+                  rounded
+                  solo
+                  class="text-input"
+                  placeholder="Nombre de usuario"
+                  background-color="white"
+                  height="2.5em"
+              ></v-text-field>
+              <v-text-field
+                  light
+                  label="Contraseña"
+                  v-model="password"
+                  :type="value1 ? 'password' : 'text'"
+                  :rules="[v => !!v || 'campo obligatorio']"
+                  required
+                  solo
+                  class="text-input"
+                  placeholder="Contraseña"
+                  rounded
+                  background-color="white"
+                  height="2.5em"
+                  :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="() => (value1 = !value1)"
+              ></v-text-field>
+              <v-text-field
+                  light
+                  label="Repetir contraseña"
+                  v-model="confirmPassword"
+                  :type="value2 ? 'password' : 'text'"
+                  :rules="[confirmPasswordRules,passwordConfirmationRule,v => !!v || 'campo obligatorio']"
+                  required
+                  solo
+                  class="text-input"
+                  placeholder="Repetir contraseña"
+                  rounded
+                  background-color="white"
+                  :append-icon="value2 ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="() => (value2 = !value2)"
+                  height="2.5em"
+              ></v-text-field>
+            </v-form>
+            <v-card-actions class="justify-center">
+              <v-btn
+                  color="black--text quinary"
+                  rounded
+                  width="75%"
+                  class="less-margin mt-5"
+                  @click="e1 = 2"
+              >
+                Siguiente
+                <v-icon right>mdi-arrow-right-bold</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-stepper-content>
+          <v-stepper-content step="2">
+            <v-form v-model="isValid">
+              <v-text-field
+                  light
+                  label="Nombre"
+                  v-model="firstName"
+                  :rules="[v => !!v || 'campo obligatorio']"
+                  required
+                  rounded
+                  solo
+                  placeholder="Nombre"
+                  background-color="white"
+                  class="text-input"
+                  height="2.5em"
+              ></v-text-field>
+              <v-text-field
+                  light
+                  label="Apellido"
+                  v-model="lastName"
+                  :rules="[v => !!v || 'campo obligatorio']"
+                  required
+                  rounded
+                  solo
+                  class="text-input"
+                  placeholder="Apellido"
+                  background-color="white"
+                  height="2.5em"
+              ></v-text-field>
+              <div class="text-center">
+                <v-menu
+                    bottom
+                    offset-y
+                    transition="slide-y-transition"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                        color="white"
+                        v-bind="attrs"
+                        v-on="on"
+                        solo
+                        width="auto"
+                        @click="isOpen = !isOpen"
+                        class="normal-text black--text"
+                    >
+                      {{ gender }}
+                      <v-icon v-if="isOpen">mdi-menu-up</v-icon>
+                      <v-icon v-else>mdi-menu-down</v-icon>
+                    </v-btn>
+                  </template>
+
+                  <v-list class="white">
+                    <v-list-item
+                        v-for="(item, index) in genders"
+                        :key="index"
+                        class="cursor"
+                        @click="copyGender(item); isOpen = !isOpen"
+                    >
+                      <v-list-item-title class="black--text">{{ item }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+              </div>
+              <v-card-actions class="justify-center">
+                <v-btn
+                    color="black--text quinary"
+                    :disabled="!isValid"
+                    rounded
+                    width="75%"
+                    class="less-margin mt-10"
+                    @click="sendRegForm();"
+                >Registrarse</v-btn>
+              </v-card-actions>
+            </v-form>
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>
+    </v-card-text>
+  </v-card>
+</template>
+
+<script>
+import {UserApi} from "../js/user";
+import {UserStore} from "../store/UserStore";
+
+export default {
+  name: "RegisterForm2",
+
+  data: () => ({
+    e1: 1,
+    gender: "",
+    value1: true,
+    value2: true,
+    isValid: true,
+    email: null,
+    password: null,
+    firstName:null,
+    lastName:null,
+    username: null,
+    confirmPassword: null,
+    passwordRules: [v => !!v || "Password is required"],
+    confirmPasswordRules: [v => !!v || "Password is required"],
+    errorMessage: "",
+    genders: ['Femenino','Masculino']
+  }),
+  computed: {
+    passwordConfirmationRule() {
+      return () => (this.password === this.confirmPassword) || 'las contraseñas no coinciden'
+    },
+  },
+  methods: {
+    sendRegForm() {
+      let userInfo = {
+        username: this.username,
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        gender: "male", //TODO agregar genero
+        birthdate: 1,
+        email: this.email,
+        phone: "123456", //TODO Agregar Telefono
+        avatarUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png",
+        metadata: null
+      }
+      UserApi.create(userInfo, null).then(() => {
+        UserStore.email = userInfo.email;
+        this.$router.push('/verificationPending');
+      }).catch(e => {
+        if (e.code == 1) {
+          this.errorMessage = "Escriba un e-mail correcto"
+        } else if (e.code  ==  2){
+          this.errorMessage = "Ese mail ya esta registrado"
+        } else  {
+          console.log(e.code);
+        }
+      });
+    },
+    copyGender(gender) {
+      UserStore.gender = gender
+      this.profileElements[4].content = gender
+    },
+  }
+};
+</script>
+
+<style scoped>
+.login {
+  width: 400px ;
+  height: 670px;
+  background: #192633;
+  opacity: 80%;
+  border-radius: 30px;
+  border: solid #BDC3c7 1px;
+  align-self: center;
+  margin-top: 7%;
+}
+.less-margin {
+  margin-top: -20px;
+}
+.text-input >>> input{
+  color: black;
+}
+</style>

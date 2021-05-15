@@ -75,7 +75,9 @@ export default {
         router.push("/");
       }).catch(e => {
         if (e.code == 4) {
-          this.errorMessage = "Nombre de usuario o contraseña incorrectos."
+          this.errorMessage = "Nombre de usuario o contraseña incorrectos"
+        } if (e.code == 8) {
+          this.$router.push('/resend-verification')
         } else {
           console.log(e)
         }
