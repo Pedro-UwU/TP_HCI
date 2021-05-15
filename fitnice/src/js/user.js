@@ -42,6 +42,11 @@ class UserApi {
         return result;
     }
 
+    static async getUser(id) {
+        let data = await Api.get(`${Api.baseUrl}/users/${id}`, true, null);
+        return data;
+    }
+
     static async getProfileElements() {
         if (Api.token === undefined) {
             throw 'Must be logged in'

@@ -27,6 +27,9 @@
               </v-container>
             </v-card>
           </v-img>
+          <v-col>
+            <h4>Creada por: {{ createdBy }}</h4>
+          </v-col>
         </v-col>
         <v-col class="align-start">
           <v-list class="transparent">
@@ -119,7 +122,6 @@
           ></c-cycle-card>
         </v-col>
       </v-row>
-      <div v-else>No contiene ciclos</div>
     </v-container>
   </v-app>
 </template>
@@ -144,6 +146,7 @@ export default {
   },
   data: () => {
     return {
+      createdBy: "",
       editable: false,
       cOrder: 1,
       RoutineId: 0,
@@ -181,6 +184,9 @@ export default {
         {title: "Visibilidad", content: RStore.currentRoutine.isPublic}
       ];
       this.currentRoutine = RStore.currentRoutine
+      UserApi.getUser(this.currentRoutine.userId).then((e) => {
+        this.createdBy = e.username
+      })
       CategoryApi.getCategory(this.currentRoutine).then((e) => {
         this.category = e.name
       })
