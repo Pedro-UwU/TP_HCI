@@ -1,19 +1,21 @@
 <template>
   <v-card class="my-2 image">
-    <v-img :src=src
+    <v-img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
            height="100%"
            width="100%"
            class="align-end"
     >
       <v-container class="bottom-image align-content-center">
         <v-card-actions style="color: white">
-          <a @click="$router.push('/seeRoutine'+routineId)" class="text-style">
-            <h3 v-text="(routine !== undefined) ? routine.name : 'Error'"></h3>
+          <a @click="$router.push('/seeRoutine'+routine.id)" class="text-style">
+            <h3 v-text="routine.name"></h3>
           </a>
           <v-spacer></v-spacer>
-          <v-btn @click="switchFav()"
+          <v-btn
+              @click="favRoutine()"
                  icon color="white">
-            <v-icon v-if=Boolean(fav)>mdi-heart</v-icon>
+
+            <v-icon v-if=Boolean(true)>mdi-heart</v-icon>
             <v-icon v-else>mdi-heart-outline</v-icon>
           </v-btn>
         </v-card-actions>
@@ -26,7 +28,8 @@
             half-increments
             length="5"
             size="20"
-            :value=Number(stars)
+            :value="routine.averageRating"
+            @input="rateRoutine($event)"
             align="center"
         ></v-rating>
       </v-container>
@@ -35,27 +38,26 @@
 </template>
 
 <script>
-import {RoutineStoreEx} from "../store/RoutineStore";
+import {FavouriteApi} from "../js/FavouriteApi";
+import {ReviewApi} from "../js/ReviewApi";
+import {RoutineApi} from "../js/RoutineApi";
 
 export default {
   name: "RoutineCard",
   props: {
-    routineId: Number,
-    src: String,
-    stars: Number,
-    fav: Boolean
+    routine: Object
   },
-  data: () => ({
-    routines: RoutineStoreEx,
-    routine: {}
-  }),
   methods: {
-    switchFav: function () {
-      this.fav = !this.fav;
-    }
-  },
-  mounted() {
-    this.routine = this.routines.get(this.routineId);
+    favRoutine() {
+      FavouriteApi.postFav(this.routine.id);
+    },
+    rateRoutine(rate) {
+      ReviewApi.postReview(parseInt(rate),this.routine.id).then(() => {
+        RoutineApi.getRoutine(this.routine.id).then((v) => {
+          this.routine = v
+        })
+      })
+    },
   }
 }
 </script>

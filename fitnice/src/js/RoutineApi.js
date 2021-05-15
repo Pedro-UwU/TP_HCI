@@ -1,4 +1,5 @@
 import {Api} from "./api";
+import {loadRoutinesData} from "../store/RoutineStore";
 
 export class RoutineApi {
     static async createRoutine(routine) {
@@ -21,8 +22,10 @@ export class RoutineApi {
         return result
     }
 
-    static async getRoutines() {
-        // let result = Api.get(`${Api.baseUrl}/routines`)
+    static async getRoutines(page,size) {
+        let data = await Api.get(`${Api.baseUrl}/routines?page=${page}&size=${size}&orderBy=date&direction=asc`,true, null)
+        loadRoutinesData(data);
+        return data
     }
 
     static async deleteRoutine(id) {

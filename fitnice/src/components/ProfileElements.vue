@@ -65,7 +65,6 @@ export default {
         {title: "Apellido", content: UserStore.lastName},
         {title: "E-mail", content: UserStore.email},
         {title: "Usuario", content: UserStore.username},
-        // {title: "Genero", content: (UserStore.gender==='male')? 'masculino':'femenino'}
         {title: "Genero", content: UserStore.gender}
 
       ]

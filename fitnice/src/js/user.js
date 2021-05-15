@@ -1,5 +1,6 @@
 import { Api } from './api.js';
 import {loadUserData, UserStore} from "../store/UserStore";
+import {loadMyRoutinesData} from "../store/MyRoutinesStore";
 
 export { UserApi, Credentials };
 
@@ -11,7 +12,12 @@ class UserApi {
     static async login(credentials, controller) {
         const result = await Api.post(`${UserApi.url}/login`, false, credentials, controller);
         Api.token = result.token;
+    }
 
+    static async myRoutines(){
+        let result = await Api.get(`${Api.baseUrl}/users/current/routines/?page=0&size=10&orderBy=date&direction=asc`,true,null)
+        loadMyRoutinesData(result);
+        return result;
     }
 
     static async logout(controller) {
