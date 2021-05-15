@@ -103,7 +103,6 @@ import Cycle from "../store/Cycle";
 import Routine from "../store/Routine";
 import {RStore} from "../store/RStore";
 import {Api} from "../js/api";
-// import {router} from "../main";
 
 let currentRoutine = new Routine();
 
@@ -152,6 +151,7 @@ export default {
       RStore.currentRoutine.isPublic = this.routineItems[3].content;
       RStore.createRoutine();
       console.log(RStore.currentRoutine.id)
+      this.$router.push(`/my-routines`);
     }
   },
   beforeCreate() {

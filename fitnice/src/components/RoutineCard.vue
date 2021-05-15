@@ -12,10 +12,10 @@
           </a>
           <v-spacer></v-spacer>
           <v-btn
-              @click="favRoutine()"
+              @click="changeFav()"
                  icon color="white">
 
-            <v-icon v-if=Boolean(true)>mdi-heart</v-icon>
+            <v-icon v-if=Boolean(faved)>mdi-heart</v-icon>
             <v-icon v-else>mdi-heart-outline</v-icon>
           </v-btn>
         </v-card-actions>
@@ -28,7 +28,7 @@
             half-increments
             length="5"
             size="20"
-            :value="routine.averageRating"
+            :value="rating"
             @input="rateRoutine($event)"
             align="center"
         ></v-rating>
@@ -45,19 +45,62 @@ import {RoutineApi} from "../js/RoutineApi";
 export default {
   name: "RoutineCard",
   props: {
-    routine: Object
+    routine: Object,
   },
+  data: () => ({
+    faved: null,
+    rating: null,
+    routineIn: null
+  }),
   methods: {
-    favRoutine() {
-      FavouriteApi.postFav(this.routine.id);
+    changeFav() {
+      if (this.faved === false) {
+        FavouriteApi.postFav(this.routine.id).then(() => {
+          this.faved = true;
+        }).catch(e => {
+          if (e.code == 2) {
+            this.faved = false;
+          }
+        });
+      } else {
+        FavouriteApi.deleteFav(this.routine.id).then(() => {
+          this.faved = false;
+        }).catch( e => {
+          if (e.code == 2) {
+            this.faved = true;
+          }
+        })
+      }
     },
     rateRoutine(rate) {
       ReviewApi.postReview(parseInt(rate),this.routine.id).then(() => {
         RoutineApi.getRoutine(this.routine.id).then((v) => {
-          this.routine = v
+          this.routineIn = v
+          this.rating = this.routineIn.averageRating;
         })
       })
     },
+  },
+  mounted() {
+    FavouriteApi.postFav(this.routine.id).then(() => {
+      FavouriteApi.deleteFav(this.routine.id).then(() => {
+        this.faved = false;
+      }).catch(e => {
+        if (e.code === 2) {
+          this.faved = false;
+        } else {
+          console.log(e.code)
+        }
+      })
+    }).catch(e => {
+      if (e.code === 2) {
+        this.faved = true;
+      } else {
+        console.log(e.code)
+      }
+    })
+    this.rating = this.routine.averageRating;
+    this.routineIn = this.routine
   }
 }
 </script>

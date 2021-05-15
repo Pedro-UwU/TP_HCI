@@ -7,4 +7,9 @@ export  class ReviewApi {
         return result;
     }
 
+    static async deleteReview(id) {
+        let result = Api.post(`${Api.baseUrl}/reviews/${id}/`,true,null)
+        return result;
+    }
+
 }

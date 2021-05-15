@@ -26,14 +26,6 @@
             <c-profile-elements/>
           </v-col>
         </v-row>
-        <v-row class="mt-5">
-          <v-col class="d-flex justify-center ">
-            <v-btn class="black--text quinary " width="25%"  rounded>
-              Cambiar contraseña
-              <v-icon right>mdi-lock</v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
       </v-container>
   </v-app>
 </template>

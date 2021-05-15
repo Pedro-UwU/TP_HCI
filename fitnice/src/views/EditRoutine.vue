@@ -17,7 +17,7 @@
             Borrar
           </v-btn>
         </div>
-        <div @click="saveRoutine()">
+        <div @click="saveRoutine(); $router.push(`/check?RId=${getId()}`)">
           <v-btn
               solo
               plain
@@ -145,6 +145,10 @@ export default {
         cycleOrder: order,
         exercises: []
       })
+    },
+    getId() {
+      let href = window.location.href;
+      return getUrlVars(href)["RId"];
     },
     enabledModText: function (element) {
       element.enabled = !element.enabled

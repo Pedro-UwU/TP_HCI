@@ -34,6 +34,7 @@
             height="2.5em"
             :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="() => (value = !value)"
+            @keydown.enter="login()"
         ></v-text-field>
       </v-form>
       <h5 align="center" class="error--text">{{ errorMessage }}</h5>
