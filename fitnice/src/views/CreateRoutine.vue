@@ -164,6 +164,7 @@ export default {
     }
     currentRoutine =  new Routine()
     RStore.currentRoutine = currentRoutine;
+    RStore.currentRoutine.detail = "";
     RStore.currentRoutine.difficulty = "rookie";
     RStore.currentRoutine.category = {
       id: 1
