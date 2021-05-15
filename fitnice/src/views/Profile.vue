@@ -29,8 +29,8 @@
         <v-row class="mt-5">
           <v-col class="d-flex justify-center ">
             <v-btn class="black--text quinary " width="25%"  rounded>
-              <v-icon left>mdi-lock</v-icon>
               Cambiar contraseña
+              <v-icon right>mdi-lock</v-icon>
             </v-btn>
           </v-col>
         </v-row>
