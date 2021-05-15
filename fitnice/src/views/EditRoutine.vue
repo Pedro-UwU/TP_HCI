@@ -38,20 +38,59 @@
         </v-col>
         <v-col class="align-start">
           <v-list class="transparent">
-            <v-container v-for="element in routineItems" :key="element.title">
+            <v-container v-for="index in routineItems.length" :key="index-1">
               <v-row>
-                <v-col cols="5" class=" transparent white--text font-weight-bold text-h6">{{ element.title }}</v-col>
+                <v-col cols="5" class=" transparent white--text font-weight-bold text-h6">{{ routineItems[index-1].title }}</v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="5" right class="transparent subtitle-1">
-                  <v-text-field
-                      :id="element.title"
-                      v-model="element.content"
-                      solo
-                      dense
-                      flat
-                      background-color="quinary"
-                      class="end-input color-enabled"
+                  <v-text-field v-if="index===1"
+                                :id="routineItems[index-1].title"
+                                v-model="routineItems[index-1].content"
+                                solo
+                                dense
+                                flat
+                                background-color="quinary"
+                                class="color-enabled"
                   ></v-text-field>
+                  <v-select
+                      v-else-if="index===2"
+                      :items="CategoryNames"
+                      label="Categoría"
+                      :menu-props="{ offsetY: true, transition: 'slide-y-transition', light: true, closeOnClick: true,
+                    closeOnContentClick: true }"
+                      required
+                      solo
+                      light
+                      v-model="category"
+                      background-color="quinary"
+                  >
+                  </v-select>
+                  <v-select
+                      v-else-if="index===3"
+                      :items="difficultys"
+                      label="Dificultad"
+                      :menu-props="{ offsetY: true, transition: 'slide-y-transition', light: true, closeOnClick: true,
+                    closeOnContentClick: true }"
+                      required
+                      solo
+                      light
+                      v-model="difficulty"
+                      background-color="quinary"
+                  >
+                  </v-select>
+                  <v-select
+                      v-else
+                      :items="['Publica','Privada']"
+                      label="Visibilidad"
+                      :menu-props="{ offsetY: true, transition: 'slide-y-transition', light: true, closeOnClick: true,
+                    closeOnContentClick: true }"
+                      required
+                      solo
+                      light
+                      background-color="quinary"
+                      v-model="visibility"
+                  >
+                  </v-select>
                 </v-col>
               </v-row>
               <v-divider class="white"></v-divider>
@@ -115,6 +154,8 @@ import {RStore} from "../store/RStore";
 import CycleCard from "../components/CycleCard";
 import Cycle from "../store/Cycle";
 import {RoutineApi} from "../js/RoutineApi";
+import {CategoryApi} from "../js/CategoryApi";
+import {CategoryStore} from "../store/CategoryStore";
 
 export default {
   name: "EditRoutine",
@@ -135,6 +176,14 @@ export default {
         {title: "Dificultad", content: null},
         {title: "Visibilidad", content: null}
       ],
+      difficultys: [
+        'Novato','Principiante','Intermedio','Avanzado','Experto'
+      ],
+      visibility: "",
+      difficulty: "",
+      category: 'Piernas',
+      CategoryNames: [],
+      categories: [],
     }
   },
   methods: {
@@ -146,6 +195,41 @@ export default {
         exercises: []
       })
     },
+    transformDifficulty() {
+      switch (this.routineItems[2].content) {
+        case 'rookie':
+          return 'Novato'
+        case 'beginner':
+          return 'Principiante'
+        case 'intermediate':
+          return 'Intermedio'
+        case 'advanced':
+          return 'Avanzado'
+        case 'expert':
+          return 'Experto'
+      }
+    },
+    invTransformDifficulty() {
+      switch (this.difficulty) {
+        case 'Novato':
+          return 'rookie'
+        case 'Principiante':
+          return 'beginner'
+        case 'Intermedio':
+          return 'intermediate'
+        case 'Avanzado':
+          return 'advanced'
+        case 'Experto':
+          return 'expert'
+      }
+    },
+    lookForCategoryId() {
+      for (let i =0 ; i < this.categories.length ; i++) {
+        if (this.categories[i].name === this.category) {
+          return this.categories[i];
+        }
+      }
+    },
     getId() {
       let href = window.location.href;
       return getUrlVars(href)["RId"];
@@ -153,11 +237,14 @@ export default {
     enabledModText: function (element) {
       element.enabled = !element.enabled
     },
+    onlyNames() {
+      this.categories.forEach((e) => {this.CategoryNames.push(e.name)})
+    },
     saveRoutine() {
       RStore.currentRoutine.name = this.routineItems[0].content;
-      RStore.currentRoutine.category = this.routineItems[1].content;
-      RStore.currentRoutine.difficulty = this.routineItems[2].content;
-      RStore.currentRoutine.isPublic = this.routineItems[3].content;
+      RStore.currentRoutine.category = this.lookForCategoryId();
+      RStore.currentRoutine.difficulty = this.invTransformDifficulty();
+      RStore.currentRoutine.isPublic = (this.routineItems[3].content==="Publica");
       console.log(RStore);
       RStore.cleanRoutine(RStore.currentRoutine.id).then(() => {
         RStore.modifyRoutine(RStore.currentRoutine.id);
@@ -177,6 +264,11 @@ export default {
         this.$router.push('/login');
       }
     }
+    CategoryApi.getCategories().then(() => {
+      this.categories = CategoryStore.categories
+      this.onlyNames()
+      console.log(this.categories)
+    })
     let href = window.location.href;
     this.RoutineId = getUrlVars(href)["RId"];
     if (this.RoutineId === undefined || this.RoutineId === null || isNaN(this.RoutineId)) {
@@ -190,12 +282,14 @@ export default {
             {title: "Visibilidad", content: RStore.currentRoutine.isPublic}
           ];
       this.currentRoutine = RStore.currentRoutine
+      this.visibility = this.routineItems[3].content? "Publica" : "Privada"
       this.cycles = RStore.currentCycles
       this.store = RStore;
       this.cOrder = RStore.cycleOrder;
+      this.difficulty = this.transformDifficulty()
       console.log(RStore);
     })
-  }
+  },
 }
 </script>
 

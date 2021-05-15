@@ -11,21 +11,20 @@
       </v-row>
     </v-container>
     <v-container>
-      <v-row no-gutters style="background: none" align-content="center">
+      <v-row v-if="routinesCalc!==null" no-gutters style="background: none" align-content="center">
         <v-col
-            v-for="(n,index) in routines.length"
+            v-for="(n,index) in routinesCalc.length"
             :key="index"
-            align="center"
+            class="align-center"
             cols="3"
         >
-          <c-routine-card class="routine" :routine="routines[index]"/>
+          <c-routine-card class="routine" :routine="routinesCalc[index]" />
         </v-col>
       </v-row>
     </v-container>  </v-app>
 </template>
 
 <script>
-// import MyRoutines from "../components/MyRoutines";
 import Header from "../components/Header";
 import CreateRoutineBtn from "../components/CreateRoutineBtn";
 import Filters from "../components/Filters";
@@ -34,17 +33,14 @@ import RoutineCard from "../components/RoutineCard";
 import {Api} from "../js/api";
 import {UserApi} from "../js/user";
 import {MyRoutineStore} from "../store/MyRoutinesStore";
+import {GetRoutinesParametersStore} from "../store/GetRoutinesParametersStore";
 
 export default {
-name: "MyRoutines",
-  data: () => ({
-    routines: [],
-  }),
+  name: "MyRoutines",
   components: {
     CHeader: Header,
     CFilters: Filters,
     COrder: Order,
-    // CMyRoutines: MyRoutines,
     CCreateRoutineBtn: CreateRoutineBtn,
     CRoutineCard: RoutineCard
   },
@@ -57,9 +53,19 @@ name: "MyRoutines",
         return
       }
     }
-    UserApi.myRoutines().then(()  => {
+    UserApi.myRoutines(
+        GetRoutinesParametersStore.page,
+        GetRoutinesParametersStore.size,
+        GetRoutinesParametersStore.orderBy,
+        GetRoutinesParametersStore.direction
+    ).then(()  => {
       this.routines = MyRoutineStore.routines
     })
+  },
+  computed: {
+    routinesCalc() {
+      return MyRoutineStore.routines
+    }
   },
 
 }

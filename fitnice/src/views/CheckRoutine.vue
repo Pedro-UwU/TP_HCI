@@ -30,14 +30,51 @@
         </v-col>
         <v-col class="align-start">
           <v-list class="transparent">
-            <v-container v-for="element in routineItems" :key="element.title">
+            <v-container v-for="index in routineItems.length" :key="index-1">
               <v-row>
-                <v-col cols="5" class=" transparent white--text font-weight-bold text-h6">{{ element.title }}</v-col>
+                <v-col cols="5" class=" transparent white--text font-weight-bold text-h6">{{ routineItems[index-1].title }}</v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="5" right class="transparent subtitle-1">
                   <v-text-field
-                      :id="element.title"
-                      v-model="element.content"
+                      v-if="index===1"
+                      :id="routineItems[index-1].title"
+                      v-model="routineItems[index-1].content"
+                      solo
+                      dense
+                      flat
+                      readonly
+                      background-color="primary"
+                      class="end-input color-disabled"
+                  >
+                  </v-text-field>
+                  <v-text-field
+                      v-else-if="index===2"
+                      :id="routineItems[index-1].title"
+                      v-model="routineItems[index-1].content"
+                      solo
+                      dense
+                      flat
+                      readonly
+                      background-color="primary"
+                      class="end-input color-disabled"
+                  >
+                  </v-text-field>
+                  <v-text-field
+                    v-else-if="index===3"
+                    :id="routineItems[index-1].title"
+                    v-model="routineItems[index-1].content"
+                    solo
+                    dense
+                    flat
+                    readonly
+                    background-color="primary"
+                    class="end-input color-disabled"
+                  >
+                  </v-text-field>
+                  <v-text-field
+                      v-else
+                      :id="routineItems[index-1].title"
+                      v-model="visibility"
                       solo
                       dense
                       flat
@@ -95,6 +132,7 @@ import {router} from "../main";
 import {Api} from "../js/api";
 import CycleCard from "../components/CycleCard";
 import {UserApi} from "../js/user";
+import {CategoryApi} from "../js/CategoryApi";
 
 // let currentRoutine = RStore.currentRoutine;
 
@@ -118,6 +156,8 @@ export default {
         {title: "Dificultad", content: null},
         {title: "Visibilidad", content: null}
       ],
+      visibility: "",
+      category: ""
     }
   },
   beforeCreate() {
@@ -141,9 +181,14 @@ export default {
         {title: "Visibilidad", content: RStore.currentRoutine.isPublic}
       ];
       this.currentRoutine = RStore.currentRoutine
+      CategoryApi.getCategory(this.currentRoutine).then((e) => {
+        this.category = e.name
+      })
       this.cycles = RStore.currentCycles
       this.store = RStore;
+      this.routineItems[2].content = this.transformDifficulty()
       this.owner()
+      this.visibility = this.routineItems[3].content? "Publica" : "Privada"
       console.log(RStore);
     })
   },
@@ -155,6 +200,20 @@ export default {
       UserApi.getUserId().then((res) => {
         if (res === RStore.currentRoutine.userId) this.editable = true;
       })
+    },
+    transformDifficulty() {
+      switch (this.routineItems[2].content) {
+        case 'rookie':
+          return 'Novato'
+        case 'beginner':
+          return 'Principiante'
+        case 'intermediate':
+            return 'Intermedio'
+        case 'advanced':
+          return 'Avanzado'
+        case 'expert':
+          return 'Experto'
+      }
     }
   },
 }

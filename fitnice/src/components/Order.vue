@@ -33,9 +33,9 @@
 
 <script>
 import {RoutineApi} from "../js/RoutineApi";
-import {RoutineStore} from "../store/RoutineStore";
 import {UserApi} from "../js/user";
-import {MyRoutineStore} from "../store/MyRoutinesStore";
+import {GetRoutinesParametersStore} from "../store/GetRoutinesParametersStore";
+import {GetMyRoutinesParametersStore} from "../store/GetMyRoutinesParametersStore";
 
 export default {
   name: "Order",
@@ -63,15 +63,17 @@ export default {
     changeShowedRoutines() {
       switch (this.wPage) {
         case 0:
-          RoutineApi.getRoutines(this.page, this.size, this.translate(), "desc").then(() => {
-            this.routines = RoutineStore.routines
-            this.$router.go()
+          RoutineApi.getRoutines(GetRoutinesParametersStore.page,
+            GetRoutinesParametersStore.size, this.translate(), "desc").then(() => {
+            GetRoutinesParametersStore.orderBy = this.translate();
           })
           break;
         case 1:
-          UserApi.myRoutines(this.page, this.size, this.translate(),"desc").then(()  => {
-            this.routines = MyRoutineStore.routines
-            this.$router.go()
+          UserApi.myRoutines(GetRoutinesParametersStore.page,
+              GetRoutinesParametersStore.size,
+              this.translate(),
+              GetMyRoutinesParametersStore.direction).then(()  => {
+            GetMyRoutinesParametersStore.orderBy = this.translate();
           })
           break;
       }

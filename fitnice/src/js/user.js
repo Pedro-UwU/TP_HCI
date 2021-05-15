@@ -15,8 +15,8 @@ class UserApi {
         localStorage.setItem('token', Api.token)
     }
 
-    static async myRoutines(){
-        let result = await Api.get(`${Api.baseUrl}/users/current/routines/?page=0&size=10&orderBy=date&direction=asc`,true,null)
+    static async myRoutines(page,size,orderby,direction){
+        let result = await Api.get(`${Api.baseUrl}/users/current/routines/?page=${page}&size=${size}&orderBy=${orderby}&direction=${direction}`,true,null)
         loadMyRoutinesData(result);
         return result;
     }

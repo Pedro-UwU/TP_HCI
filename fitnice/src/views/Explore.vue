@@ -11,14 +11,14 @@
       </v-row>
     </v-container>
     <v-container>
-      <v-row v-if="RoutineStore.routines!==null" no-gutters style="background: none" align-content="center">
+      <v-row v-if="routinesCalc!==null" no-gutters style="background: none" align-content="center">
         <v-col
-            v-for="(n,index) in RoutineStore.routines.length"
+            v-for="(n,index) in routinesCalc.length"
             :key="index"
-            align="center"
+            class="align-center"
             cols="3"
         >
-          <c-routine-card class="routine" :routine="routines[index]" />
+          <c-routine-card class="routine" :routine="routinesCalc[index]" />
         </v-col>
       </v-row>
     </v-container>
@@ -46,19 +46,18 @@ import Order from "../components/Order";
 import {RoutineStore} from "../store/RoutineStore";
 import {Api} from "../js/api";
 import {RoutineApi} from "../js/RoutineApi";
-import {GetRoutinesParametersStore, routines} from "../store/GetRoutinesParametersStore";
+import {GetRoutinesParametersStore} from "../store/GetRoutinesParametersStore";
+import {CategoryApi} from "../js/CategoryApi";
 
 export default {
   name: "Explore",
-  data: () => ({
-    components: {
-      CHeader: Header,
-      CRoutineCard: RoutineCard,
-      CFilters: Filters,
-      COrder: Order,
-      CCreateRoutineBtn: CreateRoutineBtn
-    }
-  }),
+  components: {
+    CHeader: Header,
+    CRoutineCard: RoutineCard,
+    CFilters: Filters,
+    COrder: Order,
+    CCreateRoutineBtn: CreateRoutineBtn
+  },
   beforeCreate: function () {
     if (Api.token === undefined) {
       if (localStorage.getItem('token') !== null) {
@@ -73,10 +72,19 @@ export default {
         GetRoutinesParametersStore.size,
         GetRoutinesParametersStore.orderBy,
         GetRoutinesParametersStore.direction).then(() => {
+          this.routine = RoutineStore.routines
     })
+    CategoryApi.postCategory('Brazos')
+    CategoryApi.postCategory('Piernas')
+    CategoryApi.postCategory('Pecho')
+    CategoryApi.postCategory('Biceps')
+    CategoryApi.postCategory('Triceps')
+    CategoryApi.postCategory('Espalda')
   },
-  computed:{
-    this.routines = RoutineStore.routines
-  }
+  computed: {
+    routinesCalc() {
+      return RoutineStore.routines
+    }
+  },
 }
 </script>

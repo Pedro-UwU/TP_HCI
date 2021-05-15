@@ -1,10 +1,13 @@
 export const GetRoutinesParametersStore = {
-    page: null,
+    page: 0,
     size: 16,
     categoryId: null,
     difficulty: null,
-    orderBy: null,
+    orderBy: "date",
     search: null,
-    direction: null
+    direction: "desc"
+}
 
+export const routines = {
+    routines: []
 }
