@@ -51,12 +51,10 @@
             <v-divider></v-divider>
             <v-list-item class="my-n2">
               <v-list-item-content>
-                <router-link to="/login" tag="button" @click="logout()">
-                  <v-container class="text-left">
+                  <v-container class="text-left" tag="button" @click="logout">
                     <v-icon left class="black--text">mdi-logout</v-icon>
                     Cerrar Sesión
                   </v-container>
-                </router-link>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -82,6 +80,7 @@
 
 import Vuetify from "vuetify";
 import {UserApi} from "../js/user";
+import {router} from "../main";
 
 var nav = new Vuetify({
     el: nav,
@@ -106,6 +105,7 @@ export default {
     },
     logout() {
       UserApi.logout();
+      router.push('/login')
     }
   }
 

@@ -11,9 +11,9 @@
       </v-row>
     </v-container>
     <v-container>
-      <v-row v-if="routines!==null" no-gutters style="background: none" align-content="center">
+      <v-row v-if="RoutineStore.routines!==null" no-gutters style="background: none" align-content="center">
         <v-col
-            v-for="(n,index) in routines.length"
+            v-for="(n,index) in RoutineStore.routines.length"
             :key="index"
             align="center"
             cols="3"
@@ -46,27 +46,37 @@ import Order from "../components/Order";
 import {RoutineStore} from "../store/RoutineStore";
 import {Api} from "../js/api";
 import {RoutineApi} from "../js/RoutineApi";
+import {GetRoutinesParametersStore, routines} from "../store/GetRoutinesParametersStore";
 
 export default {
   name: "Explore",
   data: () => ({
-    routines: null
-  }),
-  components: {
-    CHeader: Header,
-    CRoutineCard: RoutineCard,
-    CFilters: Filters,
-    COrder: Order,
-    CCreateRoutineBtn: CreateRoutineBtn
-  },
-  beforeCreate() {
-    if (Api.token === undefined){
-      this.$router.push('/login');
-    } else {
-      RoutineApi.getRoutines(0, 100,"averageRating","desc").then(() => {
-        this.routines = RoutineStore.routines
-      })
+    components: {
+      CHeader: Header,
+      CRoutineCard: RoutineCard,
+      CFilters: Filters,
+      COrder: Order,
+      CCreateRoutineBtn: CreateRoutineBtn
     }
+  }),
+  beforeCreate: function () {
+    if (Api.token === undefined) {
+      if (localStorage.getItem('token') !== null) {
+        Api.token = localStorage.getItem('token')
+      } else {
+        this.$router.push('/login');
+        return
+      }
+    }
+    RoutineApi.getRoutines(
+        GetRoutinesParametersStore.page,
+        GetRoutinesParametersStore.size,
+        GetRoutinesParametersStore.orderBy,
+        GetRoutinesParametersStore.direction).then(() => {
+    })
+  },
+  computed:{
+    this.routines = RoutineStore.routines
   }
 }
 </script>
