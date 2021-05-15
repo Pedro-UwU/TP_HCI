@@ -14,6 +14,9 @@ export const RStore = {
         //Primero Creo la Rutina
         RoutineApi.createRoutine(this.currentRoutine).then(res => {
             if (res.id === undefined) throw 'Error, no se pudo crear la rutina'
+            this.currentRoutine.id = res.id
+            this.currentRoutine.userId = res.user.id;
+            console.log(this.currentRoutine.userId);
             for (let i = 0; i < this.currentCycles.length; i++) {
                 this.currentCycles[i].routineId = res.id;
                 this.currentCycles[i].repetitions = parseInt(this.currentCycles[i].repetitions);
@@ -41,6 +44,8 @@ export const RStore = {
             let result = RoutineApi.getRoutine(id).then(res => {
                 if(res.id === undefined) console.log()
                 this.currentRoutine = new Routine(res.name, res.detail, res.isPublic, res.difficulty, res.category, res.id);
+                this.currentRoutine.userId = res.user.id;
+                console.log(this.currentRoutine.userId);
                 CycleApi.getCyclesFromRoutine(res.id).then(cRes => {
                     for (let i = 0; i < cRes.content.length; i++) {
                         this.currentCycles.push(new Cycle(cRes.content[i].name, cRes.content[i].type, cRes.content[i].order, cRes.content[i].repetitions))
@@ -88,6 +93,8 @@ export const RStore = {
             throw 'Debes modificar la rutina con el mismo ID'
         }
         RoutineApi.modifyRoutine(id, this.currentRoutine).then(res => {
+            this.currentRoutine.userId = res.user.id;
+            console.log(this.currentRoutine.userId);
             for (let i = 0; i < this.currentCycles.length; i++) {
                 this.currentCycles[i].routineId = res.id;
                 this.currentCycles[i].repetitions = parseInt(this.currentCycles[i].repetitions);
@@ -103,6 +110,8 @@ export const RStore = {
                     }
                 })
             }
+        }).then(()=>{
+            router.push(`/check?RId=${id}`)
         }).catch((e) => {
             console.log("ASDASDDS", e)
         })

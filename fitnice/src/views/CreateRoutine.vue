@@ -7,7 +7,7 @@
           Editar Rutina
         </div>
         <v-spacer/>
-        <div @click="saveRoutine()">
+        <div @click.once="saveRoutine()">
           <v-btn
               solo
               plain
@@ -103,6 +103,7 @@ import Cycle from "../store/Cycle";
 import Routine from "../store/Routine";
 import {RStore} from "../store/RStore";
 import {Api} from "../js/api";
+// import {router} from "../main";
 
 let currentRoutine = new Routine();
 
@@ -149,11 +150,12 @@ export default {
       RStore.currentRoutine.category = this.routineItems[1].content;
       RStore.currentRoutine.difficulty = this.routineItems[2].content;
       RStore.currentRoutine.isPublic = this.routineItems[3].content;
-      console.log(RStore);
       RStore.createRoutine();
+      console.log(RStore.currentRoutine.id)
     }
   },
   beforeCreate() {
+    currentRoutine =  new Routine()
     RStore.currentRoutine = currentRoutine;
     RStore.currentRoutine.difficulty = "rookie";
     RStore.currentRoutine.category = {

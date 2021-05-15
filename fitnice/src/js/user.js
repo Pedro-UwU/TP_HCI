@@ -54,6 +54,12 @@ class UserApi {
         let result = Api.put(`${Api.baseUrl}/users/current`, true, UserStore, null)
         return result
     }
+
+    static async getUserId() {
+        if (Api.token === undefined || Api.token === null) return null
+        let result = await Api.get(`${Api.baseUrl}/users/current`, true, null)
+        return result.id;
+    }
 }
 
 class Credentials {

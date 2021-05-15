@@ -12,6 +12,7 @@
               solo
               plain
               @click="goToEdit()"
+              v-if="editable"
           >
             <v-icon left>mdi-pencil</v-icon>
             Editar
@@ -93,6 +94,7 @@ import Header from "../components/Header";
 import {router} from "../main";
 import {Api} from "../js/api";
 import CycleCard from "../components/CycleCard";
+import {UserApi} from "../js/user";
 
 // let currentRoutine = RStore.currentRoutine;
 
@@ -104,6 +106,7 @@ export default {
   },
   data: () => {
     return {
+      editable: false,
       cOrder: 1,
       RoutineId: 0,
       currentRoutine: null,
@@ -136,14 +139,20 @@ export default {
       this.currentRoutine = RStore.currentRoutine
       this.cycles = RStore.currentCycles
       this.store = RStore;
+      this.owner()
       console.log(RStore);
     })
   },
   methods: {
     goToEdit() {
       router.push(`/edit?RId=${RStore.currentRoutine.id}`)
+    },
+    owner() {
+      UserApi.getUserId().then((res) => {
+        if (res === RStore.currentRoutine.userId) this.editable = true;
+      })
     }
-  }
+  },
 }
 </script>
 

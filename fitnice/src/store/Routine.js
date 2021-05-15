@@ -6,5 +6,6 @@ export default class Routine {
         this.isPublic = isPublic;
         this.difficulty = difficulty;
         this.category = category;
+        this.userId = -1;
     }
 }
