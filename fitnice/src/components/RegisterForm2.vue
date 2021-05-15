@@ -121,40 +121,52 @@
                   background-color="white"
                   height="2.5em"
               ></v-text-field>
-              <div class="text-center">
-                <v-menu
-                    bottom
-                    offset-y
-                    transition="slide-y-transition"
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        color="white"
-                        v-bind="attrs"
-                        v-on="on"
-                        solo
-                        width="auto"
-                        @click="isOpen = !isOpen"
-                        class="normal-text black--text"
-                    >
-                      {{ gender }}
-                      <v-icon v-if="isOpen">mdi-menu-up</v-icon>
-                      <v-icon v-else>mdi-menu-down</v-icon>
-                    </v-btn>
-                  </template>
+<!--              <div class="text-center">-->
+<!--                <v-menu-->
+<!--                    bottom-->
+<!--                    offset-y-->
+<!--                    transition="slide-y-transition"-->
+<!--                >-->
+<!--                  <template v-slot:activator="{ on, attrs }">-->
+<!--                    <v-btn-->
+<!--                        color="white"-->
+<!--                        v-bind="attrs"-->
+<!--                        v-on="on"-->
+<!--                        solo-->
+<!--                        width="auto"-->
+<!--                        @click="isOpen = !isOpen"-->
+<!--                        class="normal-text black&#45;&#45;text"-->
+<!--                    >-->
+<!--                      {{ profileElements.content }}-->
+<!--                      <v-icon v-if="isOpen">mdi-menu-up</v-icon>-->
+<!--                      <v-icon v-else>mdi-menu-down</v-icon>-->
+<!--                    </v-btn>-->
+<!--                  </template>-->
 
-                  <v-list class="white">
-                    <v-list-item
-                        v-for="(item, index) in genders"
-                        :key="index"
-                        class="cursor"
-                        @click="copyGender(item); isOpen = !isOpen"
-                    >
-                      <v-list-item-title class="black--text">{{ item }}</v-list-item-title>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
-              </div>
+<!--                  <v-list class="white">-->
+<!--                    <v-list-item-->
+<!--                        v-for="(item, index) in genders"-->
+<!--                        :key="index"-->
+<!--                        class="cursor"-->
+<!--                        v-model="gender"-->
+<!--                        @click="copyGender(item); isOpen = !isOpen"-->
+<!--                    >-->
+<!--                      <v-list-item-title class="black&#45;&#45;text">{{ item }}</v-list-item-title>-->
+<!--                    </v-list-item>-->
+<!--                  </v-list>-->
+<!--                </v-menu>-->
+<!--              </div>-->
+              <v-select
+                background-color="white"
+                class="black--text mt-n4"
+                light
+                label="Género"
+                rounded
+                item-color="white"
+                height="3.15em"
+                v-model="gender"
+                :items="genders"
+              ></v-select>
               <v-card-actions class="justify-center">
                 <v-btn
                     color="black--text quinary"
@@ -182,7 +194,8 @@ export default {
 
   data: () => ({
     e1: 1,
-    gender: "",
+    // profileElements: [],
+    gender: null,
     value1: true,
     value2: true,
     isValid: true,
@@ -209,7 +222,7 @@ export default {
         password: this.password,
         firstName: this.firstName,
         lastName: this.lastName,
-        gender: "male", //TODO agregar genero
+        gender: ((this.gender === "Mascilino")? "male" : "female"), //TODO agregar genero
         birthdate: 1,
         email: this.email,
         phone: "123456", //TODO Agregar Telefono
@@ -229,10 +242,10 @@ export default {
         }
       });
     },
-    copyGender(gender) {
-      UserStore.gender = gender
-      this.profileElements[4].content = gender
-    },
+    // copyGender(gender) {
+    //   UserStore.gender = gender
+    //   this.gender = gender
+    // }
   }
 };
 </script>
@@ -253,5 +266,17 @@ export default {
 }
 .text-input >>> input{
   color: black;
+}
+.cursor {
+  cursor: pointer;
+}
+.normal-text {
+  font-family: "Roboto", sans-serif !important;
+  text-transform: none;
+  font-weight: normal;
+  font-size: 1rem !important;
+  letter-spacing: 0.009375em !important;
+  line-height: 1.75rem;
+  box-shadow: none;
 }
 </style>
