@@ -20,7 +20,7 @@
         </v-stepper-header>
         <v-stepper-items class="mx-n6">
           <v-stepper-content step="1">
-            <v-form v-model="isValid">
+            <v-form v-model="isValid1">
               <v-text-field
                   light
                   label="E-mail"
@@ -94,7 +94,7 @@
             </v-card-actions>
           </v-stepper-content>
           <v-stepper-content step="2">
-            <v-form v-model="isValid">
+            <v-form v-model="isValid2">
               <v-text-field
                   light
                   label="Nombre"
@@ -121,61 +121,39 @@
                   background-color="white"
                   height="2.5em"
               ></v-text-field>
-<!--              <div class="text-center">-->
-<!--                <v-menu-->
-<!--                    bottom-->
-<!--                    offset-y-->
-<!--                    transition="slide-y-transition"-->
-<!--                >-->
-<!--                  <template v-slot:activator="{ on, attrs }">-->
-<!--                    <v-btn-->
-<!--                        color="white"-->
-<!--                        v-bind="attrs"-->
-<!--                        v-on="on"-->
-<!--                        solo-->
-<!--                        width="auto"-->
-<!--                        @click="isOpen = !isOpen"-->
-<!--                        class="normal-text black&#45;&#45;text"-->
-<!--                    >-->
-<!--                      {{ profileElements.content }}-->
-<!--                      <v-icon v-if="isOpen">mdi-menu-up</v-icon>-->
-<!--                      <v-icon v-else>mdi-menu-down</v-icon>-->
-<!--                    </v-btn>-->
-<!--                  </template>-->
-
-<!--                  <v-list class="white">-->
-<!--                    <v-list-item-->
-<!--                        v-for="(item, index) in genders"-->
-<!--                        :key="index"-->
-<!--                        class="cursor"-->
-<!--                        v-model="gender"-->
-<!--                        @click="copyGender(item); isOpen = !isOpen"-->
-<!--                    >-->
-<!--                      <v-list-item-title class="black&#45;&#45;text">{{ item }}</v-list-item-title>-->
-<!--                    </v-list-item>-->
-<!--                  </v-list>-->
-<!--                </v-menu>-->
-<!--              </div>-->
               <v-select
                 background-color="white"
                 class="black--text mt-n4"
                 light
+                :menu-props="{ offsetY: true, transition: 'slide-y-transition', closeOnClick: true, light: true,
+                class: quinary }"
+                single-line
                 label="Género"
                 rounded
-                item-color="white"
+                disable-lookup
+                item-color="black"
                 height="3.15em"
                 v-model="gender"
                 :items="genders"
+                @change="checkGender()"
               ></v-select>
               <v-card-actions class="justify-center">
                 <v-btn
                     color="black--text quinary"
-                    :disabled="!isValid"
+                    :disabled="!(isValid1 && isValid2 && genderSelected)"
                     rounded
                     width="75%"
                     class="less-margin mt-10"
-                    @click="sendRegForm();"
+                    @click="sendRegForm(); loading = true"
                 >Registrarse</v-btn>
+              </v-card-actions>
+              <v-card-actions class="justify-center" v-if="loading">
+                <v-progress-circular
+                  :indeterminate="loading"
+                  :active="loading"
+                  absolute
+                  color="quinary"
+                ></v-progress-circular>
               </v-card-actions>
             </v-form>
           </v-stepper-content>
@@ -195,10 +173,13 @@ export default {
   data: () => ({
     e1: 1,
     // profileElements: [],
+    loading: false,
+    genderSelected: false,
     gender: null,
     value1: true,
     value2: true,
-    isValid: true,
+    isValid1: true,
+    isValid2: true,
     email: null,
     password: null,
     firstName:null,
@@ -242,10 +223,9 @@ export default {
         }
       });
     },
-    // copyGender(gender) {
-    //   UserStore.gender = gender
-    //   this.gender = gender
-    // }
+    checkGender() {
+      this.genderSelected = (this.gender === "Masculino" || this.gender === "Femenino")
+    }
   }
 };
 </script>
@@ -267,16 +247,29 @@ export default {
 .text-input >>> input{
   color: black;
 }
-.cursor {
-  cursor: pointer;
+
+.theme--light.v-list{
+  background: #BDC3c7;
 }
-.normal-text {
-  font-family: "Roboto", sans-serif !important;
-  text-transform: none;
-  font-weight: normal;
-  font-size: 1rem !important;
-  letter-spacing: 0.009375em !important;
-  line-height: 1.75rem;
-  box-shadow: none;
+.v-list-item__content{
+  color: black;
 }
+.v-list-item__text {
+  color: black
+}
+.theme--light.v-list-item:hover:before {
+  opacity: 0.30;
+}
+/*.cursor {*/
+/*  cursor: pointer;*/
+/*}*/
+/*.normal-text {*/
+/*  font-family: "Roboto", sans-serif !important;*/
+/*  text-transform: none;*/
+/*  font-weight: normal;*/
+/*  font-size: 1rem !important;*/
+/*  letter-spacing: 0.009375em !important;*/
+/*  line-height: 1.75rem;*/
+/*  box-shadow: none;*/
+/*}*/
 </style>
