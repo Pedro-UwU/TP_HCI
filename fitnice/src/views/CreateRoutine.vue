@@ -55,9 +55,7 @@
           <div class=" white--text text-h4 mt-n5">
             Descripción
           </div>
-          <v-textarea v-model="currentRoutine.detail" filled class="mb-n10 mt-5">
-
-          </v-textarea>
+          <v-textarea v-model="currentRoutine.detail" filled class="mb-n10 mt-5"/>
         </v-col>
       </v-row>
       <v-divider class="my-10"></v-divider>

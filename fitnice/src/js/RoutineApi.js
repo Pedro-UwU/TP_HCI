@@ -17,7 +17,7 @@ export class RoutineApi {
 
     static async getRoutine(id) {
         let result = Api.get(`${Api.baseUrl}/routines/${id}`, true, null)
-        console.log("RoutineApi.js" + result)
+        console.log("RoutineApi.js", result)
         return result
     }
 

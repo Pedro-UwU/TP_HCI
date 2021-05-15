@@ -11,13 +11,11 @@ export class CycleApi {
             metadata: null
         }
         let result = Api.post(`${Api.baseUrl}/routines/${cycle.routineId}/cycles`, true, data, null);
-        console.log("CycleApi.js" + result)
         return result
     }
 
     static async deleteCycle(routineId, cycleId) {
         let result = Api.delete(`${Api.baseUrl}/routines/${routineId}/cycles/${cycleId}`)
-        console.log("CycleApi.js" + result)
         return result
     }
     static async addExerciseToCycle(cycleId, exerciseId, order, duration, repetitions) {
@@ -26,7 +24,6 @@ export class CycleApi {
             duration: parseInt(duration),
             repetitions: parseInt(repetitions)
         }
-        console.log(exerciseId)
         let result = Api.post(`${Api.baseUrl}/cycles/${cycleId}/exercises/${exerciseId}`, true, data, null)
         return result
     }
@@ -41,10 +38,8 @@ export class CycleApi {
         return result
     }
 
-    static async geExercisesFromCycle(cycleId) {
-        console.log("CycleID: " + cycleId)
-        let result = Api.get(`${Api.baseUrl}/cycles/${parseInt(cycleId)}/exercises?page=0&size=10000&orderBy=order&direction=asc`,false,null)
-        console.log(result);
+    static async getExercisesFromCycle(cycleId) {
+        let result = Api.get(`${Api.baseUrl}/cycles/${parseInt(cycleId)}/exercises?page=0&size=10000&orderBy=order&direction=asc`,true,null)
         return result
     }
 }

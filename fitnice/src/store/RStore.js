@@ -29,18 +29,17 @@ export const RStore = {
                     }
                 })
             }
-            console.log(res)
         })
         console.log("All Ok");
     },
 
 
-    loadRoutine(id) {
+    async loadRoutine(id) {
         this.currentRoutine = null
         this.currentCycles = []
         this.cycleExercises = []
         try {
-            RoutineApi.getRoutine(id).then(res => {
+            let result = RoutineApi.getRoutine(id).then(res => {
                 if(res.id === undefined) console.log()
                 this.currentRoutine = new Routine(res.name, res.detail, res.isPublic, res.difficulty, res.category, res.id);
                 CycleApi.getCyclesFromRoutine(res.id).then(cRes => {
@@ -48,15 +47,16 @@ export const RStore = {
                         this.currentCycles.push(new Cycle(cRes.content[i].name, cRes.content[i].type, cRes.content[i].order, cRes.content[i].repetitions))
                         this.currentCycles[i].routineId = res.id;
                         this.currentCycles[i].id =cRes.content[i].id
-                        CycleApi.geExercisesFromCycle(cRes.content[i].id).then(eRes => {
-                            for (let i = 0; i < eRes.content.length; i++) {
-                                this.cycleExercises.push(eRes.content[i])
+                        this.cycleExercises.push({cycleOrder: cRes.content[i].order, exercises:[]})
+                        CycleApi.getExercisesFromCycle(cRes.content[i].id).then(eRes => {
+                            for (let j = 0; j < eRes.content.length; j++) {
+                                this.cycleExercises[i].exercises.push(eRes.content[i])
                             }
                         });
                     }
-                    console.log(RStore)
                 })
             })
+            return result;
         } catch (e) {
             console.log(e)
             router.push('/NotFound')

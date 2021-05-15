@@ -3,7 +3,7 @@
     <v-row class="align-center" justify="end">
       <v-col cols="3" class="subtitle-1 mt-4 mb-n3 ml-3">
         <v-text-field v-if="!nameEnabled || readOnly"
-                      disabled
+                      readonly
                       :value="cycle.name"
                       solo
                       dense
@@ -27,11 +27,22 @@
       <v-spacer/>
       <v-col>
         <v-select
+            v-if="!readOnly"
             :items="['warmup', 'exercise', 'cooldown']"
             v-model="cycle.type"
             label="Categoría"
         >
         </v-select>
+        <v-text-field
+            v-else
+            readonly
+            flat
+            :items="['warmup', 'exercise', 'cooldown']"
+            v-model="cycle.type"
+            background-color="transparent"
+            label="Categoría"
+        >
+        </v-text-field>
       </v-col>
       <v-col cols="3" class="text-right mr-auto">
         <div class="text-h5 white--text align-center" >Repeticiones:</div>
@@ -74,14 +85,14 @@
               mdi-pencil-outline
             </v-icon>
           </v-btn>
-        <c-delete-cycle-pop-up :cycles="cycles" :cycle-exercises="cycleExercises" :cycle="cycle"/>
+        <c-delete-cycle-pop-up v-if="!readOnly" :cycles="cycles" :cycle-exercises="cycleExercises" :cycle="cycle"/>
         </v-row>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
         <v-data-table class="elevation-1 secondary mx-3"
-          :headers="headers"
+          :headers="(readOnly) ? readOnlyHeaders : headers"
           :items="cycleExercises"
           hide-default-footer
           v-model="selected"
@@ -122,17 +133,31 @@
           <template v-slot:item.duration="{ item }">
               <v-row class="align-content-center">
                 <v-col class="align-content-center">
-              <v-text-field
-                v-model="item.duration"
-                solo
-                dense
-                flat
-                filled
-                background-color="quinary"
-                class="color-enabled align-end mt-4 mb-n2"
-                @keypress="isNumber($event)"
-              >
-              </v-text-field>
+                  <v-text-field v-if="!readOnly"
+                    v-model="item.duration"
+                    solo
+                    dense
+                    flat
+                    filled
+                    background-color="quinary"
+                    class="color-enabled align-end mt-4 mb-n2"
+                    @keypress="isNumber($event)"
+                  >
+                  </v-text-field>
+                  <v-text-field v-else
+                                v-model="item.duration"
+                                readonly
+                                solo
+                                dense
+                                flat
+                                filled
+                                background-color="transparent"
+                                class="color-disabled align-end mt-4 mb-n2"
+                                @keypress="isNumber($event)"
+                  >
+                  </v-text-field>
+
+
                 </v-col>
             </v-row>
           </template>
@@ -140,7 +165,7 @@
             <v-row class="align-content-center">
               <v-col class="align-content-center">
                 <v-text-field
-                    v-if="item.exercise.type !== 'Descanso' && item.exercise.type !== 'rest'"
+                    v-if="item.exercise.type !== 'Descanso' && item.exercise.type !== 'rest' && !readOnly"
                     v-model="item.repetitions"
                     solo
                     dense
@@ -150,6 +175,19 @@
                     class="color-enabled align-end mt-4 mb-n2"
                     @keypress="isNumber($event)"
                 />
+                <v-text-field
+                    v-if="item.exercise.type !== 'Descanso' && item.exercise.type !== 'rest' && readOnly"
+                    v-model="item.repetitions"
+                    readonly
+                    solo
+                    dense
+                    flat
+                    filled
+                    background-color="transparent"
+                    class="color-disabled align-end mt-4 mb-n2"
+                    @keypress="isNumber($event)"
+                />
+
               </v-col>
             </v-row>
           </template>
@@ -158,7 +196,7 @@
     </v-row>
     <v-row>
       <v-spacer/>
-      <c-add-exercise-pop-up :cycle="cycle" :cycle-content="cycleExercises" class="my-1"></c-add-exercise-pop-up>
+      <c-add-exercise-pop-up v-if="!readOnly" :cycle="cycle" :cycle-content="cycleExercises" class="my-1"></c-add-exercise-pop-up>
     </v-row>
   </v-card>
 </template>
@@ -187,13 +225,13 @@ export default {
       nameEnabled: false,
       CycleTypes: CycleTypes,
       headers: [
-        {text: 'Orden', value: 'order'},
-        {text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name'},
-        {text: 'Categoría', value: 'type'},
-        {text: 'Descripción', value: 'detail'},
-        {text: 'Duración (seg)', value: 'duration', align: 'start',sortable: false, width:'10%'},
-        {text: 'Repeticiones', value: 'repetitions', align: 'start', sortable: false, width:'10%'},
-        {text: 'Acciones', value: 'actions', sortable: false, width: '10%'}
+        {text: 'Orden', value: 'order', readOnlyShow: true},
+        {text: 'Nombre', align: 'start'/*, filterable: true*/, value: 'name', sortable: false, readOnlyShow: true},
+        {text: 'Categoría', value: 'type', sortable: false, readOnlyShow: true},
+        {text: 'Descripción', value: 'detail', sortable: false, readOnlyShow: true},
+        {text: 'Duración (seg)', value: 'duration', align: 'start',sortable: false, width:'10%', readOnlyShow: true},
+        {text: 'Repeticiones', value: 'repetitions', align: 'start', sortable: false, width:'10%', readOnlyShow: true},
+        {text: 'Acciones', value: 'actions', sortable: false, width: '10%', readOnlyShow: false}
       ]
     }
   },
@@ -236,6 +274,11 @@ export default {
     CAddExercisePopUp: AddExercisePopUp,
     CDeleteCyclePopUp: DeleteCyclePopUp,
     CDeleteExercisePopUp: DeleteExercisePopUp
+  },
+  computed: {
+    readOnlyHeaders () {
+      return this.headers.filter(x=>x.readOnlyShow)
+    }
   }
 }
 </script>
