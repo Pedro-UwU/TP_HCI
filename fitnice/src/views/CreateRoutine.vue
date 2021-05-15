@@ -12,8 +12,8 @@
               solo
               plain
           >
-            <v-icon left>mdi-content-save</v-icon>
             Guardar
+            <v-icon right>mdi-content-save</v-icon>
           </v-btn>
         </div>
       </v-row>
@@ -125,8 +125,8 @@
                  :plain="true"
                  color="white"
                  :ripple="false" rounded>
-            <v-icon left>mdi-plus</v-icon>
             Agregar Ciclo
+            <v-icon right>mdi-plus</v-icon>
           </v-btn>
         </div>
         </v-col>

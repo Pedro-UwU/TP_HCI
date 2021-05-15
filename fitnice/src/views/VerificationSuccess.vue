@@ -5,7 +5,7 @@
           <img src="../assets/fitnice-removebg-preview.png"  alt="logo" align="center" width="80%">
         </v-card-title>
         <h2 class="titleStyle ma-3 pa-3">
-          Felicitaciones! Su e-mail se verificó con éxito
+          ¡Felicitaciones! Su e-mail se verificó con éxito
         </h2>
         <a
             class="textStyle"
