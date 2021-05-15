@@ -1,5 +1,5 @@
 import { Api } from './api.js';
-import {loadUserData, UserStore} from "../store/UserStore";
+import {loadId,loadUserData, UserStore} from "../store/UserStore";
 
 export { UserApi, Credentials };
 
@@ -11,7 +11,7 @@ class UserApi {
     static async login(credentials, controller) {
         const result = await Api.post(`${UserApi.url}/login`, false, credentials, controller);
         Api.token = result.token;
-
+        loadId(result)
     }
 
     static async logout(controller) {

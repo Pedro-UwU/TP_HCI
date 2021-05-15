@@ -13,11 +13,12 @@
     <v-container>
       <v-row no-gutters style="background: none" align-content="center">
         <v-col
-            v-for="n in 4"
-            :key="n"
+            v-for="(n,index) in 10"
+            :key="index"
             align="center"
+            cols="3"
         >
-          <c-routine-card class="routine" title="Rutina 5" stars=3.5 fav=true src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
+          <c-routine-card v-if="routines[index].user.id = id" class="routine" title="Rutina 5" stars=3.5 fav=true src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"/>
         </v-col>
       </v-row>
     </v-container>  </v-app>
@@ -31,9 +32,16 @@ import Filters from "../components/Filters";
 import Order from "../components/Order";
 import RoutineCard from "../components/RoutineCard";
 import {Api} from "../js/api";
+import {RoutineApi} from "../js/RoutineApi";
+import {RoutineStore} from "../store/RoutineStore";
+import {UserStore} from "../store/UserStore";
 
 export default {
 name: "MyRoutines",
+  data: () => ({
+    routines: null,
+    id: UserStore.id
+  }),
   components: {
     CHeader: Header,
     CFilters: Filters,
@@ -45,6 +53,10 @@ name: "MyRoutines",
   beforeCreate() {
     if (Api.token === undefined){
       this.$router.push('/login');
+    } else {
+      RoutineApi.getRoutines(0, 10).then(() => {
+        this.routines = RoutineStore.routines
+      })
     }
   }
 

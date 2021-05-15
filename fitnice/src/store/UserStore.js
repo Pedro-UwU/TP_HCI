@@ -16,7 +16,9 @@ export const UserStore = {
     token: null
 }
 
-
+export function loadId(data) {
+    UserStore.id = data.id
+}
 
 export function loadUserData(data) {
     UserStore.id = data.id;
