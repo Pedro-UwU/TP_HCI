@@ -7,7 +7,7 @@
         <v-spacer></v-spacer>
         <c-create-routine-btn></c-create-routine-btn>
         <c-filters></c-filters>
-        <c-order></c-order>
+        <c-order :page="Number(0)" :size="Number(100)" :wPage="Number(1)"></c-order>
       </v-row>
     </v-container>
     <v-container>

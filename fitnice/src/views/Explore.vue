@@ -7,7 +7,7 @@
         <v-spacer></v-spacer>
         <c-create-routine-btn></c-create-routine-btn>
         <c-filters></c-filters>
-        <c-order></c-order>
+        <c-order :page="Number(0)" :size="Number(100)" :wPage="Number(0)"></c-order>
       </v-row>
     </v-container>
     <v-container>
@@ -63,7 +63,7 @@ export default {
     if (Api.token === undefined){
       this.$router.push('/login');
     } else {
-      RoutineApi.getRoutines(0, 100).then(() => {
+      RoutineApi.getRoutines(0, 100,"averageRating","desc").then(() => {
         this.routines = RoutineStore.routines
       })
     }

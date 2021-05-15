@@ -22,8 +22,8 @@ export class RoutineApi {
         return result
     }
 
-    static async getRoutines(page,size) {
-        let data = await Api.get(`${Api.baseUrl}/routines?page=${page}&size=${size}&orderBy=date&direction=asc`,true, null)
+    static async getRoutines(page,size,orderby,direction) {
+        let data = await Api.get(`${Api.baseUrl}/routines?page=${page}&size=${size}&orderBy=${orderby}&direction=${direction}`,true, null)
         loadRoutinesData(data);
         return data
     }
