@@ -50,12 +50,16 @@ name: "MyRoutines",
   },
   beforeCreate() {
     if (Api.token === undefined){
-      this.$router.push('/login');
-    } else {
-      UserApi.myRoutines().then(()  => {
-        this.routines = MyRoutineStore.routines
-      })
+      if (localStorage.getItem('token') !== null) {
+        Api.token = localStorage.getItem('token')
+      } else {
+        this.$router.push('/login');
+        return
+      }
     }
+    UserApi.myRoutines().then(()  => {
+      this.routines = MyRoutineStore.routines
+    })
   },
 
 }

@@ -46,12 +46,16 @@ name: "Favorites",
   },
   beforeCreate() {
     if (Api.token === undefined){
-      this.$router.push('/login');
-    } else {
-      FavouriteApi.getFavourites().then(() => {
-        this.routines = FavouritesStore.favourites
-      })
+      if (localStorage.getItem('token') !== null) {
+        Api.token = localStorage.getItem('token')
+      } else {
+        this.$router.push('/login');
+        return
+      }
     }
+    FavouriteApi.getFavourites().then(() => {
+      this.routines = FavouritesStore.favourites
+    })
   }
 }
 </script>

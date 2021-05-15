@@ -155,14 +155,18 @@ export default {
     }
   },
   beforeCreate() {
+    if (Api.token === undefined){
+      if (localStorage.getItem('token') !== null) {
+        Api.token = localStorage.getItem('token')
+      } else {
+        this.$router.push('/login');
+      }
+    }
     currentRoutine =  new Routine()
     RStore.currentRoutine = currentRoutine;
     RStore.currentRoutine.difficulty = "rookie";
     RStore.currentRoutine.category = {
       id: 1
-    }
-    if (Api.token === undefined){
-      this.$router.push('/login');
     }
     RStore.currentRoutine.isPublic = true;
     RStore.currentCycles = [];

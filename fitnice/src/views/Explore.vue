@@ -61,12 +61,16 @@ export default {
   },
   beforeCreate() {
     if (Api.token === undefined){
-      this.$router.push('/login');
-    } else {
-      RoutineApi.getRoutines(0, 100).then(() => {
-        this.routines = RoutineStore.routines
-      })
+      if (localStorage.getItem('token') !== null) {
+        Api.token = localStorage.getItem('token')
+      } else {
+        this.$router.push('/login');
+        return
+      }
     }
+    RoutineApi.getRoutines(0, 100).then(() => {
+      this.routines = RoutineStore.routines
+    })
   }
 }
 </script>

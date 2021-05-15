@@ -1,7 +1,7 @@
 export { Api };
 
 class Api {
-    static token;
+    static token = undefined;
 
     static get baseUrl() {
         return 'http://127.0.0.1:8083/api';
@@ -43,10 +43,12 @@ class Api {
     }
 
     static async get(url, secure, controller) {
+        if (this.token === undefined && localStorage.getItem('token') !== undefined) this.token = localStorage.getItem('token')
         return await Api.fetch(url, secure, {}, controller)
     }
 
     static async post(url, secure, data, controller) {
+        if (this.token === undefined && localStorage.getItem('token') !== undefined) this.token = localStorage.getItem('token')
         return await Api.fetch(url, secure, {
             method: 'POST',
             headers: {
@@ -57,6 +59,7 @@ class Api {
     }
 
     static async put(url, secure, data, controller) {
+        if (this.token === undefined && localStorage.getItem('token') !== undefined) this.token = localStorage.getItem('token')
         return await Api.fetch(url, secure,{
             method: 'PUT',
             headers: {
@@ -67,6 +70,7 @@ class Api {
     }
 
     static async delete(url, secure, controller) {
+        if (this.token === undefined && localStorage.getItem('token') !== undefined) this.token = localStorage.getItem('token')
         return await Api.fetch(url, secure, {
             method: 'DELETE',
         }, controller);

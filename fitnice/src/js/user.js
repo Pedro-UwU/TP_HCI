@@ -12,6 +12,7 @@ class UserApi {
     static async login(credentials, controller) {
         const result = await Api.post(`${UserApi.url}/login`, false, credentials, controller);
         Api.token = result.token;
+        localStorage.setItem('token', Api.token)
     }
 
     static async myRoutines(){
@@ -23,6 +24,7 @@ class UserApi {
     static async logout(controller) {
         await Api.post(`${UserApi.url}/logout`, true, controller);
         Api.token = undefined;
+        localStorage.removeItem('token')
     }
 
     static async create(userInfo, controller) {

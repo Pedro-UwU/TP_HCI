@@ -37,4 +37,8 @@ class ExerciseApi {
         console.log(result);
         return result
     }
+
+    static async searchExercises(query) {
+        query
+    }
 }

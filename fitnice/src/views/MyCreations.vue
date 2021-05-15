@@ -18,7 +18,12 @@ export default {
   },
   beforeCreate() {
     if (Api.token === undefined){
-      this.$router.push('/login');
+      if (localStorage.getItem('token') !== null) {
+        Api.token = localStorage.getItem('token')
+      } else {
+        this.$router.push('/login');
+        return
+      }
     }
   }
 }
