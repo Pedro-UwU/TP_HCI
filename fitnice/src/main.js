@@ -15,6 +15,7 @@ import SeeRoutine from "./views/SeeRoutine";
 import VerificationSuccess from "./views/VerificationSuccess";
 import EditProfile from "./views/EditProfile";
 import Verification from "./views/Verification";
+import CheckRoutine from "./views/CheckRoutine";
 import ResendVerification from "./views/ResendVerification";
 
 Vue.config.productionTip = false
@@ -36,6 +37,7 @@ export const router = new VueRouter({
     { path: '/edit-profile', component: EditProfile},
     { path: '/verificationPending', component: Verification},
     { path: '/resend-verification', component: ResendVerification},
+    { path: '/check', component: CheckRoutine},
     { path: '*', component: NotFound}
   ]
 });

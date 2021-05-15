@@ -17,7 +17,7 @@
           </v-btn>
         </div>
       </v-row>
-      <v-row align="center" class="my-3">
+      <v-row class="my-3 align-content-center">
         <v-col cols="4" class="align-center">
           <v-img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" aspect-ratio="1" width="90%" class="align-end borderRounded">
               <v-card class="transparent">
