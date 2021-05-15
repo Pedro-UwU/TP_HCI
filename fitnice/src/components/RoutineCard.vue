@@ -29,6 +29,7 @@
             length="5"
             size="20"
             :value="routine.averageRating"
+            @input="rateRoutine($event)"
             align="center"
         ></v-rating>
       </v-container>
@@ -38,6 +39,8 @@
 
 <script>
 import {FavouriteApi} from "../js/FavouriteApi";
+import {ReviewApi} from "../js/ReviewApi";
+import {RoutineApi} from "../js/RoutineApi";
 
 export default {
   name: "RoutineCard",
@@ -47,8 +50,14 @@ export default {
   methods: {
     favRoutine() {
       FavouriteApi.postFav(this.routine.id);
-      console.log("agregado");
-    }
+    },
+    rateRoutine(rate) {
+      ReviewApi.postReview(parseInt(rate),this.routine.id).then(() => {
+        RoutineApi.getRoutine(this.routine.id).then((v) => {
+          this.routine = v
+        })
+      })
+    },
   }
 }
 </script>

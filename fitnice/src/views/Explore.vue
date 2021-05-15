@@ -11,7 +11,7 @@
       </v-row>
     </v-container>
     <v-container>
-      <v-row no-gutters style="background: none" align-content="center">
+      <v-row v-if="routines!==null" no-gutters style="background: none" align-content="center">
         <v-col
             v-for="(n,index) in routines.length"
             :key="index"
@@ -63,7 +63,7 @@ export default {
     if (Api.token === undefined){
       this.$router.push('/login');
     } else {
-      RoutineApi.getRoutines(0, 10).then(() => {
+      RoutineApi.getRoutines(0, 100).then(() => {
         this.routines = RoutineStore.routines
       })
     }

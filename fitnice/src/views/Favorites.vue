@@ -10,9 +10,9 @@
       </v-row>
     </v-container>
     <v-container>
-      <v-row no-gutters style="background: none" align-content="center">
+      <v-row v-if="routines!==null" no-gutters style="background: none" align-content="center">
         <v-col
-            v-for="(n,index) in 10"
+            v-for="(n,index) in routines.length"
             :key="index"
             align="center"
             cols="3"

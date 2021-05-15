@@ -7,7 +7,7 @@
           Editar Rutina
         </div>
         <v-spacer/>
-        <div @click.once="saveRoutine()">
+        <div @click="saveRoutine()">
           <v-btn
               solo
               plain
