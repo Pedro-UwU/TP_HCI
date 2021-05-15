@@ -137,6 +137,7 @@
                 :items="genders"
                 @change="checkGender()"
               ></v-select>
+              <h5 align="center" class="error--text mb-n5">{{ errorMessage }}</h5>
               <v-card-actions class="justify-center">
                 <v-btn
                     color="black--text quinary"
@@ -144,7 +145,7 @@
                     rounded
                     width="75%"
                     class="less-margin mt-10"
-                    @click="sendRegForm(); loading = true"
+                    @click="sendRegForm(); loading = (errorMessage === '')"
                 >Registrarse</v-btn>
               </v-card-actions>
               <v-card-actions class="justify-center" v-if="loading">
@@ -203,7 +204,7 @@ export default {
         password: this.password,
         firstName: this.firstName,
         lastName: this.lastName,
-        gender: ((this.gender === "Mascilino")? "male" : "female"), //TODO agregar genero
+        gender: ((this.gender === 'Masculino')? "male" : "female"), //TODO agregar genero
         birthdate: 1,
         email: this.email,
         phone: "123456", //TODO Agregar Telefono
@@ -217,15 +218,15 @@ export default {
         if (e.code == 1) {
           this.errorMessage = "Escriba un e-mail correcto"
         } else if (e.code  ==  2){
-          this.errorMessage = "Ese mail ya esta registrado"
+          this.errorMessage = "El e-mail o nombre de usuario ya está en uso"
         } else  {
           console.log(e.code);
         }
       });
     },
     checkGender() {
-      this.genderSelected = (this.gender === "Masculino" || this.gender === "Femenino")
-    }
+      this.genderSelected = (this.gender === 'Masculino' || this.gender === 'Femenino')
+    },
   }
 };
 </script>
