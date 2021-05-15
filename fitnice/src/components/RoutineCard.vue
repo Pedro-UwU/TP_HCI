@@ -7,7 +7,7 @@
     >
       <v-container class="bottom-image align-content-center">
         <v-card-actions style="color: white">
-          <a @click="$router.push('/seeRoutine'+routine.id)" class="text-style">
+          <a @click="$router.push(`/check?RId=${routine.id}`)" class="text-style">
             <h3 v-text="routine.name"></h3>
           </a>
           <v-spacer></v-spacer>

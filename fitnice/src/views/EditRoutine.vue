@@ -7,6 +7,16 @@
           Editar Rutina
         </div>
         <v-spacer/>
+
+        <div @click="deleteRoutine()">
+          <v-btn
+              solo
+              plain
+          >
+            <v-icon left>mdi-delete</v-icon>
+            Borrar
+          </v-btn>
+        </div>
         <div @click="saveRoutine()">
           <v-btn
               solo
@@ -20,10 +30,10 @@
       <v-row class="my-3 align-content-center">
         <v-col cols="4" class="align-center">
           <v-img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" aspect-ratio="1" width="90%" class="align-end borderRounded">
-              <v-card class="transparent">
+            <v-card class="transparent">
               <v-container class="bottom-image align-content-center">
               </v-container>
-              </v-card>
+            </v-card>
           </v-img>
         </v-col>
         <v-col class="align-start">
@@ -34,13 +44,13 @@
                 <v-spacer></v-spacer>
                 <v-col cols="5" right class="transparent subtitle-1">
                   <v-text-field
-                    :id="element.title"
-                    v-model="element.content"
-                    solo
-                    dense
-                    flat
-                    background-color="quinary"
-                    class="end-input color-enabled"
+                      :id="element.title"
+                      v-model="element.content"
+                      solo
+                      dense
+                      flat
+                      background-color="quinary"
+                      class="end-input color-enabled"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -73,23 +83,23 @@
                         v-for="cycle in cycles"
                         :cycles="cycles"
                         :cycle="cycle"
-                        :key="cycle.name"
+                        :key="cycle.order"
                         :cycle-exercises="store.cycleExercises[cycle.order-1].exercises"
           ></c-cycle-card>
         </v-col>
       </v-row>
       <v-row class = align-content-center>
         <v-col>
-        <div class="align-center d-flex justify-center">
-          <v-btn @click="addCycle()"
-                 class="white--text"
-                 :plain="true"
-                 color="white"
-                 :ripple="false" rounded>
-            <v-icon left>mdi-plus</v-icon>
-            Agregar Ciclo
-          </v-btn>
-        </div>
+          <div class="align-center d-flex justify-center">
+            <v-btn @click="addCycle()"
+                   class="white--text"
+                   :plain="true"
+                   color="white"
+                   :ripple="false" rounded>
+              <v-icon left>mdi-plus</v-icon>
+              Agregar Ciclo
+            </v-btn>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -98,44 +108,39 @@
 
 <script>
 import Header from "../components/Header";
+import {Api} from "../js/api";
+import {getUrlVars} from "../js/urlParams";
+import {router} from "../main";
+import {RStore} from "../store/RStore";
 import CycleCard from "../components/CycleCard";
 import Cycle from "../store/Cycle";
-import Routine from "../store/Routine";
-import {RStore} from "../store/RStore";
-import {Api} from "../js/api";
-
-let currentRoutine = new Routine();
+import {RoutineApi} from "../js/RoutineApi";
 
 export default {
-  name: "CreateRoutine",
-  components : {
+  name: "EditRoutine",
+  components: {
     CHeader: Header,
     CCycleCard: CycleCard
   },
   data: () => {
     return {
-      cOrder: 1,
-      cycles: RStore.currentCycles,
-      id: String,
-      currentRoutine: currentRoutine,
+      cOrder: RStore.currentCycles.length,
+      RoutineId: 0,
+      currentRoutine: null,
+      cycles: null,
+      store: RStore,
       routineItems: [
-        {title: "Nombre", content: currentRoutine.name},
-        {title: "Categoría", content: currentRoutine.category},
-        {title: "Dificultad", content: currentRoutine.difficulty},
-        {title: "Visibilidad", content: currentRoutine.isPublic}
+        {title: "Nombre", content: null},
+        {title: "Categoría", content: null},
+        {title: "Dificultad", content: null},
+        {title: "Visibilidad", content: null}
       ],
-      headers: [
-        {text: 'Ejericio', align: 'Start', value:'name', groupable:'False'},
-        {text: 'Tiempo/Repeticiones', value:'rep'},
-      ],
-      store: RStore
     }
   },
   methods: {
     addCycle() {
-      let order = this.cOrder;
-      this.cOrder++;
-      RStore.currentCycles.push(new Cycle(`Ciclo ${order}`, 'warmup', order, 1));
+      let order = RStore.currentCycles.length + 1;
+      RStore.currentCycles.push(new Cycle(`Ciclo ${order}`, 'warmup', order, 1,));
       RStore.cycleExercises.push({
         cycleOrder: order,
         exercises: []
@@ -150,46 +155,48 @@ export default {
       RStore.currentRoutine.difficulty = this.routineItems[2].content;
       RStore.currentRoutine.isPublic = this.routineItems[3].content;
       console.log(RStore);
-      RStore.createRoutine();
+      RStore.cleanRoutine(RStore.currentRoutine.id).then(() => {
+        RStore.modifyRoutine(RStore.currentRoutine.id);
+      })
+    },
+    deleteRoutine() {
+      RoutineApi.deleteRoutine(RStore.currentRoutine.id).then(() => {
+        router.push("/")
+      })
     }
   },
   beforeCreate() {
-    RStore.currentRoutine = currentRoutine;
-    RStore.currentRoutine.difficulty = "rookie";
-    RStore.currentRoutine.category = {
-      id: 1
-    }
-    if (Api.token === undefined){
+    if (Api.token === undefined) {
       this.$router.push('/login');
     }
-    RStore.currentRoutine.isPublic = true;
-    RStore.currentCycles = [];
-    RStore.cycleExercises = [];
+    let href = window.location.href;
+    this.RoutineId = getUrlVars(href)["RId"];
+    if (this.RoutineId === undefined || this.RoutineId === null || isNaN(this.RoutineId)) {
+      router.push('/login')
+    } else RStore.loadRoutine(this.RoutineId).then(() => {
+      this.routineItems =
+          [
+            {title: "Nombre", content: RStore.currentRoutine.name},
+            {title: "Categoría", content: RStore.currentRoutine.category},
+            {title: "Dificultad", content: RStore.currentRoutine.difficulty},
+            {title: "Visibilidad", content: RStore.currentRoutine.isPublic}
+          ];
+      this.currentRoutine = RStore.currentRoutine
+      this.cycles = RStore.currentCycles
+      this.store = RStore;
+      this.cOrder = RStore.cycleOrder;
+      console.log(RStore);
+    })
   }
 }
 </script>
 
 <style scoped>
-.borderRounded {
-  border-radius: 20px !important;
-}
-
-.slide { opacity: 0.5; }
-
-.slide.current {
-  opacity: 1;
-  animation-name: fadeIn;
-  -webkit-animation-name: fadeIn;
-  animation-duration: 0.5s;
-  -webkit-animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-timing-function: ease-in-out;
-  visibility: visible !important;
-}
 
 .end-input >>> input {
   text-align: right;
 }
+
 .color-disabled >>> input {
   color: white;
 }
@@ -197,25 +204,4 @@ export default {
   color: black;
 }
 
-@keyframes fadeIn {
-  0% {
-    transform: scale(0.5);
-    opacity: 0.0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    -webkit-transform: scale(0.5);
-    opacity: 0.0;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    opacity: 1;
-  }
-}
 </style>

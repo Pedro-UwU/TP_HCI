@@ -11,8 +11,9 @@
           <v-btn
               solo
               plain
+              @click="goToEdit()"
           >
-            <v-icon left>mdi-content-save</v-icon>
+            <v-icon left>mdi-pencil</v-icon>
             Editar
           </v-btn>
         </div>
@@ -80,7 +81,7 @@
           ></c-cycle-card>
         </v-col>
       </v-row>
-      <div v-else>No se cargo</div>
+      <div v-else>No contiene ciclos</div>
     </v-container>
   </v-app>
 </template>
@@ -103,6 +104,7 @@ export default {
   },
   data: () => {
     return {
+      cOrder: 1,
       RoutineId: 0,
       currentRoutine: null,
       cycles: null,
@@ -114,9 +116,6 @@ export default {
         {title: "Visibilidad", content: null}
       ],
     }
-  },
-  methods: {
-
   },
   beforeCreate() {
     if (Api.token === undefined) {
@@ -140,6 +139,11 @@ export default {
       console.log(RStore);
     })
   },
+  methods: {
+    goToEdit() {
+      router.push(`/edit?RId=${RStore.currentRoutine.id}`)
+    }
+  }
 }
 </script>
 

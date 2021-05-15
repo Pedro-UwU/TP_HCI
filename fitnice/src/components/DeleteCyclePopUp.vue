@@ -63,6 +63,7 @@ export default {
   },
   methods: {
     deleteCycle() {
+      console.log(RStore)
       let found = false;
       for (let i =0 ; i < this.cycles.length; i++) {
         if ( this.cycles[i].name === this.cycle.name ) {

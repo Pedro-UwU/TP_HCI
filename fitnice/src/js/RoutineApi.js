@@ -33,4 +33,18 @@ export class RoutineApi {
         console.log("RoutineApi.js" + result)
         return result
     }
+
+    static async modifyRoutine(id, routine) {
+        console.log(routine.category)
+        let data = {
+            name: routine.name,
+            detail: routine.detail,
+            isPublic: routine.isPublic,
+            difficulty: routine.difficulty,
+            category: routine.category,
+            metadata: null
+        }
+        let result = Api.put(`${Api.baseUrl}/routines/${id}`,true, data, null);
+        return result;
+    }
 }

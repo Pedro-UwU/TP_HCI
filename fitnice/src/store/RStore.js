@@ -8,6 +8,7 @@ export const RStore = {
     currentRoutine: null,
     currentCycles: [],
     cycleExercises: [], //Tiene cosas del estilo {cycleOrder: , ex: [{exercise, repetitions, duration, order}]}}
+    cycleOrder: 0,
 
     createRoutine() {
         //Primero Creo la Rutina
@@ -21,8 +22,6 @@ export const RStore = {
                     if (res.id === undefined) 'Error, no se pudo agregar el ciclo'
                     for (let j = 0; j < this.cycleExercises[i].exercises.length; j++) {
                         //Aca agrego el ejercicio
-                        console.log(JSON.stringify(this.cycleExercises[i]))
-                        console.log(this.cycleExercises[i].exercises[j].exercise.type);
                         this.cycleExercises[i].exercises[j].exercise.duration = parseInt(this.cycleExercises[i].exercises[j].exercise.duration)
                         this.cycleExercises[i].exercises[j].exercise.repetitions = parseInt(this.cycleExercises[i].exercises[j].exercise.repetitions)
                         CycleApi.addExerciseToCycle(res.id,this.cycleExercises[i].exercises[j].exercise.id,this.cycleExercises[i].exercises[j].order, this.cycleExercises[i].exercises[j].duration,this.cycleExercises[i].exercises[j].repetitions)
@@ -50,16 +49,62 @@ export const RStore = {
                         this.cycleExercises.push({cycleOrder: cRes.content[i].order, exercises:[]})
                         CycleApi.getExercisesFromCycle(cRes.content[i].id).then(eRes => {
                             for (let j = 0; j < eRes.content.length; j++) {
-                                this.cycleExercises[i].exercises.push(eRes.content[i])
+                                this.cycleExercises[i].exercises.push(eRes.content[j])
                             }
                         });
                     }
                 })
             })
+            this.cycleOrder=this.currentCycles.length
             return result;
         } catch (e) {
             console.log(e)
             router.push('/NotFound')
         }
+    },
+
+    async cleanRoutine(id) {
+        if (this.currentRoutine.id !== id) {
+            console.log("Current Routine: " + this.currentRoutine.id + ", id: " + id)
+            throw 'Debes modificar la rutina con el mismo ID'
+        }
+        CycleApi.getCyclesFromRoutine(id).then(cyclesToDelete => {
+
+            for (let i = 0; i < cyclesToDelete.content.length; i++) {
+                CycleApi.getExercisesFromCycle(cyclesToDelete.content[i].id).then(exercisesToDelete => {
+                    for (let j = 0; j < exercisesToDelete.content.length; j++) {
+                        CycleApi.removeExerciseFromCycle(cyclesToDelete.content[i].id, exercisesToDelete.content[j].exercise.id);
+                    }
+                }).then(() => {
+                    console.log(CycleApi.deleteCycle(id, cyclesToDelete.content[i].id));
+                })
+            }
+        })
+    },
+    modifyRoutine(id){
+        //Primero modifico la rutina
+        if (this.currentRoutine.id !== id) {
+            console.log("Current Routine: " + this.currentRoutine.id + ", id: " + id)
+            throw 'Debes modificar la rutina con el mismo ID'
+        }
+        RoutineApi.modifyRoutine(id, this.currentRoutine).then(res => {
+            for (let i = 0; i < this.currentCycles.length; i++) {
+                this.currentCycles[i].routineId = res.id;
+                this.currentCycles[i].repetitions = parseInt(this.currentCycles[i].repetitions);
+                CycleApi.addCycle(this.currentCycles[i]).then(res => {
+                    console.log("Llego a A")
+                    if (id === undefined) 'Error, no se pudo agregar el ciclo'
+                    for (let j = 0; j < this.cycleExercises[i].exercises.length; j++) {
+                        //Aca agrego el ejercicio
+                        this.cycleExercises[i].exercises[j].exercise.duration = parseInt(this.cycleExercises[i].exercises[j].exercise.duration)
+                        this.cycleExercises[i].exercises[j].exercise.repetitions = parseInt(this.cycleExercises[i].exercises[j].exercise.repetitions)
+                        CycleApi.addExerciseToCycle(res.id,this.cycleExercises[i].exercises[j].exercise.id,this.cycleExercises[i].exercises[j].order, this.cycleExercises[i].exercises[j].duration,this.cycleExercises[i].exercises[j].repetitions)
+                        console.log("Llego a B")
+                    }
+                })
+            }
+        }).catch((e) => {
+            console.log("ASDASDDS", e)
+        })
     }
 }

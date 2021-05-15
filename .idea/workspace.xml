@@ -2,11 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3565008b-94d2-4928-8085-92af2ebec830" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/fitnice/src/views/EditRoutine.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/api/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/api/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/controllers/Favourite.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/controllers/Favourite.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/controllers/Routine.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/controllers/Routine.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/db/exercise.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/CycleCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/repository/CycleExerciseRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/repository/CycleExerciseRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/repository/ReviewRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/repository/ReviewRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/service/ExerciseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/service/ExerciseService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/service/FavouriteService.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/service/FavouriteService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/service/ImageService.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/service/ImageService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/service/ModelMapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/service/ModelMapper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/service/RoutineService.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/service/RoutineService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_HCI/service/VideoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_HCI/service/VideoService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/DeleteCyclePopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/DeleteCyclePopUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/components/RoutineCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/components/RoutineCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/js/CycleApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/js/CycleApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/js/RoutineApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/js/RoutineApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitnice/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/store/RStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/store/RStore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/views/CheckRoutine.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/CheckRoutine.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fitnice/src/views/CreateRoutine.vue" afterDir="false" />
@@ -82,7 +97,7 @@
       <workItem from="1620736433233" duration="8773000" />
       <workItem from="1620934810713" duration="18729000" />
       <workItem from="1621030739142" duration="11970000" />
-      <workItem from="1621046408975" duration="15945000" />
+      <workItem from="1621046408975" duration="29819000" />
     </task>
     <servers />
   </component>

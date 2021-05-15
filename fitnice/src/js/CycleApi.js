@@ -14,8 +14,21 @@ export class CycleApi {
         return result
     }
 
+    static async modifyCycle(routineId,id,cycle) {
+        let data = {
+            name: cycle.name,
+            detail: cycle.detail,
+            type: cycle.type,
+            order: cycle.order,
+            repetitions: cycle.repetitions,
+            metadata: null
+        }
+        let result = Api.put(`${Api.baseUrl}/routines/${routineId}/cycles/${id}`,true, data, null)
+        return result
+    }
+
     static async deleteCycle(routineId, cycleId) {
-        let result = Api.delete(`${Api.baseUrl}/routines/${routineId}/cycles/${cycleId}`)
+        let result = Api.delete(`${Api.baseUrl}/routines/${routineId}/cycles/${cycleId}`,true, null)
         return result
     }
     static async addExerciseToCycle(cycleId, exerciseId, order, duration, repetitions) {
@@ -29,7 +42,7 @@ export class CycleApi {
     }
 
     static async removeExerciseFromCycle(cycleId, exerciseId) {
-        let result = Api.delete(`${Api.baseUrl}/cycles/${cycleId}/exercises/${exerciseId}`)
+        let result = Api.delete(`${Api.baseUrl}/cycles/${cycleId}/exercises/${exerciseId}`, true, null)
         return result
     }
 
