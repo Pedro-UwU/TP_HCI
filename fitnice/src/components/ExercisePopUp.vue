@@ -58,7 +58,9 @@
               <v-col>
                 <v-select
                     :items="['Ejercicio','Descanso']"
-                    label="Tipo"
+                    label="Tipo*"
+                    :menu-props="{ offsetY: true, transition: 'slide-y-transition', light: true, closeOnClick: true,
+                    closeOnContentClick: true }"
                     :rules="[v => !!v || 'campo obligatorio']"
                     v-model="infoEx.type"
                     required
@@ -72,7 +74,7 @@
                 <v-textarea
                     class="my-n7"
                     height="150px"
-                    label="descripcion"
+                    label="Descripción"
                     solo
                     v-model="infoEx.detail"
                     name="descripcion"
@@ -160,5 +162,10 @@ export default {
 </script>
 
 <style scoped>
-
+.theme--light.v-list{
+  background: #BDC3c7;
+}
+.theme--light.v-list-item:hover:before {
+  opacity: 0.30;
+}
 </style>

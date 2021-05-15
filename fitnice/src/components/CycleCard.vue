@@ -31,6 +31,11 @@
             :items="['warmup', 'exercise', 'cooldown']"
             v-model="cycle.type"
             label="Categoría"
+            :menu-props="{ offsetY: true, transition: 'slide-y-transition', light: true, closeOnClick: true,
+                    closeOnContentClick: true }"
+            class="white--text"
+            item-color="black"
+            color="white"
         >
         </v-select>
         <v-text-field
@@ -289,5 +294,11 @@ export default {
 }
 .color-enabled >>> input {
   color: black;
+}
+.theme--light.v-list{
+  background: #BDC3c7;
+}
+.theme--light.v-list-item:hover:before {
+  opacity: 0.30;
 }
 </style>

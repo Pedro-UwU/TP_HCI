@@ -22,8 +22,8 @@
               solo
               plain
           >
-            <v-icon left>mdi-content-save</v-icon>
             Guardar
+            <v-icon right>mdi-content-save</v-icon>
           </v-btn>
         </div>
       </v-row>
