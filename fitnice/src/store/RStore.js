@@ -85,15 +85,13 @@ export const RStore = {
             throw 'Debes modificar la rutina con el mismo ID'
         }
         CycleApi.getCyclesFromRoutine(id).then(cyclesToDelete => {
-
             for (let i = 0; i < cyclesToDelete.content.length; i++) {
                 CycleApi.getExercisesFromCycle(cyclesToDelete.content[i].id).then(exercisesToDelete => {
                     for (let j = 0; j < exercisesToDelete.content.length; j++) {
                         CycleApi.removeExerciseFromCycle(cyclesToDelete.content[i].id, exercisesToDelete.content[j].exercise.id);
                     }
-                }).then(() => {
-                    console.log(CycleApi.deleteCycle(id, cyclesToDelete.content[i].id));
                 })
+                CycleApi.deleteCycle(id, cyclesToDelete.content[i].id);
             }
         })
     },

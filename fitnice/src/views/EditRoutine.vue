@@ -13,8 +13,8 @@
               solo
               plain
           >
-            <v-icon left>mdi-delete</v-icon>
             Borrar
+            <v-icon right>mdi-delete</v-icon>
           </v-btn>
         </div>
         <div @click="saveRoutine(); $router.push(`/profile`)">

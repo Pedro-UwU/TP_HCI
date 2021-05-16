@@ -36,6 +36,7 @@
             class="white--text"
             item-color="black"
             color="white"
+
         >
         </v-select>
         <v-text-field
@@ -241,16 +242,6 @@ export default {
     }
   },
   methods: {
-    // translateCycleCategory(){
-    //   let type = "exercise"
-    //   if (cycle.type === 'Ejercicio') {
-    //     type = 'exercise'
-    //   } else if ( cycle.type === 'Calentamiento') {
-    //     type = 'warmup'
-    //   } else {
-    //     type = 'cooldown'
-    //   }
-    // },
     isNumber(evt) {
       return isNumber(evt);
     },
