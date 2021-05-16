@@ -24,7 +24,7 @@
           :key="index-1"
           :label="categorys[index-1]"
           :value="index-1"
-          @click="changeShowedRoutines()"
+          @click="changeShowedRoutines();"
         ></v-radio>
       </v-radio-group>
     </v-list>

@@ -28,7 +28,7 @@
             half-increments
             length="5"
             size="20"
-            :value="rating"
+            :value="this.routine.averageRating"
             @input="rateRoutine($event)"
             align="center"
         ></v-rating>
@@ -80,6 +80,25 @@ export default {
         })
       })
     },
+    isFaved(){
+      FavouriteApi.postFav(this.routine.id).then(() => {
+        FavouriteApi.deleteFav(this.routine.id).then(() => {
+          this.faved = false;
+        }).catch(e => {
+          if (e.code === 2) {
+            this.faved = false;
+          } else {
+            console.log(e.code)
+          }
+        })
+      }).catch(e => {
+        if (e.code === 2) {
+          this.faved = true;
+        } else {
+          console.log(e.code)
+        }
+      })
+    }
   },
   mounted() {
     FavouriteApi.postFav(this.routine.id).then(() => {
@@ -101,6 +120,27 @@ export default {
     })
     this.rating = this.routine.averageRating;
     this.routineIn = this.routine
+  },
+  watch: {
+    routine() {
+      FavouriteApi.postFav(this.routine.id).then(() => {
+        FavouriteApi.deleteFav(this.routine.id).then(() => {
+          this.faved = false;
+        }).catch(e => {
+          if (e.code === 2) {
+            this.faved = false;
+          } else {
+            console.log(e.code)
+          }
+        })
+      }).catch(e => {
+        if (e.code === 2) {
+          this.faved = true;
+        } else {
+          console.log(e.code)
+        }
+      })
+    }
   }
 }
 </script>
