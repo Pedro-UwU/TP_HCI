@@ -4,6 +4,7 @@ export default class Cycle{
         this.name = name;
         this.detail = "";
         this.type = type;
+        console.log(type)
         this.order = order;
         this.repetitions = repetitions;
         this.routineId = -1;

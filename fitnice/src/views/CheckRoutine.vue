@@ -134,7 +134,6 @@ import {router} from "../main";
 import {Api} from "../js/api";
 import CycleCard from "../components/CycleCard";
 import {UserApi} from "../js/user";
-import {CategoryApi} from "../js/CategoryApi";
 
 // let currentRoutine = RStore.currentRoutine;
 
@@ -160,7 +159,6 @@ export default {
         {title: "Visibilidad", content: null}
       ],
       visibility: "",
-      category: ""
     }
   },
   beforeCreate() {
@@ -186,9 +184,6 @@ export default {
       this.currentRoutine = RStore.currentRoutine
       UserApi.getUser(this.currentRoutine.userId).then((e) => {
         this.createdBy = e.username
-      })
-      CategoryApi.getCategory(this.currentRoutine).then((e) => {
-        this.category = e.name
       })
       this.cycles = RStore.currentCycles
       this.store = RStore;

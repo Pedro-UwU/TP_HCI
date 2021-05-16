@@ -42,7 +42,7 @@
             v-else
             readonly
             flat
-            :items="['warmup', 'exercise', 'cooldown']"
+            :items="['Calentamiento', 'Ejercicio', 'Enfriamiento']"
             v-model="cycle.type"
             background-color="transparent"
             label="Categoría"
@@ -241,6 +241,16 @@ export default {
     }
   },
   methods: {
+    // translateCycleCategory(){
+    //   let type = "exercise"
+    //   if (cycle.type === 'Ejercicio') {
+    //     type = 'exercise'
+    //   } else if ( cycle.type === 'Calentamiento') {
+    //     type = 'warmup'
+    //   } else {
+    //     type = 'cooldown'
+    //   }
+    // },
     isNumber(evt) {
       return isNumber(evt);
     },

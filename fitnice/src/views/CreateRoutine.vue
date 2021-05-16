@@ -252,6 +252,8 @@ export default {
       this.categories = CategoryStore.categories
       this.onlyNames()
       console.log(this.categories)
+    }).catch(e => {
+      console.log(e)
     })
     currentRoutine =  new Routine()
     RStore.currentRoutine = currentRoutine;
@@ -262,7 +264,7 @@ export default {
     }
 
     RStore.currentRoutine.isPublic = true;
-    this.getVisibility(RStore.currentRoutine.isPublic);
+    this.visibility = (RStore.currentRoutine.isPublic===true? "Publica" : "Privada")
     RStore.currentCycles = [];
     RStore.cycleExercises = [];
     this.routineItems[2].content = this.transformDifficulty()

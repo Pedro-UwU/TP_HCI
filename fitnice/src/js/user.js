@@ -22,9 +22,10 @@ class UserApi {
     }
 
     static async logout(controller) {
-        await Api.post(`${UserApi.url}/logout`, true, controller);
-        Api.token = undefined;
-        localStorage.removeItem('token')
+        await Api.post(`${UserApi.url}/logout`, true, controller).then(() => {
+            Api.token = undefined;
+            localStorage.removeItem('token')
+        })
     }
 
     static async create(userInfo, controller) {

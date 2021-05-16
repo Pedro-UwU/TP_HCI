@@ -3,6 +3,7 @@ import {loadRoutinesData} from "../store/RoutineStore";
 
 export class RoutineApi {
     static async createRoutine(routine) {
+        routine.category.id = parseInt(routine.category.id)
         let data = {
             name: routine.name,
             detail: routine.detail,
@@ -36,6 +37,7 @@ export class RoutineApi {
 
     static async modifyRoutine(id, routine) {
         console.log(routine.category)
+        id = parseInt(id)
         let data = {
             name: routine.name,
             detail: routine.detail,

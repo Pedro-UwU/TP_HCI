@@ -2,10 +2,18 @@ import {Api} from "./api";
 
 export class CycleApi {
     static async addCycle(cycle) {
+        let type = "exercise"
+        if (cycle.type === 'Ejercicio') {
+            type = 'exercise'
+        } else if ( cycle.type === 'Calentamiento') {
+            type = 'warmup'
+        } else {
+            type = 'cooldown'
+        }
         let data = {
             name: cycle.name,
             detail: cycle.detail,
-            type: cycle.type,
+            type: type,
             order: cycle.order,
             repetitions: cycle.repetitions,
             metadata: null
@@ -15,10 +23,18 @@ export class CycleApi {
     }
 
     static async modifyCycle(routineId,id,cycle) {
+        let type = "exercise"
+        if (cycle.type === 'Ejercicio') {
+            type = 'exercise'
+        } else if ( cycle.type === 'Calentamiento') {
+            type = 'warmup'
+        } else {
+            type = 'cooldown'
+        }
         let data = {
             name: cycle.name,
             detail: cycle.detail,
-            type: cycle.type,
+            type: type,
             order: cycle.order,
             repetitions: cycle.repetitions,
             metadata: null

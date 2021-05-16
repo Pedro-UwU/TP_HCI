@@ -3,6 +3,7 @@ import {CycleApi} from "../js/CycleApi";
 import Routine from "./Routine";
 import Cycle from "./Cycle";
 import {router} from "../main";
+import {UserApi} from "../js/user";
 
 export const RStore = {
     currentRoutine: null,
@@ -15,7 +16,7 @@ export const RStore = {
         RoutineApi.createRoutine(this.currentRoutine).then(res => {
             if (res.id === undefined) throw 'Error, no se pudo crear la rutina'
             this.currentRoutine.id = res.id
-            this.currentRoutine.userId = res.user.id;
+            this.currentRoutine.userId = UserApi.getUserId();
             console.log(this.currentRoutine.userId);
             for (let i = 0; i < this.currentCycles.length; i++) {
                 this.currentCycles[i].routineId = res.id;
@@ -92,12 +93,14 @@ export const RStore = {
             console.log("Current Routine: " + this.currentRoutine.id + ", id: " + id)
             throw 'Debes modificar la rutina con el mismo ID'
         }
+        console.log("current rutine" + this.currentRoutine.id)
+        this.currentRoutine.userId = UserApi.getUserId();
+        console.log("capaz llego1")
         RoutineApi.modifyRoutine(id, this.currentRoutine).then(res => {
-            this.currentRoutine.userId = res.user.id;
-            console.log(this.currentRoutine.userId);
-            for (let i = 0; i < this.currentCycles.length; i++) {
-                this.currentCycles[i].routineId = res.id;
-                this.currentCycles[i].repetitions = parseInt(this.currentCycles[i].repetitions);
+            console.log(RStore.currentCycles.length)
+            for (let i = 0; i < RStore.currentCycles.length; i++) {
+                RStore.currentCycles[i].routineId = res.id;
+                RStore.currentCycles[i].repetitions = parseInt(RStore.currentCycles[i].repetitions);
                 CycleApi.addCycle(this.currentCycles[i]).then(res => {
                     console.log("Llego a A")
                     if (id === undefined) 'Error, no se pudo agregar el ciclo'
@@ -111,7 +114,7 @@ export const RStore = {
                 })
             }
         }).then(()=>{
-            router.push(`/check?RId=${id}`)
+            // router.push(`/check?RId=${id}`)
         }).catch((e) => {
             console.log("ASDASDDS", e)
         })
