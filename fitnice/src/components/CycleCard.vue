@@ -28,7 +28,7 @@
       <v-col>
         <v-select
             v-if="!readOnly"
-            :items="['warmup', 'exercise', 'cooldown']"
+            :items="['Calentamiento', 'Ejercicio', 'Enfriamiento']"
             v-model="cycle.type"
             label="Categoría"
             :menu-props="{ offsetY: true, transition: 'slide-y-transition', light: true, closeOnClick: true,
