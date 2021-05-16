@@ -11,17 +11,29 @@
       </v-row>
     </v-container>
     <v-container>
-      <v-row v-if="routinesCalc!==null" no-gutters style="background: none" align-content="center">
+      <v-row no-gutters style="background: none" align-content="center">
         <v-col
-            v-for="(n,index) in routinesCalc.length"
+            v-for="(n,index) in store.routines.length"
             :key="index"
             class="align-center"
             cols="3"
         >
-          <c-routine-card class="routine" :routine="routinesCalc[index]" />
+          <c-routine-card class="routine" :routine="store.routines[index]" />
         </v-col>
       </v-row>
-    </v-container>  </v-app>
+    </v-container>
+    <div class="text-center pt-2 px-16 mx-16">
+      <v-container>
+        <v-btn class="primary" rounded small @click="previousPage()">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+        <v-btn class="transparent" text disabled elevation="0">{{page}}</v-btn>
+        <v-btn class="primary" rounded small @click="nextPage()">
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
+      </v-container>
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -33,16 +45,50 @@ import RoutineCard from "../components/RoutineCard";
 import {Api} from "../js/api";
 import {UserApi} from "../js/user";
 import {MyRoutineStore} from "../store/MyRoutinesStore";
-import {GetRoutinesParametersStore} from "../store/GetRoutinesParametersStore";
+import {GetMyRoutinesParametersStore} from "../store/GetMyRoutinesParametersStore";
 
 export default {
   name: "MyRoutines",
+  data: () => ({
+    page: GetMyRoutinesParametersStore.page,
+    store: MyRoutineStore
+  }),
   components: {
     CHeader: Header,
     CFilters: Filters,
     COrder: Order,
     CCreateRoutineBtn: CreateRoutineBtn,
     CRoutineCard: RoutineCard
+  },
+  methods: {
+    nextPage(){
+      if (!this.store.data.isLastPage) {
+        this.page += 1;
+        GetMyRoutinesParametersStore.page = this.page
+        UserApi.myRoutines(
+            GetMyRoutinesParametersStore.page,
+            GetMyRoutinesParametersStore.size,
+            GetMyRoutinesParametersStore.orderBy,
+            GetMyRoutinesParametersStore.direction
+        ).then(()  => {
+          this.store = MyRoutineStore
+        })
+      }
+    },
+    previousPage() {
+      if (this.page>0) {
+        this.page -= 1;
+        GetMyRoutinesParametersStore.page = this.page
+        UserApi.myRoutines(
+            GetMyRoutinesParametersStore.page,
+            GetMyRoutinesParametersStore.size,
+            GetMyRoutinesParametersStore.orderBy,
+            GetMyRoutinesParametersStore.direction
+        ).then(()  => {
+          this.store = MyRoutineStore
+        })
+      }
+    }
   },
   beforeCreate() {
     if (Api.token === undefined){
@@ -54,20 +100,14 @@ export default {
       }
     }
     UserApi.myRoutines(
-        GetRoutinesParametersStore.page,
-        GetRoutinesParametersStore.size,
-        GetRoutinesParametersStore.orderBy,
-        GetRoutinesParametersStore.direction
+        GetMyRoutinesParametersStore.page,
+        GetMyRoutinesParametersStore.size,
+        GetMyRoutinesParametersStore.orderBy,
+        GetMyRoutinesParametersStore.direction
     ).then(()  => {
-      this.routines = MyRoutineStore.routines
+      this.store = MyRoutineStore
     })
-  },
-  computed: {
-    routinesCalc() {
-      return MyRoutineStore.routines
-    }
-  },
-
+  }
 }
 </script>
 

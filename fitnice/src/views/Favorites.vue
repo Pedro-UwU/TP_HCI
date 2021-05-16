@@ -10,17 +10,28 @@
       </v-row>
     </v-container>
     <v-container>
-      <v-row v-if="routines!==null" no-gutters style="background: none" align-content="center">
+      <v-row no-gutters style="background: none" align-content="center">
         <v-col
-            v-for="(n,index) in routines.length"
+            v-for="(n,index) in store.favourites.length"
             :key="index"
             align="center"
             cols="3"
         >
-          <c-routine-card class="routine" :routine="routines[index]"/>
+          <c-routine-card class="routine" :routine="store.favourites[index]"/>
         </v-col>
       </v-row>
     </v-container>
+    <div v-if="store.favourites.lenght!==0" class="text-center pt-2 px-16 mx-16">
+      <v-container>
+        <v-btn class="primary" rounded small @click="previousPage()">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+        <v-btn class="transparent" text disabled elevation="0">{{store.page}}</v-btn>
+        <v-btn class="primary" rounded small @click="nextPage()">
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
+      </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -36,13 +47,34 @@ import {FavouritesStore} from "../store/FavouritesStore";
 export default {
 name: "Favorites",
   data: () => ({
-    routines: null
+    page: FavouritesStore.page,
+    store: FavouritesStore
   }),
   components :{
     CHeader: Header,
     CFilters: Filters,
     COrder: Order,
     CRoutineCard: RoutineCard
+  },
+  methods: {
+    nextPage(){
+      if (!this.store.data.isLastPage) {
+        this.page += 1;
+        FavouritesStore.page = this.page
+        FavouriteApi.getFavourites(this.page).then(() => {
+          this.store = FavouritesStore
+        })
+      }
+    },
+    previousPage() {
+      if (this.page>0) {
+        this.page -= 1;
+        FavouritesStore.page = this.page
+        FavouriteApi.getFavourites(FavouritesStore).then(() => {
+          this.store = FavouritesStore
+        })
+      }
+    }
   },
   beforeCreate() {
     if (Api.token === undefined){
@@ -53,8 +85,8 @@ name: "Favorites",
         return
       }
     }
-    FavouriteApi.getFavourites().then(() => {
-      this.routines = FavouritesStore.favourites
+    FavouriteApi.getFavourites(FavouritesStore.page).then(() => {
+      this.store = FavouritesStore
     })
   }
 }

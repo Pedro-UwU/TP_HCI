@@ -11,17 +11,28 @@
       </v-row>
     </v-container>
     <v-container>
-      <v-row v-if="routinesCalc!==null" no-gutters style="background: none" align-content="center">
+      <v-row no-gutters style="background: none" align-content="center">
         <v-col
-            v-for="(n,index) in routinesCalc.length"
+            v-for="(n,index) in store.routines.length"
             :key="index"
             class="align-center"
             cols="3"
         >
-          <c-routine-card class="routine" :routine="routinesCalc[index]" />
+          <c-routine-card class="routine" :routine="store.routines[index]" />
         </v-col>
       </v-row>
     </v-container>
+    <div v-if="store.routines.lenght!==0" class="text-center pt-2 px-16 mx-16">
+      <v-container>
+        <v-btn class="primary" rounded small @click="previousPage()">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+        <v-btn class="transparent" text disabled elevation="0">{{page}}</v-btn>
+        <v-btn class="primary" rounded small @click="nextPage()">
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
+      </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -51,12 +62,44 @@ import {CategoryApi} from "../js/CategoryApi";
 
 export default {
   name: "Explore",
+  data: () => ({
+    page: GetRoutinesParametersStore.page,
+    store: RoutineStore
+  }),
   components: {
     CHeader: Header,
     CRoutineCard: RoutineCard,
     CFilters: Filters,
     COrder: Order,
     CCreateRoutineBtn: CreateRoutineBtn
+  },
+  methods: {
+    nextPage(){
+      if (!this.store.data.isLastPage) {
+        this.page += 1;
+        GetRoutinesParametersStore.page = this.page
+        RoutineApi.getRoutines(
+            GetRoutinesParametersStore.page,
+            GetRoutinesParametersStore.size,
+            GetRoutinesParametersStore.orderBy,
+            GetRoutinesParametersStore.direction).then(() => {
+          this.store = RoutineStore
+        })
+      }
+    },
+    previousPage() {
+      if (this.page>0) {
+        this.page -= 1;
+        GetRoutinesParametersStore.page = this.page
+        RoutineApi.getRoutines(
+            GetRoutinesParametersStore.page,
+            GetRoutinesParametersStore.size,
+            GetRoutinesParametersStore.orderBy,
+            GetRoutinesParametersStore.direction).then(() => {
+          this.store = RoutineStore
+        })
+      }
+    }
   },
   beforeCreate: function () {
     if (Api.token === undefined) {
@@ -72,7 +115,7 @@ export default {
         GetRoutinesParametersStore.size,
         GetRoutinesParametersStore.orderBy,
         GetRoutinesParametersStore.direction).then(() => {
-          this.routine = RoutineStore.routines
+          this.store = RoutineStore
     })
     CategoryApi.postCategory('Brazos')
     CategoryApi.postCategory('Piernas')
@@ -80,11 +123,7 @@ export default {
     CategoryApi.postCategory('Biceps')
     CategoryApi.postCategory('Triceps')
     CategoryApi.postCategory('Espalda')
-  },
-  computed: {
-    routinesCalc() {
-      return RoutineStore.routines
-    }
+    this.page = 0;
   },
 }
 </script>

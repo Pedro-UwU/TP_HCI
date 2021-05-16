@@ -78,41 +78,10 @@ export default {
     nextPage() {
       ExerciseStore.page++;
       ExerciseStore.reload();
-      // try {
-      //   ExerciseApi.getExercises(this.page, itemsPerPage).then(res => {
-      //     if (res.content.length === 0) {
-      //       return;
-      //     }
-      //
-      //     this.page++;
-      //     ExerciseStore.exercises = [];
-      //     for (let i = 0; i<res.content.length; i++) {
-      //       let exInfo = res.content[i];
-      //       let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
-      //       let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
-      //       ExerciseStore.exercises.push(newEx)
-      //   }
-      //   })
-      // } catch (e) {
-      //   console.log(e);
-      // }
     },
     previousPage() {
       if (ExerciseStore.page > 0) {
         ExerciseStore.page--;
-        // try {
-        //   ExerciseApi.getExercises(this.page-1, itemsPerPage).then(res => {
-        //     ExerciseStore.exercises = [];
-        //     for (let i = 0; i<res.content.length; i++) {
-        //       let exInfo = res.content[i];
-        //       let type = (exInfo.type === 'exercise') ? exerciseType.EXERCISE:exerciseType.REST;
-        //       let newEx = new Exercise(exInfo.name, exInfo.detail, type, exInfo.id);
-        //       ExerciseStore.exercises.push(newEx)
-        //     }
-        //   })
-        // } catch (e) {
-        //   console.log(e);
-        // }
         ExerciseStore.reload();
       }
 
