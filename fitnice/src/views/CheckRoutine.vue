@@ -186,6 +186,7 @@ export default {
         this.createdBy = e.username
       })
       this.cycles = RStore.currentCycles
+      console.log(RStore.currentCycles)
       this.store = RStore;
       this.routineItems[2].content = this.transformDifficulty()
       this.owner()
@@ -215,7 +216,7 @@ export default {
         case 'expert':
           return 'Experto'
       }
-    }
+    },
   },
 }
 </script>

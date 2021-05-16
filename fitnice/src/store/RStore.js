@@ -36,6 +36,16 @@ export const RStore = {
 
     },
 
+    translateCycleCat(type){
+        switch (type) {
+            case 'exercise':
+                return 'Ejercicio'
+            case 'warmup':
+                return 'Calentamiento'
+            case 'cooldown':
+                return 'Enfriamiento'
+        }
+    },
 
     async loadRoutine(id) {
         this.currentRoutine = null
@@ -49,7 +59,7 @@ export const RStore = {
                 console.log(this.currentRoutine.userId);
                 CycleApi.getCyclesFromRoutine(res.id).then(cRes => {
                     for (let i = 0; i < cRes.content.length; i++) {
-                        this.currentCycles.push(new Cycle(cRes.content[i].name, cRes.content[i].type, cRes.content[i].order, cRes.content[i].repetitions))
+                        this.currentCycles.push(new Cycle(cRes.content[i].name, this.translateCycleCat(cRes.content[i].type), cRes.content[i].order, cRes.content[i].repetitions))
                         this.currentCycles[i].routineId = res.id;
                         this.currentCycles[i].id =cRes.content[i].id
                         this.cycleExercises.push({cycleOrder: cRes.content[i].order, exercises:[]})
@@ -89,19 +99,19 @@ export const RStore = {
     },
     modifyRoutine(id){
         //Primero modifico la rutina
-        if (this.currentRoutine.id !== id) {
+        if (RStore.currentRoutine.id !== id) {
             console.log("Current Routine: " + this.currentRoutine.id + ", id: " + id)
             throw 'Debes modificar la rutina con el mismo ID'
         }
-        console.log("current rutine" + this.currentRoutine.id)
+        console.log("current rutine" + RStore.currentRoutine.id)
         this.currentRoutine.userId = UserApi.getUserId();
         console.log("capaz llego1")
-        RoutineApi.modifyRoutine(id, this.currentRoutine).then(res => {
-            console.log(RStore.currentCycles.length)
+        RoutineApi.modifyRoutine(id, RStore.currentRoutine).then(res => {
+            console.log(RStore.currentCycles.length+ "aca");
             for (let i = 0; i < RStore.currentCycles.length; i++) {
                 RStore.currentCycles[i].routineId = res.id;
                 RStore.currentCycles[i].repetitions = parseInt(RStore.currentCycles[i].repetitions);
-                CycleApi.addCycle(this.currentCycles[i]).then(res => {
+                CycleApi.addCycle(RStore.currentCycles[i]).then(res => {
                     console.log("Llego a A")
                     if (id === undefined) 'Error, no se pudo agregar el ciclo'
                     for (let j = 0; j < this.cycleExercises[i].exercises.length; j++) {

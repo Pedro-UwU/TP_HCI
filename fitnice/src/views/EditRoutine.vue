@@ -17,7 +17,7 @@
             Borrar
           </v-btn>
         </div>
-        <div @click="saveRoutine(); $router.push(`/check?RId=${getId()}`)">
+        <div @click="saveRoutine(); $router.push(`/profile`)">
           <v-btn
               solo
               plain
@@ -189,7 +189,7 @@ export default {
   methods: {
     addCycle() {
       let order = RStore.currentCycles.length + 1;
-      RStore.currentCycles.push(new Cycle(`Ciclo ${order}`, 'warmup', order, 1,));
+      RStore.currentCycles.push(new Cycle(`Ciclo ${order}`, 'Warmup', order, 1));
       RStore.cycleExercises.push({
         cycleOrder: order,
         exercises: []
@@ -247,7 +247,7 @@ export default {
       RStore.currentRoutine.isPublic = (this.routineItems[3].content==="Publica");
       console.log(RStore);
       RStore.cleanRoutine(RStore.currentRoutine.id).then(() => {
-        RStore.modifyRoutine(RStore.currentRoutine.id);
+        RStore.modifyRoutine(RStore.currentRoutine.id)
       })
     },
     deleteRoutine() {
@@ -264,11 +264,6 @@ export default {
         this.$router.push('/login');
       }
     }
-    CategoryApi.getCategories().then(() => {
-      this.categories = CategoryStore.categories
-      this.onlyNames()
-      console.log(this.categories)
-    })
     let href = window.location.href;
     this.RoutineId = getUrlVars(href)["RId"];
     if (this.RoutineId === undefined || this.RoutineId === null || isNaN(this.RoutineId)) {
@@ -281,13 +276,19 @@ export default {
             {title: "Dificultad", content: RStore.currentRoutine.difficulty},
             {title: "Visibilidad", content: RStore.currentRoutine.isPublic}
           ];
+      this.cycles = RStore.currentCycles
       this.currentRoutine = RStore.currentRoutine
       this.visibility = this.routineItems[3].content? "Publica" : "Privada"
       this.cycles = RStore.currentCycles
       this.store = RStore;
       this.cOrder = RStore.cycleOrder;
+      CategoryApi.getCategories().then(() => {
+        this.categories = CategoryStore.categories
+        this.onlyNames()
+      }).catch(e => {
+        console.log(e)
+      })
       this.difficulty = this.transformDifficulty()
-      console.log(RStore);
     })
   },
 }
